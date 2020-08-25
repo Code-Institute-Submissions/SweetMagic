@@ -1,0 +1,66 @@
+html {
+    height: 100%;
+}
+
+/* Fonts, text color and decoration */
+
+.logo {
+    color: #000 !important;
+    font-family: 'Bad Script', cursive;
+    font-size: 3.5rem;
+}
+
+.title {
+    color: #000 !important;
+    font-family: 'Italianno', cursive;
+}
+
+.text-black {
+    color: #000 !important;
+    font-family: 'Philosopher', sans-serif;
+}
+
+a {
+    color: #000 !important;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #000 !important;
+    text-decoration: none;
+}
+
+/* Background */
+
+.header-color {
+    background-color: #F6EBD9;
+    border-bottom: 8px solid #E0CE9E;
+}
+
+.footer-color {
+    background-color: #F6EBD9;
+    border-top: 8px solid #E0CE9E;
+}
+
+.my-image {
+    background: url('/media/home.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    height: 750px;
+}
+
+/* Buttons */
+
+.navbar-toggler {
+    border: none;
+}
+
+/* Icons */
+
+.navbar-toggler-icon {
+    color: #000 !important;
+    font-size: 1.5rem;
+}
+
+.my-icon {
+    font-size: 1.5rem;
+}
