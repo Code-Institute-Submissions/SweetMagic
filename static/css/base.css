@@ -62,3 +62,12 @@ a:hover {
     font-size: 1.5rem;
 }
 
+.social-media {
+    font-size: 1.5rem;
+    border-radius: 50%;
+    background-color: #D9B3A6;
+    width: 2rem;
+    height: 2rem;
+    padding-top: .25rem;
+}
+

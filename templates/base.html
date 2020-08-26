@@ -25,8 +25,11 @@
   </head>
 
   <body>
+
     <!-- Header -->
+
         <header class="container-fluid sticky-top header-color">
+
             <div class="row h-100 justify-content-end align-items-center py-4">
                 <div class="col-12 col-md-4 p-0 text-center">
                     <a href="{% url 'home' %}">
@@ -63,6 +66,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="row h-100 align-items-center">
                 <nav class="navbar navbar-expand-md navbar-light w-100">
                     <div class="row w-100 d-inline d-md-none nav-small-screen"> <!-- Will only be displayed on smaller screens and move search, account and bag icons to the bottom row, next to toggle icon -->
@@ -119,13 +123,34 @@
                     </div>
                 </nav>
             </div>
+
         </header>
 
     {% block mycontent %}
     {% endblock %}
 
     <!-- Footer -->
-        <footer></footer>
+
+        <footer class="container-fluid footer-color">
+
+            <div class="row h-100">
+                <div class="col-12 py-3 text-center">
+                    <ul class="list-inline list-unstyled h- m-0">
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/sweetmagic_encomendas/" target="_blank">
+                                <i class="fab fa-instagram social-media"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/sweetmagicencomendas/" target="_blank">
+                                <i class="fab fa-facebook-f social-media"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        
+        </footer>
     
     {% block postloadjs %}
     {% endblock %}
