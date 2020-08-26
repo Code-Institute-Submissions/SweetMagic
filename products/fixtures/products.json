@@ -1,0 +1,57 @@
+[
+    {
+        "pk":1,
+        "model":"products.product",
+        "fields":{
+            "name":"Chocolate Brownie",
+            "description":"XXX",
+            "price":12.00,
+            "category":5,
+            "image":"IMG_0001.JPG"
+        }
+    },
+    {
+        "pk":2,
+        "model":"products.product",
+        "fields":{
+            "name":"Oreo Pie",
+            "description":"XXX",
+            "price":12.00,
+            "category":6,
+            "image":"IMG_0002.JPG"
+        }
+    },
+    {
+        "pk":3,
+        "model":"products.product",
+        "fields":{
+            "name":"'Torta'",
+            "description":"XXX",
+            "price":16.00,
+            "category":5,
+            "image":"IMG_0003.JPG"
+        }
+    },
+    {
+        "pk":4,
+        "model":"products.product",
+        "fields":{
+            "name":"Lemon Meringue Pie",
+            "description":"XXX",
+            "price":20.00,
+            "category":5,
+            "image":"IMG_0004.JPG"
+        }
+    },
+    {
+        "pk":5,
+        "model":"products.product",
+        "fields":{
+            "name":"Pavlova",
+            "description":"XXX",
+            "price":25.00,
+            "category":6,
+            "image":"IMG_0005.JPG"
+        }
+    }
+]

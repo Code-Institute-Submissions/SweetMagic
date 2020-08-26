@@ -1,0 +1,58 @@
+[
+    {
+        "pk":1,
+        "model":"products.category",
+        "fields":{
+            "name":"wedding_cakes",
+            "viewer_name":"Wedding Cakes"
+        }
+    },
+    {
+        "pk":2,
+        "model":"products.category",
+        "fields":{
+            "name":"festive_cakes",
+            "viewer_name":"Festive Cakes"
+        }
+    },
+    {
+        "pk":3,
+        "model":"products.category",
+        "fields":{
+            "name":"cupcakes",
+            "viewer_name":"Cupcakes"
+        }
+    },
+    {
+        "pk":4,
+        "model":"products.category",
+        "fields":{
+            "name":"cookies",
+            "viewer_name":"Cookies"
+        }
+    },
+    {
+        "pk":5,
+        "model":"products.category",
+        "fields":{
+            "name":"cakes",
+            "viewer_name":"Cakes"
+        }
+    },
+    {
+        "pk":6,
+        "model":"products.category",
+        "fields":{
+            "name":"desserts",
+            "viewer_name":"Desserts"
+        }
+    },
+    {
+        "pk":7,
+        "model":"products.category",
+        "fields":{
+            "name":"themed_tables",
+            "viewer_name":"Themed Tables"
+        }
+    }
+]
