@@ -85,7 +85,9 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-SITE_ID = 1  # Needed to create the proper callback URLs when logging in via social media accounts
+# Needed to create the proper callback
+# URLs when logging in via social media accounts
+SITE_ID = 1
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 

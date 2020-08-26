@@ -2,6 +2,10 @@ from django.db import models
 
 
 class Category(models.Model):
+
+    class Meta:  # To correct the plural error
+        verbose_name_plural = 'Categories'
+
     name = models.CharField(max_length=254)
     viewer_name = models.CharField(max_length=254, null=True, blank=True)
 
