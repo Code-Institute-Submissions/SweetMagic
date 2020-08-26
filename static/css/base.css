@@ -52,16 +52,13 @@ a:hover {
 
 .navbar-toggler {
     border: none;
+    color: #000 !important;
+    padding: 0;
 }
 
 /* Icons */
 
-.navbar-toggler-icon {
-    color: #000 !important;
-    font-size: 1.5rem;
-}
-
 .my-icon {
     font-size: 1.5rem;
 }
-    
+
