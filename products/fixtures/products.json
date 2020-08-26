@@ -7,7 +7,8 @@
             "description":"XXX",
             "price":12.00,
             "category":5,
-            "image":"IMG_0001.JPG"
+            "image":"IMG_0001.JPG",
+            "image_url":"https://drive.google.com/file/d/1Np2QMEnakMSGwY47QvgvwehEz1oLnTY5/view?usp=sharing"
         }
     },
     {
@@ -18,7 +19,8 @@
             "description":"XXX",
             "price":12.00,
             "category":6,
-            "image":"IMG_0002.JPG"
+            "image":"IMG_0002.JPG",
+            "image_url":"https://drive.google.com/file/d/1VEAaybONcsc8SS45YO1NwNmrZW3MO-8X/view?usp=sharing"
         }
     },
     {
@@ -29,7 +31,8 @@
             "description":"XXX",
             "price":16.00,
             "category":5,
-            "image":"IMG_0003.JPG"
+            "image":"IMG_0003.JPG",
+            "image_url":"https://drive.google.com/file/d/1ZUBIEhEgoxCaObMSk5-L4ELVAW9HV4Ww/view?usp=sharing"
         }
     },
     {
@@ -40,7 +43,8 @@
             "description":"XXX",
             "price":20.00,
             "category":5,
-            "image":"IMG_0004.JPG"
+            "image":"IMG_0004.JPG",
+            "image_url":"https://drive.google.com/file/d/1KrF-V3R9fH2pyPY--vXkcts60luwXs5z/view?usp=sharing"
         }
     },
     {
@@ -51,7 +55,8 @@
             "description":"XXX",
             "price":25.00,
             "category":6,
-            "image":"IMG_0005.JPG"
+            "image":"IMG_0005.JPG",
+            "image_url":"https://drive.google.com/file/d/1YLg3gJfCnBPUmbHZsNRCygru2I5eqDB0/view?usp=sharing"
         }
     }
 ]
