@@ -18,6 +18,7 @@ html {
 .text-black {
     color: #000 !important;
     font-family: 'Philosopher', sans-serif;
+    margin: 0;
 }
 
 a {
@@ -56,6 +57,11 @@ a:hover {
     padding: 0;
 }
 
+.my-submit-btn {
+    background-color: #D9B3A6;
+    border: 1px solid #000;
+}
+
 /* Icons */
 
 .my-icon {
@@ -70,4 +76,6 @@ a:hover {
     height: 2rem;
     padding-top: .25rem;
 }
+
+/* Forms */
 
