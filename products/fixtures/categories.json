@@ -51,8 +51,16 @@
         "pk":7,
         "model":"products.category",
         "fields":{
-            "name":"themed_tables",
-            "viewer_name":"Themed Tables"
+            "name":"thematic_tables",
+            "viewer_name":"Thematic Tables"
+        }
+    },
+    {
+        "pk":8,
+        "model":"products.category",
+        "fields":{
+            "name":"donuts",
+            "viewer_name":"Donuts"
         }
     }
 ]
