@@ -4,7 +4,7 @@
         "model":"products.product",
         "fields":{
             "name":"Chocolate Brownie",
-            "description":"XXX",
+            "description":"Big rectangular chocolate brownie to share with your familly and friends. Note the brownie in the picture is just a slice of the actual size.",
             "price":12.00,
             "category":5,
             "quantity":1,
@@ -17,7 +17,7 @@
         "model":"products.product",
         "fields":{
             "name":"Oreo Pie",
-            "description":"XXX",
+            "description":"Oreo cream pie on a Oreo cookie base.",
             "price":12.00,
             "category":6,
             "quantity":1,
@@ -30,7 +30,7 @@
         "model":"products.product",
         "fields":{
             "name":"Orange 'Torta'",
-            "description":"XXX",
+            "description":"Typical Portuguese cake with orange flavour.",
             "price":16.00,
             "category":5,
             "quantity":1,
@@ -43,7 +43,7 @@
         "model":"products.product",
         "fields":{
             "name":"Lemon Meringue Pie",
-            "description":"XXX",
+            "description":"Lemon cream cake with cookie base, topped with delicious meringue.",
             "price":20.00,
             "category":5,
             "quantity":1,
@@ -57,7 +57,7 @@
         "model":"products.product",
         "fields":{
             "name":"Berries Pavlova",
-            "description":"XXX",
+            "description":"Delicious pavlova topped with berries.",
             "price":25.00,
             "category":6,
             "quantity":1,
@@ -70,7 +70,7 @@
         "model":"products.product",
         "fields":{
             "name":"Number Cake",
-            "description":"XXX",
+            "description":"",
             "price":0.00,
             "category":2,
             "quantity":1,
@@ -83,7 +83,7 @@
         "model":"products.product",
         "fields":{
             "name":"Drip Cake with Natural Flowers",
-            "description":"XXX",
+            "description":"",
             "price":0.00,
             "category":2,
             "quantity":1,
@@ -96,7 +96,7 @@
         "model":"products.product",
         "fields":{
             "name":"Drip Cake with Chocolate",
-            "description":"XXX",
+            "description":"",
             "price":0.00,
             "category":2,
             "quantity":1,
@@ -109,7 +109,7 @@
         "model":"products.product",
         "fields":{
             "name":"Drip Cake with Macarons",
-            "description":"XXX",
+            "description":"",
             "price":0.00,
             "category":2,
             "quantity":1,
@@ -122,7 +122,7 @@
         "model":"products.product",
         "fields":{
             "name":"Kinder Chocolate Cake",
-            "description":"XXX",
+            "description":"",
             "price":0.00,
             "category":2,
             "quantity":1,
@@ -135,7 +135,7 @@
         "model":"products.product",
         "fields":{
             "name":"Christmas Cookies",
-            "description":"XXX",
+            "description":"'Christmas' themed cookies.",
             "price":10.00,
             "category":4,
             "quantity":20,
@@ -148,7 +148,7 @@
         "model":"products.product",
         "fields":{
             "name":"Easter Cookies",
-            "description":"XXX",
+            "description":"'Easter' themed cookies.",
             "price":10.00,
             "category":4,
             "quantity":20,
@@ -161,7 +161,7 @@
         "model":"products.product",
         "fields":{
             "name":"Cartoon Cookies",
-            "description":"XXX",
+            "description":"Cookies shapped as any cartoon of your liking. Please don't forget to tell us the wanted cartoon in the note section.",
             "price":10.00,
             "category":4,
             "quantity":20,
@@ -174,7 +174,7 @@
         "model":"products.product",
         "fields":{
             "name":"Baby Shower Cookies",
-            "description":"XXX",
+            "description":"'Baby' themed cookies for every baby shower. Note that the colours of the decoration can be changed. Tell us the colour you wish in the note section when placing your order please.",
             "price":10.00,
             "category":4,
             "quantity":20,
@@ -187,7 +187,7 @@
         "model":"products.product",
         "fields":{
             "name":"Thematic Cookies",
-            "description":"XXX",
+            "description":"Cookies following any theme of your choice. Please don't forget to tell us the theme you wish for in the note section.",
             "price":10.00,
             "category":4,
             "quantity":20,
@@ -200,7 +200,7 @@
         "model":"products.product",
         "fields":{
             "name":"Cupcakes",
-            "description":"XXX",
+            "description":"Simple, no-cream cupcakes.",
             "price":10.00,
             "category":3,
             "quantity":12,
@@ -213,7 +213,7 @@
         "model":"products.product",
         "fields":{
             "name":"Cupcakes with Cream",
-            "description":"XXX",
+            "description":"Cupcakes with a variety of cream flavours.",
             "price":15.00,
             "category":3,
             "quantity":12,
@@ -226,7 +226,7 @@
         "model":"products.product",
         "fields":{
             "name":"Cupcakes with Cream and Nuts",
-            "description":"XXX",
+            "description":"Cupcakes with a variety of cream flavours and nut topping.",
             "price":17.00,
             "category":3,
             "quantity":12,
@@ -239,7 +239,7 @@
         "model":"products.product",
         "fields":{
             "name":"Thematic Cupcakes",
-            "description":"XXX",
+            "description":"Cupcakes following any theme of your choice. Please don't forget to tell us the theme you wish for in the note section.",
             "price":17.00,
             "category":3,
             "quantity":12,
@@ -252,7 +252,7 @@
         "model":"products.product",
         "fields":{
             "name":"Naked Cake",
-            "description":"XXX",
+            "description":"Simple, yet elegant, naked cake in a variety of different flavours and creams, topped with chantilly and berries. Please don't forget to give us all the information on what you would like on your cake in the note section when asking for a quotation. Also be advised that strong collored cakes or creams (such as red velvet cake or berries cream) may change the visual aspect.",
             "price":0.00,
             "category":1,
             "quantity":1,
@@ -265,7 +265,7 @@
         "model":"products.product",
         "fields":{
             "name":"Coconut Cake",
-            "description":"XXX",
+            "description":"Coconut flavoured cake topped with custard cream, grated coconut and berries.",
             "price":17.00,
             "category":5,
             "quantity":1,
@@ -278,7 +278,7 @@
         "model":"products.product",
         "fields":{
             "name":"Chocolate and Cherry Cake",
-            "description":"XXX",
+            "description":"Chocolate cake topped with chantilly and cherries.",
             "price":17.00,
             "category":5,
             "quantity":1,
@@ -291,7 +291,7 @@
         "model":"products.product",
         "fields":{
             "name":"Amaretti and Berries Cake with Chocolate",
-            "description":"XXX",
+            "description":"Sponge cake topped with chantilly, berries, amaretti cookies and assortment of chocolate bars.",
             "price":18.00,
             "category":5,
             "quantity":1,
@@ -304,7 +304,7 @@
         "model":"products.product",
         "fields":{
             "name":"Sponge Cake",
-            "description":"XXX",
+            "description":"Soft and delicious sponge cake.",
             "price":14.00,
             "category":5,
             "quantity":1,
@@ -317,7 +317,7 @@
         "model":"products.product",
         "fields":{
             "name":"Iogurt Cake with Chocolate Topping",
-            "description":"XXX",
+            "description":"Iogurt cake with vanilla cream inside and chocolate topping.",
             "price":17.00,
             "category":5,
             "quantity":1,
@@ -326,24 +326,11 @@
         }
     },
     {
-        "pk":28,
-        "model":"products.product",
-        "fields":{
-            "name":"Season Fruit Cake",
-            "description":"XXX",
-            "price":14.00,
-            "category":5,
-            "quantity":1,
-            "image":"IMG_0028.JPG",
-            "image_url":"https://lh3.googleusercontent.com/pw/ACtC-3cb2TJZT2kpOCv0gqTWsDTdzqmcGZlI0bYK5rsgQcR5z-oQdcl1oLRQ_3_uR1CBityVI0_bOMzPa5auswr0qiiqmeaBkeAbw7XcrnDGU8roipDbfEvAEG-6pdBMbVgm53qWNQzuHYis6v3yqGRzDFSC=s2202-no"
-        }
-    },
-    {
         "pk":29,
         "model":"products.product",
         "fields":{
             "name":"Chocolate and Berries Cake",
-            "description":"XXX",
+            "description":"Chocolate cake with dark chocolate topping decorated with berries and KitKat bars.",
             "price":15.00,
             "category":5,
             "quantity":1,
@@ -356,7 +343,7 @@
         "model":"products.product",
         "fields":{
             "name":"Maltesers Cake",
-            "description":"XXX",
+            "description":"Chocolate cake with dark chocolate topping decorated with Maltesers and KitKat bars.",
             "price":17.00,
             "category":5,
             "quantity":1,
@@ -369,7 +356,7 @@
         "model":"products.product",
         "fields":{
             "name":"Thematic Mini Donuts with Glacé",
-            "description":"XXX",
+            "description":"Mini donuts topped with glacé in a theme of your choice. Please don't forget to tell us the theme on the notes section when placing your order.",
             "price":10.00,
             "category":8,
             "quantity":20,
@@ -382,7 +369,7 @@
         "model":"products.product",
         "fields":{
             "name":"Mini Donuts",
-            "description":"XXX",
+            "description":"Variety of simple, yet delicious, mini donuts.",
             "price":8.00,
             "category":8,
             "quantity":20,
@@ -395,7 +382,7 @@
         "model":"products.product",
         "fields":{
             "name":"Winnie-the-Pooh",
-            "description":"XXX",
+            "description":"In every one of our thematic tables you get to pick not only the theme, but also all the products that are included! Please don't forget to tell us everything you wish when asking for your quote.",
             "price":0.00,
             "category":7,
             "quantity":1,
@@ -408,7 +395,7 @@
         "model":"products.product",
         "fields":{
             "name":"Masha and The Bear",
-            "description":"XXX",
+            "description":"In every one of our thematic tables you get to pick not only the theme, but also all the products that are included! Please don't forget to tell us everything you wish when asking for your quote.",
             "price":0.00,
             "category":7,
             "quantity":1,
@@ -421,7 +408,7 @@
         "model":"products.product",
         "fields":{
             "name":"Blue Baby Shower",
-            "description":"XXX",
+            "description":"In every one of our thematic tables you get to pick not only the theme, but also all the products that are included! Please don't forget to tell us everything you wish when asking for your quote.",
             "price":0.00,
             "category":7,
             "quantity":1,
@@ -434,7 +421,7 @@
         "model":"products.product",
         "fields":{
             "name":"Mickey Cake",
-            "description":"XXX",
+            "description":"",
             "price":0.00,
             "category":9,
             "quantity":1,
@@ -447,7 +434,7 @@
         "model":"products.product",
         "fields":{
             "name":"1-Up Super Mario Mushroom Cake",
-            "description":"XXX",
+            "description":"",
             "price":0.00,
             "category":9,
             "quantity":1,
@@ -460,7 +447,7 @@
         "model":"products.product",
         "fields":{
             "name":"Minions Cake",
-            "description":"XXX",
+            "description":"",
             "price":0.00,
             "category":9,
             "quantity":1,
@@ -473,7 +460,7 @@
         "model":"products.product",
         "fields":{
             "name":"Motorcycle Cake",
-            "description":"XXX",
+            "description":"",
             "price":0.00,
             "category":9,
             "quantity":1,
@@ -486,7 +473,7 @@
         "model":"products.product",
         "fields":{
             "name":"Carnival Cake",
-            "description":"XXX",
+            "description":"",
             "price":0.00,
             "category":9,
             "quantity":1,
