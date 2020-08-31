@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-5">
+                <div class="row no-gutters my-3 product_image">
+                    {% if product.image %}
+                        <a href="{{ product.image.url }}" target="_blank">
+                            <img class="card-img-top product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+                        </a>
+                    {% else %}
+                        <a href="">
+                            <img class="card-img-top product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-5">
+                <div class="my-3 product_details">
+                    <p class="text-black size-big"><strong>{{ product.name }}</strong></p>
+                    <p class="text-black"><strong>{{ product.price }}€</strong> {% if not product.quantity == 1 %} / {{ product.quantity }}units {% endif %}</p>
+                    <p class="text-black">{{ product.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

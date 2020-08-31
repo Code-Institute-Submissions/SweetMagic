@@ -21,6 +21,10 @@ html {
     margin: 0;
 }
 
+.size-big {
+    font-size: 1.5rem;
+}
+
 a {
     color: #000 !important;
     text-decoration: none;
