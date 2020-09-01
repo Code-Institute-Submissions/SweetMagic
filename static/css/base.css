@@ -21,12 +21,23 @@ html {
     margin: 0;
 }
 
+.text-grey {
+    color: #666666 !important;
+    font-family: 'Philosopher', sans-serif;
+    margin: 0;
+}
+
 .size-big {
     font-size: 1.5rem;
 }
 
 a {
     color: #000 !important;
+    text-decoration: none;
+}
+
+.text-grey a {
+    color: #666666 !important;
     text-decoration: none;
 }
 
