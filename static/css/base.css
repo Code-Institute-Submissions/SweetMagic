@@ -42,6 +42,10 @@ a:hover {
     border-bottom: 8px solid #E0CE9E;
 }
 
+.search-color {
+    background-color: #F6EBD9;
+}
+
 .footer-color {
     background-color: #F6EBD9;
     border-top: 8px solid #E0CE9E;

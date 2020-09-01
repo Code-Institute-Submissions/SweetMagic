@@ -42,7 +42,15 @@
                             <a href="#" id="search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search my-icon"></i>
                             </a>
-                            <div class="dropdown-menu border-0" aria-labelledby="search">                              </div>
+                            <div class="dropdown-menu search-color border-0" aria-labelledby="search">
+                                <div class="dropdown-item search-form w-100 p-0">
+                                    <form method="GET" action="{% url 'products' %}">
+                                        <div class="input-group w-100">
+                                            <input class="form-control search-color" type="text" name="sq" placeholder="Search">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </li>
                         <li class="list-inline-item mr-3 dropdown">
                             <a href="#" id="use" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,7 +89,15 @@
                                     <a href="#" id="small-search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-search my-icon"></i>
                                     </a>
-                                    <div class="dropdown-menu border-0" aria-labelledby="small-search">                              </div>
+                                    <div class="dropdown-menu search-color border-0" aria-labelledby="search">
+                                        <div class="dropdown-item search-form w-100 p-0">
+                                            <form method="GET" action="{% url 'products' %}">
+                                                <div class="input-group w-100">
+                                                    <input class="form-control search-color" type="text" name="sq" placeholder="Search">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li class="list-inline-item mr-3 dropdown">
                                     <a href="#" id="small-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
