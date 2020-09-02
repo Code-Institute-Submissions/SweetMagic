@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container-fluid">
+        <div class="row"> <!-- Row to contain page title -->
+            <div class="col-12 py-3 text-center">
+                <h2 class="title">My Shopping Bag</h2>
+            </div>
+        </div>
+        <div class="row"> <!-- Row to contain actual content -->
+            <div class="col-10">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-8"> <!-- Products inside bag will be displayed here -->
+                        {% if bag_items %}
+                        {% else %}
+                            <p class="text-black">Ups, seems like your bag is empty!</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4"> <!-- Bag total and checkout info/button -->
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
