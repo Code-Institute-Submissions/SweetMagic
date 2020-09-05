@@ -3,4 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.my_bag, name="my_bag"),
+    path('add/<item_id>/', views.add_to_bag, name="add_to_bag"),
 ]
