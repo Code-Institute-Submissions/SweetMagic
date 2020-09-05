@@ -9,17 +9,44 @@
                 <h2 class="title">My Shopping Bag</h2>
             </div>
         </div>
-        <div class="row"> <!-- Row to contain actual content -->
+        <div class="row justify-content-around"> <!-- Row to contain actual content -->
             <div class="col-10">
                 <div class="row">
-                    <div class="col-12 col-md-6 col-lg-8"> <!-- Products inside bag will be displayed here -->
+                    <div class="col-12 col-md-7"> <!-- Products inside bag will be displayed here -->
                         {% if bag_items %}
+                            <div class="search-color p-3 mb-3">
+                                {% for item in bag_items %}
+                                    <div class="row mb-3">
+                                        <div class="col-4">
+                                            {% if item.product.image %}
+                                                <a href="{{ item.product.image.url }}" target="_blank">
+                                                    <img class="card-img-top product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+                                                </a>
+                                            {% else %}
+                                                <a href="">
+                                                    <img class="card-img-top product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-8">
+                                            <p class="text-black">Product: <strong>{{ item.product.name }}</strong></p>
+                                            <p class="text-black">Price: {{ item.product.price }}€</p>
+                                            <p class="text-black">Quantity: {{ item.quantity }}</p>
+                                            <p class="text-black">Sub-total: €</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
                         {% else %}
                             <p class="text-black">Ups, seems like your bag is empty!</p>
                         {% endif %}
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4"> <!-- Bag total and checkout info/button -->
-                    
+                    <div class="col-12 col-md-4 mx-2 p-0"> <!-- Bag total and checkout info/button -->
+                        <div class="p-3 checkout-box">
+                            <p class="text-black">Total: €</p>
+                            <a href="{% url 'products' %}" class="btn btn-primary my-submit-btn"><p class="text-black">Keep Shopping</p></a>
+                            <a href="" class="btn btn-primary my-submit-btn"><p class="text-black">Secure Checkout</p></a>
+                        </div>
                     </div>
                 </div>
             </div>

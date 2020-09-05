@@ -68,6 +68,10 @@ a:hover {
     height: 750px;
 }
 
+.checkout-box {
+    border: 2px solid #E0CE9E;
+}
+
 /* Buttons */
 
 .navbar-toggler {
