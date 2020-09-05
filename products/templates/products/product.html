@@ -43,49 +43,22 @@
                                 <input type="number" class="form-control mt-2" id="quantity_{{ product.id }}" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}">
                             </div>
                             {% if product.category.name == "cookies" %}
-                            <div class="form-group">
+                                <div class="form-group">
                                     <label for="cookie_{{ product.id }}" class="text-black">Cake</label>
-                                    <select class="form-control" id="cookie_{{ product.id }}">
+                                    <select class="form-control" id="cookie_{{ product.id }}" name="flavour">
                                         <option>Butter Cookie</option>
                                         <option>Cinnamon Cookie</option>
                                         <option>Lemon Cookie</option>
                                     </select>
                                 </div>
                             {% elif product.category.name == "cupcakes" %}
-                            <div class="form-group">
+                                <div class="form-group">
                                     <label for="cupcake_{{ product.id }}" class="text-black">Cupcake</label>
-                                    <select class="form-control" id="cupcake_{{ product.id }}">
+                                    <select class="form-control" id="cupcake_{{ product.id }}" name="flavour">
                                         <option>Chocolate Cupcake</option>
                                         <option>Iogurt Cupcake</option>
                                     </select>
                                 </div>
-                                {% if not product.id == 17 %}
-                                <div class="form-group">
-                                    <label for="cupcakecream_{{ product.id }}" class="text-black">Cream</label>
-                                    <select class="form-control" id="cupcakecream_{{ product.id }}">
-                                        <option>Dark Chocolate Cream</option>
-                                        <option>White Chocolate Cream</option>
-                                        <option>Milk Chocolate Cream</option>
-                                        <option>Strawberry Cream</option>
-                                        <option>Oreo Cream</option>
-                                        <option>Hazelnut Cream</option>
-                                        <option>No-Cream</option>
-                                    </select>
-                                </div>
-                                {% endif %}
-                                {% if not product.id == 17 and not product.id == 18 %}
-                                <div class="form-group">
-                                    <label for="cupcaketopping_{{ product.id }}" class="text-black">Solid Topping</label>
-                                    <select class="form-control" id="cupcaketopping_{{ product.id }}">
-                                        <option>None</option>
-                                        <option>Nuts</option>
-                                        <option>Almond</option>
-                                        <option>Hazelnut</option>
-                                        <option>Chocolate Bits</option>
-                                        <option>Oreo</option>
-                                    </select>
-                                </div>
-                                {% endif %}
                             {% endif %}
                             <div class="form-group">
                                 <label for="notes_{{ product.id }}" class="text-black">Notes</label>

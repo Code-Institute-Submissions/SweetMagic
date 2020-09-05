@@ -212,8 +212,8 @@
         "pk":18,
         "model":"products.product",
         "fields":{
-            "name":"Cupcakes with Cream",
-            "description":"Cupcakes with a variety of cream flavours.",
+            "name":"Cupcakes with Strawberry Cream",
+            "description":"Cupcakes with a delicious strawberry flavoured cream.",
             "price":15.00,
             "category":3,
             "quantity":12,
@@ -225,8 +225,8 @@
         "pk":19,
         "model":"products.product",
         "fields":{
-            "name":"Cupcakes with Cream and Nuts",
-            "description":"Cupcakes with a variety of cream flavours and nut topping.",
+            "name":"Cupcakes with Hazelnut Cream and Hazelnuts",
+            "description":"Cupcakes with a fantastic hazelnut cream and topping.",
             "price":17.00,
             "category":3,
             "quantity":12,
