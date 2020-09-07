@@ -18,13 +18,13 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-5">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
                 <div class="my-3 product_details">
-                    <p class="text-black size-big"><strong>{{ product.name }}</strong></p>
+                    <h5 class="text-black mb-2"><strong>{{ product.name }}</strong></h5>
                     {% if not product.price == 0.00 %}
                         <p class="text-black"><strong>{{ product.price }}€</strong> {% if not product.quantity == 1 %} / {{ product.quantity }}units {% endif %}</p>
                     {% endif %}
-                    <p class="text-black">{{ product.description }}</p>
+                    <p class="text-black mb-2">{{ product.description }}</p>
                     {% if product.category %}
                         <p class="text-grey">
                             <a href="{% url 'products' %}?category={{ product.category.name }}">
@@ -33,14 +33,15 @@
                         </p>
                     {% endif %}
                 </div>
-                {% if not product.price == 0.00 %}
-                    <div class="col-md-8 col-xl-6 my-3 mx-0 add_product">
-                        <h4 class="text-black">Order now</h4>
-                        <form class="add-form py-3" action="{% url 'add_to_bag' product.id %}" method="POST">
+                {% if not product.price == 0.00 %} 
+                    <!-- Code for the form to Add Product to Cart -->
+                    <div class="my-3 add_product">
+                        <h6 class="text-black"><strong><u>Order now</u></strong></h6>
+                        <form class="add-form py-1" action="{% url 'add_to_bag' product.id %}" method="POST">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="id_qty_{{ product.id }}" class="text-black mb-2">Quantity</label>
-                                <div class="input-group">
+                                <div class="input-group justify-content-center">
                                     <div class="input-group-prepend"> <!-- Taken from Boutique Ado walkthrough project -->
                                         <button class="decrement-qty btn" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
                                             <span class="icon">
@@ -48,7 +49,7 @@
                                             </span>
                                         </button>
                                     </div>
-                                    <input type="number" class="form-control qty_input mx-2" id="id_qty_{{ product.id }}" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}">
+                                    <input type="number" class="form-control qty_input mx-2" id="id_qty_{{ product.id }}" name="quantity" value="1" min="1" max="20" data-item_id="{{ product.id }}">
                                     <div class="input-group-append">  <!-- Taken from Boutique Ado walkthrough project -->
                                         <button class="increment-qty btn" data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
                                             <span class="icon">
@@ -78,7 +79,7 @@
                             {% endif %}
                             <div class="form-group">
                                 <label for="notes_{{ product.id }}" class="text-black">Notes</label>
-                                <input type="text" class="form-control mt-2" id="notes_{{ product.id }}" placeholder="Please give us a bit more information about your product">
+                                <textarea class="form-control mt-2" id="notes_{{ product.id }}" placeholder="Please give us a bit more information about your product"></textarea>
                             </div>
                             <div class="row no-gutters justify-content-end">
                                 <input type="submit" class="btn btn-primary my-submit-btn text-black" value="Add to Bag">
@@ -87,24 +88,21 @@
                         </form>
                     </div>
                 {% else %}
+                    <!-- Code for the form to Ask for Product Quotation -->
                     <div class="my-3 quotation">
-                        <h4 class="text-black">Ask for quotation</h4>
-                        <form class="add-form py-2" action="" method="POST"> <!-- Not connected yet -->
+                        <h6 class="text-black"><strong><u>Ask for quotation</u></strong></h6>
+                        <form class="add-form py-1" action="" method="POST"> <!-- Not connected yet -->
                             {% csrf_token %}
-                            <div class="form-group mb-2">
+                            <div class="form-group mb-1">
                                 <label for="email" class="text-black">Email address</label>
                                 <input type="email" class="form-control mt-2" id="email" placeholder="Please enter your email">
                             </div>
-                            <div class="form-group mb-2">
+                            <div class="form-group mb-1">
                                 <label for="name" class="text-black">Name</label>
                                 <input type="text" class="form-control mt-2" id="name" placeholder="Please enter your name">
                             </div>
-                            <div class="form-group mb-2">
-                                <label for="q_quantity_{{ product.id }}" class="text-black">Quantity</label>
-                                <input type="number" class="form-control mt-1" id="q_quantity_{{ product.id }}" name="quantity" value="1" min="1" max="99" data-item_id="{{ product.id }}">
-                            </div>
                             {% if product.category.name != "thematic_tables" %}
-                                <div class="form-group">
+                                <div class="form-group mb-1">
                                     <label for="cake_{{ product.id }}" class="text-black">Cake</label>
                                     <select class="form-control" id="cake_{{ product.id }}">
                                         <option>Sponge Cake</option>
@@ -117,7 +115,7 @@
                                         <option>Carot Cake</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mb-1">
                                     <label for="cakecream_{{ product.id }}" class="text-black">Cream</label>
                                     <select class="form-control" id="cakecream_{{ product.id }}">
                                         <option>Dark Chocolate Cream</option>
@@ -135,7 +133,7 @@
                                         <option>No-Cream</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mb-1">
                                     <label for="cakeextra_{{ product.id }}" class="text-black">Extras</label>
                                     <select class="form-control" id="cakeextra_{{ product.id }}">
                                         <option>None</option>
@@ -149,7 +147,7 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="request_{{ product.id }}" class="text-black">Additional Information</label>
-                                    <input type="text" class="form-control mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish">
+                                    <textarea class="form-control mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish"></textarea>
                                 </div>
                             {% else %}
                                 <div class="form-group mb-3">
@@ -177,7 +175,7 @@
         function handleEnableDisable(itemId) {
             var currentValue = parseInt($(`#id_qty_${itemId}`).val());
             var minusDisabled = currentValue < 2;
-            var plusDisabled = currentValue > 98;
+            var plusDisabled = currentValue > 19;
             $(`#decrement-qty_${itemId}`).prop('disabled', minusDisabled);
             $(`#increment-qty_${itemId}`).prop('disabled', plusDisabled);
         }

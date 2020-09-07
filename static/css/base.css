@@ -35,7 +35,7 @@ html {
 }
 
 .size-big {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 a {
@@ -127,6 +127,7 @@ hr {
     height: 2px;
 }
 
+/*         To make dropdown open on hover in big-screens */
 .dropdown-menu {
   margin: -0.125rem 0 0;
 }
