@@ -21,6 +21,10 @@ html {
     margin: 0;
 }
 
+.text-small {
+    font-size: 12px;
+}
+
 .number {
     color: white !important;
     font-family: 'Philosopher', sans-serif;
@@ -32,10 +36,6 @@ html {
     color: #666666 !important;
     font-family: 'Philosopher', sans-serif;
     margin: 0;
-}
-
-.size-big {
-    font-size: 1.2rem;
 }
 
 a {
@@ -61,6 +61,10 @@ a:hover {
 }
 
 .dropdown-color {
+    background-color: #F6EBD9;
+}
+
+.bag-items-color {
     background-color: #F6EBD9;
 }
 
@@ -109,6 +113,9 @@ a:hover {
 
 .my-icon {
     font-size: 1.5rem !important;
+}
+.my-icon-small {
+    font-size: 1rem !important;
 }
 
 .social-media {

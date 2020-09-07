@@ -4,38 +4,79 @@
 {% block content %}
 
     <div class="container-fluid">
-        <div class="row"> <!-- Row to contain page title -->
+        <div class="row no-gutters"> <!-- Row to contain page title -->
             <div class="col-12 py-3 text-center">
                 <h2 class="title">My Shopping Bag</h2>
             </div>
         </div>
-        <div class="row justify-content-around"> <!-- Row to contain actual content -->
-            <div class="col-10">
-                <div class="row">
-                    <div class="col-12 col-md-7"> <!-- Products inside bag will be displayed here -->
+        <div class="row no-gutters justify-content-center"> <!-- Row to contain actual content -->
+            <div class="col-12 col-lg-10">
+                <div class="row no-gutters justify-content-between">
+                    <div class="col-12 col-md-7 mx-2 p-0"> <!-- Products inside bag will be displayed here -->
                         {% if bag_items %}
-                            <div class="search-color p-3 mb-3"> !!!!!
+                            <div class="bag-items-color p-3 mb-3">
                                 {% for item in bag_items %}
-                                    <div class="row mb-3">
+                                    <div class="row no-gutters my-1">
                                         <div class="col-4">
                                             {% if item.product.image %}
-                                                <a href="{{ item.product.image.url }}" target="_blank">
+                                                <a href="{% url 'product' item.product.id %}">
                                                     <img class="card-img-top product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
                                                 </a>
                                             {% else %}
-                                                <a href="">
+                                                <a href="{% url 'product' item.product.id %}">
                                                     <img class="card-img-top product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
                                                 </a>
                                             {% endif %}
                                         </div>
-                                        <div class="col-8">
-                                            <p class="text-black">Product: <strong>{{ item.product.name }}</strong></p>
-                                            {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
-                                                <p class="text-black">Flavour: {{ item.flavour }}</p>
-                                            {% endif %}
-                                            <p class="text-black">Price: {{ item.product.price }}€</p>
-                                            <p class="text-black">Quantity: {{ item.quantity }}</p>
-                                            <p class="text-black">Sub-total: €</p>
+                                        <div class="col-8 pl-3">
+                                            <div class="row no-gutters">
+                                                <div class="col">
+                                                    <div class="row no-gutters">
+                                                        <div class="col-10">
+                                                            <p class="text-black"><strong>{{ item.product.name }}</strong></p>
+                                                        </div>
+                                                        <div class="col-2 text-right">
+                                                            <a class="remove-item" id="remove_{{ item.item_id }}" data-flavour="{{ item.flavour }}"><i class="fas fa-times my-icon-small"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
+                                                        <p class="text-black text-small">Flavour: {{ item.flavour }}</p>
+                                                    {% endif %}
+                                                    <p class="text-black text-small">{{ item.product.price }}€</p>
+                                                    <p class="text-black text-small">Quantity: {{ item.quantity }}</p>
+                                                    <p class="text-black text-small">Sub-total: €</p>
+                                                </div>
+                                            </div>
+                                            <div class="row no-gutters">
+                                                <form class="update-form py-1 bag-items-color" action="" method="POST">
+                                                    {% csrf_token %}
+                                                    <select class="form-control bag-items-color checkout-box rounded-0" name="quantity" onchange="this.form.submit()">
+                                                        <option value="1" {% if item.quantity == 1 %}selected{% endif %}>1</option>
+                                                        <option value="2" {% if item.quantity == 2 %}selected{% endif %}>2</option>
+                                                        <option value="3" {% if item.quantity == 3 %}selected{% endif %}>3</option>
+                                                        <option value="4" {% if item.quantity == 4 %}selected{% endif %}>4</option>
+                                                        <option value="5" {% if item.quantity == 5 %}selected{% endif %}>5</option>
+                                                        <option value="6" {% if item.quantity == 6 %}selected{% endif %}>6</option>
+                                                        <option value="7" {% if item.quantity == 7 %}selected{% endif %}>7</option>
+                                                        <option value="8" {% if item.quantity == 8 %}selected{% endif %}>8</option>
+                                                        <option value="9" {% if item.quantity == 9 %}selected{% endif %}>9</option>
+                                                        <option value="10" {% if item.quantity == 10 %}selected{% endif %}>10</option>
+                                                        <option value="11" {% if item.quantity == 11 %}selected{% endif %}>11</option>
+                                                        <option value="12" {% if item.quantity == 12 %}selected{% endif %}>12</option>
+                                                        <option value="13" {% if item.quantity == 13 %}selected{% endif %}>13</option>
+                                                        <option value="14" {% if item.quantity == 14 %}selected{% endif %}>14</option>
+                                                        <option value="15" {% if item.quantity == 15 %}selected{% endif %}>15</option>
+                                                        <option value="16" {% if item.quantity == 16 %}selected{% endif %}>16</option>
+                                                        <option value="17" {% if item.quantity == 17 %}selected{% endif %}>17</option>
+                                                        <option value="18" {% if item.quantity == 18 %}selected{% endif %}>18</option>
+                                                        <option value="19" {% if item.quantity == 19 %}selected{% endif %}>19</option>
+                                                        <option value="20" {% if item.quantity == 20 %}selected{% endif %}>20</option>
+                                                    </select>
+                                                    {% if item.product.has_flavour %} !!!!!!!
+                                                        <input type="hidden" name="product_flavour" value="{{ item.flavour }}">
+                                                    {% endif %}
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 {% endfor %}
@@ -47,12 +88,12 @@
                     <div class="col-12 col-md-4 mx-2 p-0"> <!-- Bag total and checkout info/button -->
                         <div class="p-3 checkout-box mb-3">
                             {% if bag_items %}
-                            <p class="text-black">Total: €</p>
+                            <p class="text-black mb-2">Order Value: €</p>
                             {% endif %}
                             <div class="row no-gutters justify-content-center">
-                                <a href="{% url 'products' %}" class="btn btn-primary my-submit-btn"><p class="text-black">Keep Shopping</p></a>
+                                <a href="{% url 'products' %}" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0"><p class="text-black">Keep Shopping</p></a>
                                 {% if bag_items %}
-                                <a href="" class="btn btn-primary my-submit-btn"><p class="text-black">Secure Checkout</p></a>
+                                <a href="" class="btn btn-sm my-submit-btn mb-2 rounded-0"><p class="text-black">Secure Checkout</p></a>
                                 {% endif %}
                             </div>
                         </div>
@@ -62,4 +103,7 @@
         </div>
     </div>
 
+{% endblock %}
+
+{% block postloadjs %}
 {% endblock %}
