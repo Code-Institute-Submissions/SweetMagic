@@ -78,6 +78,11 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {% if not forloop.last %}
+                                        <div class="col-12 px-2">
+                                            <hr>
+                                        </div>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         {% else %}
