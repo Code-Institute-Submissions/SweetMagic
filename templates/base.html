@@ -36,27 +36,29 @@
                         <h1 class="logo my-auto">SweetMagic</h1>
                     </a>
                 </div>
-                <div class="col-md-4 d-none d-md-inline p-0 text-center"> <!-- Will only be displayed on bigger screens and move search, account and bag icons to the top row -->
+
+                <!-- Will only be displayed on bigger screens and move search, account and bag icons to the top row -->
+                <div class="col-md-4 d-none d-md-inline p-0 text-center"> 
                     <ul class="list-inline list-unstyled h-100">
                         <li class="list-inline-item mr-3 dropdown">
                             <a href="#" id="search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search my-icon"></i>
                             </a>
-                            <div class="dropdown-menu search-color border-0" aria-labelledby="search">
+                            <div class="dropdown-menu dropdown-color border-0" aria-labelledby="search">
                                 <div class="dropdown-item search-form w-100 p-0">
                                     <form method="GET" action="{% url 'products' %}">
                                         <div class="input-group w-100">
-                                            <input class="form-control search-color" type="text" name="sq" placeholder="Search">
+                                            <input class="form-control dropdown-color" type="text" name="sq" placeholder="Search">
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </li>
                         <li class="list-inline-item mr-3 dropdown">
-                            <a href="#" id="use" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a href="#" id="user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user my-icon"></i>
                             </a>
-                            <div class="dropdown-menu border-0" aria-labelledby="user">
+                            <div class="dropdown-menu dropdown-color" aria-labelledby="user">
                                 {% if request.user.is_authenticated %}
                                     <a href="" class="dropdown-item">My Profile</a>
                                     <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a> <!--href comming from allauth-->
@@ -70,14 +72,19 @@
                             <a href="{% url 'my_bag' %}" id="bag">
                                 <i class="fas fa-shopping-bag my-icon"></i>
                             </a>
+                            {% if number_of_products != 0 %}
+                                <span class="text-black ml-1"><strong>({{ number_of_products }})</strong></span>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>
-            </div>
 
+            </div>
             <div class="row h-100 align-items-center">
                 <nav class="navbar navbar-expand-md navbar-light w-100">
-                    <div class="row w-100 d-inline d-md-none nav-small-screen"> <!-- Will only be displayed on smaller screens and move search, account and bag icons to the bottom row, next to toggle icon -->
+
+                    <!-- Will only be displayed on smaller screens and move search, account and bag icons to the bottom row, next to toggle icon -->
+                    <div class="row w-100 d-inline d-md-none nav-small-screen"> 
                         <div class="p-0 text-center">
                             <ul class="list-inline list-unstyled h-100">
                                 <li class="list-inline-item">
@@ -89,11 +96,11 @@
                                     <a href="#" id="small-search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-search my-icon"></i>
                                     </a>
-                                    <div class="dropdown-menu search-color border-0" aria-labelledby="search">
+                                    <div class="dropdown-menu dropdown-color border-0" aria-labelledby="search">
                                         <div class="dropdown-item search-form w-100 p-0">
                                             <form method="GET" action="{% url 'products' %}">
                                                 <div class="input-group w-100">
-                                                    <input class="form-control search-color" type="text" name="sq" placeholder="Search">
+                                                    <input class="form-control dropdown-color" type="text" name="sq" placeholder="Search">
                                                 </div>
                                             </form>
                                         </div>
@@ -103,7 +110,7 @@
                                     <a href="#" id="small-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-user my-icon"></i>
                                     </a>
-                                    <div class="dropdown-menu border-0" aria-labelledby="small-user">
+                                    <div class="dropdown-menu dropdown-color" aria-labelledby="small-user">
                                         {% if request.user.is_authenticated %}
                                             <a href="" class="dropdown-item">My Profile</a>
                                             <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a> <!--href comming from allauth-->
@@ -121,16 +128,24 @@
                             </ul>
                         </div>
                     </div>
+
                     <div class="collapse navbar-collapse" id="my-nav">
                         <ul class="navbar-nav w-auto mx-auto">
-                            <li class="nav-item">
-                                <a href="{% url 'products' %}?category=cupcakes,cookies,cakes,desserts,donuts" class="nav-link mr-3 title"><h2 class="title">Cakes & Desserts</h2></a>
+                            <li class="nav-item dropdown">
+                                <a href="#" id="cakes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link mr-3 title"><h2 class="title">Cakes & Desserts</h2></a>
+                                <div class="dropdown-menu dropdown-color" aria-labelledby="cakes">
+                                    <a href="{% url 'products' %}?category=desserts" class="title dropdown-item"><h3 class="title">Desserts</h3></a>
+                                    <a href="{% url 'products' %}?category=cakes" class="title dropdown-item"><h3 class="title">Everyday Cakes</h3></a>
+                                    <a href="{% url 'products' %}?category=cupcakes" class="title dropdown-item"><h3 class="title">Cupcakes</h3></a>
+                                    <a href="{% url 'products' %}?category=donuts" class="title dropdown-item"><h3 class="title">Donuts</h3></a>
+                                    <a href="{% url 'products' %}?category=festive_cakes" class="title dropdown-item"><h3 class="title">Festive Cakes</h3></a>
+                                    <a href="{% url 'products' %}?category=sculpted_cakes" class="title dropdown-item"><h3 class="title">Sculpted Cakes</h3></a>
+                                    <a href="{% url 'products' %}?category=wedding_cakes" class="title dropdown-item"><h3 class="title">Wedding Cakes</h3></a>
+                                    <a href="{% url 'products' %}?category=cupcakes,cakes,desserts,donuts,festive_cakes,sculpted_cakes,wedding_cakes" class="title dropdown-item"><h3 class="title">See All Cakes & Desserts</h3></a>
+                                </div>
                             </li>
                             <li class="nav-item">
-                                <a href="{% url 'products' %}?category=wedding_cakes" class="nav-link mr-3 title"><h2 class="title">Wedding Cakes</h2></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'products' %}?category=festive_cakes,sculpted_cakes" class="nav-link mr-3 title"><h2 class="title">Customized Cakes</h2></a>
+                                <a href="{% url 'products' %}?category=cookies" class="nav-link mr-3 title"><h2 class="title">Cookies</h2></a>
                             </li>
                             <li class="nav-item">
                                 <a href="{% url 'products' %}?category=thematic_tables" class="nav-link mr-3 title"><h2 class="title">Thematic Tables</h2></a>

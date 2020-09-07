@@ -21,6 +21,13 @@ html {
     margin: 0;
 }
 
+.number {
+    color: white !important;
+    font-family: 'Philosopher', sans-serif;
+    margin: 0;
+    font-size: 0.8rem;
+}
+
 .text-grey {
     color: #666666 !important;
     font-family: 'Philosopher', sans-serif;
@@ -53,7 +60,7 @@ a:hover {
     border-bottom: 8px solid #E0CE9E;
 }
 
-.search-color {
+.dropdown-color {
     background-color: #F6EBD9;
 }
 
@@ -101,7 +108,7 @@ a:hover {
 /* Icons */
 
 .my-icon {
-    font-size: 1.5rem;
+    font-size: 1.5rem !important;
 }
 
 .social-media {
@@ -118,4 +125,12 @@ a:hover {
 hr {
     background-color: #D9B3A6;
     height: 2px;
+}
+
+.dropdown-menu {
+  margin: -0.125rem 0 0;
+}
+
+.dropdown:hover>.dropdown-menu {
+ display: block;
 }
