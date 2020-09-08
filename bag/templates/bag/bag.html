@@ -37,12 +37,13 @@
                                                             <p class="text-black"><strong>{{ item.product.name }}</strong></p>
                                                         </div>
                                                         <div class="col-2 text-right">
-                                                            <form class="remove-form bag-items-color" action="{% url 'delete_from_bag' item.item_id %}" method="POST">
+                                                            <form class="remove-form bag-items-color" action="{% url 'delete_from_bag' item.product.id %}" method="POST">
                                                                 {% csrf_token %}
                                                                 {% if item.flavour %}
                                                                     <input type="hidden" name="flavour" value="{{ item.flavour }}">
                                                                 {% endif %}
-                                                                <button class="border-0 bag-items-color" id="remove_{{ item.item_id }}" type="submit"><i class="fas fa-times my-icon-small"></i></button>
+                                                                <button class="border-0 bag-items-color" type="submit" value="Remove From Bag"><i class="fas fa-times my-icon-small"></i></button>
+                                                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                                             </form>
                                                         </div>
                                                     </div>
@@ -54,7 +55,7 @@
                                                 </div>
                                             </div>
                                             <div class="row no-gutters">
-                                                <form class="update-form py-1 bag-items-color" action="{% url 'update_bag' item.item_id %}" method="POST">
+                                                <form class="update-form py-1 bag-items-color" action="{% url 'update_bag' item.product.id %}" method="POST">
                                                     {% csrf_token %}
                                                     <select class="form-control bag-items-color checkout-box rounded-0" name="quantity" onchange="this.form.submit()">
                                                         <option value="1" {% if item.quantity == 1 %}selected{% endif %}>1</option>
@@ -81,6 +82,7 @@
                                                     {% if item.flavour %}
                                                         <input type="hidden" name="flavour" value="{{ item.flavour }}">
                                                     {% endif %}
+                                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                                 </form>
                                             </div>
                                         </div>
