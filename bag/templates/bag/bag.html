@@ -37,7 +37,13 @@
                                                             <p class="text-black"><strong>{{ item.product.name }}</strong></p>
                                                         </div>
                                                         <div class="col-2 text-right">
-                                                            <a class="remove-item" id="remove_{{ item.item_id }}" href="{% url 'delete_from_bag' item.item_id %}"><i class="fas fa-times my-icon-small"></i></a>
+                                                            <form class="remove-form bag-items-color" action="{% url 'delete_from_bag' item.item_id %}" method="POST">
+                                                                {% csrf_token %}
+                                                                {% if item.flavour %}
+                                                                    <input type="hidden" name="flavour" value="{{ item.flavour }}">
+                                                                {% endif %}
+                                                                <button class="border-0 bag-items-color" id="remove_{{ item.item_id }}" type="submit"><i class="fas fa-times my-icon-small"></i></button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                     {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
@@ -72,8 +78,8 @@
                                                         <option value="19" {% if item.quantity == 19 %}selected{% endif %}>19</option>
                                                         <option value="20" {% if item.quantity == 20 %}selected{% endif %}>20</option>
                                                     </select>
-                                                    {% if item.product.has_flavour %}
-                                                        <input type="hidden" name="product_flavour" value="{{ item.flavour }}">
+                                                    {% if item.flavour %}
+                                                        <input type="hidden" name="flavour" value="{{ item.flavour }}">
                                                     {% endif %}
                                                 </form>
                                             </div>
