@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bag_subtotal %}
 
 {% block content %}
 
@@ -43,7 +44,7 @@
                                                         <p class="text-black text-small">Flavour: {{ item.flavour }}</p>
                                                     {% endif %}
                                                     <p class="text-black text-small">{{ item.product.price }}€</p>
-                                                    <p class="text-black text-small">Sub-total: €</p>
+                                                    <p class="text-black text-small">Sub-total: {{ item.product.price | calc_subtotal:item.quantity }}€</p>
                                                 </div>
                                             </div>
                                             <div class="row no-gutters">
@@ -71,7 +72,7 @@
                                                         <option value="19" {% if item.quantity == 19 %}selected{% endif %}>19</option>
                                                         <option value="20" {% if item.quantity == 20 %}selected{% endif %}>20</option>
                                                     </select>
-                                                    {% if item.product.has_flavour %} !!!!!!!
+                                                    {% if item.product.has_flavour %}
                                                         <input type="hidden" name="product_flavour" value="{{ item.flavour }}">
                                                     {% endif %}
                                                 </form>
@@ -92,7 +93,7 @@
                     <div class="col-12 col-md-4 mx-2 p-0"> <!-- Bag total and checkout info/button -->
                         <div class="p-3 checkout-box mb-3">
                             {% if bag_items %}
-                            <p class="text-black mb-2">Order Value: €</p>
+                            <p class="text-black mb-2">Order Value: {{ total }}€</p>
                             {% endif %}
                             <div class="row no-gutters justify-content-center">
                                 <a href="{% url 'products' %}" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0"><p class="text-black">Keep Shopping</p></a>
