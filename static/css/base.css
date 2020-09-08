@@ -127,6 +127,19 @@ a:hover {
     padding-top: .25rem;
 }
 
+/* Toasts */
+
+.message-container {
+    position: fixed;
+    top: 70px;
+    right: 15px;
+    z-index: 9999999999999;
+}
+
+.my_toast {
+    overflow: visible;
+}
+
 /* Other */
 
 hr {
@@ -142,3 +155,5 @@ hr {
 .dropdown:hover>.dropdown-menu {
  display: block;
 }
+
+/* Media Queries */
