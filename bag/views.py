@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 
 
 def my_bag(request):
@@ -29,3 +29,44 @@ def add_to_bag(request, item_id):
 
     request.session['bag'] = bag
     return redirect(redirect_url)
+
+
+def update_bag(request, item_id):
+    quantity = int(request.POST.get('quantity'))
+    flavour = None
+    if 'flavour' in request.POST:
+        flavour = request.POST['flavour']
+    bag = request.session.get('bag', {})
+
+    if flavour:
+        if quantity > 0:
+            bag[item_id]['items_by_flavour'][flavour] = quantity
+        else:
+            del bag[item_id]['items_by_flavour'][flavour]
+            if not bag[item_id]['items_by_flavour']:
+                bag.pop(item_id)
+    else:
+        if quantity > 0:
+            bag[item_id] = quantity
+        else:
+            bag.pop(item_id)
+
+    request.session['bag'] = bag
+    return redirect(reverse('my_bag'))
+
+
+def delete_from_bag(request, item_id):
+    flavour = None
+    if 'flavour' in request.POST:
+        flavour = request.POST['flavour']
+    bag = request.session.get('bag', {})
+
+    if flavour:
+        del bag[item_id]['items_by_flavour'][flavour]
+        if not bag[item_id]['items_by_flavour']:
+            bag.pop(item_id)
+    else:
+        bag.pop(item_id)
+
+    request.session['bag'] = bag
+    return redirect(reverse('my_bag'))

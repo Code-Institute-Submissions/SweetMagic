@@ -36,7 +36,7 @@
                                                             <p class="text-black"><strong>{{ item.product.name }}</strong></p>
                                                         </div>
                                                         <div class="col-2 text-right">
-                                                            <a class="remove-item" id="remove_{{ item.item_id }}" data-flavour="{{ item.flavour }}"><i class="fas fa-times my-icon-small"></i></a>
+                                                            <a class="remove-item" id="remove_{{ item.item_id }}" href="{% url 'delete_from_bag' item.item_id %}"><i class="fas fa-times my-icon-small"></i></a>
                                                         </div>
                                                     </div>
                                                     {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
@@ -47,7 +47,7 @@
                                                 </div>
                                             </div>
                                             <div class="row no-gutters">
-                                                <form class="update-form py-1 bag-items-color" action="" method="POST">
+                                                <form class="update-form py-1 bag-items-color" action="{% url 'update_bag' item.item_id %}" method="POST">
                                                     {% csrf_token %}
                                                     <select class="form-control bag-items-color checkout-box rounded-0" name="quantity" onchange="this.form.submit()">
                                                         <option value="1" {% if item.quantity == 1 %}selected{% endif %}>1</option>
