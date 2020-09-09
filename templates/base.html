@@ -30,9 +30,9 @@
      <div class="content my-container">
         <!-- Header -->
 
-            <header class="container-fluid sticky-top header-color">
+            <header class="container-fluid w-100 sticky-top header-color">
 
-                <div class="row h-100 justify-content-end align-items-center py-4">
+                <div class="row no-gutters h-100 justify-content-end align-items-center py-4">
                     <div class="col-12 col-md-4 p-0 text-center">
                         <a href="{% url 'home' %}">
                             <h1 class="logo my-auto">SweetMagic</h1>
@@ -50,7 +50,7 @@
                                     <div class="dropdown-item search-form w-100 p-0">
                                         <form method="GET" action="{% url 'products' %}">
                                             <div class="input-group w-100">
-                                                <input class="form-control dropdown-color" type="text" name="sq" placeholder="Search">
+                                                <input class="form-control rounded-0 dropdown-color" type="text" name="sq" placeholder="Search">
                                             </div>
                                         </form>
                                     </div>
@@ -100,11 +100,11 @@
                     </div>
 
                 </div>
-                <div class="row h-100 align-items-center">
+                <div class=" no-gutters h-100 align-items-center">
                     <nav class="navbar navbar-expand-md navbar-light w-100">
 
                         <!-- Will only be displayed on smaller screens and move search, account and bag icons to the bottom row, next to toggle icon -->
-                        <div class="row w-100 d-inline d-md-none nav-small-screen"> 
+                        <div class="row no-gutters w-100 d-inline d-md-none nav-small-screen"> 
                             <div class="p-0 text-center">
                                 <ul class="list-inline list-unstyled h-100">
                                     <li class="list-inline-item">
@@ -120,7 +120,7 @@
                                             <div class="dropdown-item search-form w-100 p-0">
                                                 <form method="GET" action="{% url 'products' %}">
                                                     <div class="input-group w-100">
-                                                        <input class="form-control dropdown-color" type="text" name="sq" placeholder="Search">
+                                                        <input class="form-control rounded-0 dropdown-color" type="text" name="sq" placeholder="Search">
                                                     </div>
                                                 </form>
                                             </div>

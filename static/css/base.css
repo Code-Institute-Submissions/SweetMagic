@@ -58,6 +58,11 @@ a:hover {
     text-decoration: none;
 }
 
+.dropdown-item:hover {
+    background-color: #F6EBD9;
+    text-decoration: underline;
+}
+
 /* Background */
 
 .header-color {
@@ -99,6 +104,13 @@ a:hover {
 .my-submit-btn {
     background-color: #D9B3A6;
     border: 1px solid #000;
+}
+
+.my-submit-btn:hover {
+    background-color: #D9B3A6;
+    border: 1px solid #000;
+    color: #000;
+    text-decoration: underline;
 }
 
 .btt-button { /* Taken from Boutique Ado walkthrough project */

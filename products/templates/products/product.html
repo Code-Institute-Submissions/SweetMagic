@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container-fluid">
-        <div class="row justify-content-center">
+        <div class="row no-gutters justify-content-center">
             <div class="col-12 col-md-6 col-lg-5">
                 <div class="row no-gutters my-3 product_image">
                     {% if product.image %}
@@ -49,7 +49,7 @@
                                             </span>
                                         </button>
                                     </div>
-                                    <input type="number" class="form-control qty_input mx-2" id="id_qty_{{ product.id }}" name="quantity" value="1" min="1" max="20" data-item_id="{{ product.id }}">
+                                    <input type="number" class="form-control rounded-0 qty_input mx-2" id="id_qty_{{ product.id }}" name="quantity" value="1" min="1" max="20" data-item_id="{{ product.id }}">
                                     <div class="input-group-append">  <!-- Taken from Boutique Ado walkthrough project -->
                                         <button class="increment-qty btn rounded-0" data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
                                             <span class="icon">
@@ -62,7 +62,7 @@
                             {% if product.category.name == "cookies" %}
                                 <div class="form-group">
                                     <label for="cookie_{{ product.id }}" class="text-black">Cake</label>
-                                    <select class="form-control" id="cookie_{{ product.id }}" name="flavour">
+                                    <select class="form-control rounded-0" id="cookie_{{ product.id }}" name="flavour">
                                         <option>Butter Cookie</option>
                                         <option>Cinnamon Cookie</option>
                                         <option>Lemon Cookie</option>
@@ -71,7 +71,7 @@
                             {% elif product.category.name == "cupcakes" %}
                                 <div class="form-group">
                                     <label for="cupcake_{{ product.id }}" class="text-black">Cupcake</label>
-                                    <select class="form-control" id="cupcake_{{ product.id }}" name="flavour">
+                                    <select class="form-control rounded-0" id="cupcake_{{ product.id }}" name="flavour">
                                         <option>Chocolate Cupcake</option>
                                         <option>Iogurt Cupcake</option>
                                     </select>
@@ -79,10 +79,10 @@
                             {% endif %}
                             <div class="form-group">
                                 <label for="notes_{{ product.id }}" class="text-black">Notes</label>
-                                <textarea class="form-control mt-2" id="notes_{{ product.id }}" placeholder="Please give us a bit more information about your product"></textarea>
+                                <textarea class="form-control rounded-0 mt-2" id="notes_{{ product.id }}" placeholder="Please give us a bit more information about your product"></textarea>
                             </div>
                             <div class="row no-gutters justify-content-end">
-                                <input type="submit" class="btn btn-primary btn-sm my-submit-btn rounded-0 text-black" value="Add to Bag">
+                                <input type="submit" class="btn btn-sm my-submit-btn rounded-0 text-black" value="Add to Bag">
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </form>
@@ -95,16 +95,16 @@
                             {% csrf_token %}
                             <div class="form-group mb-1">
                                 <label for="email" class="text-black">Email address</label>
-                                <input type="email" class="form-control mt-2" id="email" placeholder="Please enter your email">
+                                <input type="email" class="form-control rounded-0 mt-2" id="email" placeholder="Please enter your email">
                             </div>
                             <div class="form-group mb-1">
                                 <label for="name" class="text-black">Name</label>
-                                <input type="text" class="form-control mt-2" id="name" placeholder="Please enter your name">
+                                <input type="text" class="form-control rounded-0 mt-2" id="name" placeholder="Please enter your name">
                             </div>
                             {% if product.category.name != "thematic_tables" %}
                                 <div class="form-group mb-1">
                                     <label for="cake_{{ product.id }}" class="text-black">Cake</label>
-                                    <select class="form-control" id="cake_{{ product.id }}">
+                                    <select class="form-control rounded-0" id="cake_{{ product.id }}">
                                         <option>Sponge Cake</option>
                                         <option>Lemon Cake</option>
                                         <option>Chocolate Cake</option>
@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="form-group mb-1">
                                     <label for="cakecream_{{ product.id }}" class="text-black">Cream</label>
-                                    <select class="form-control" id="cakecream_{{ product.id }}">
+                                    <select class="form-control rounded-0" id="cakecream_{{ product.id }}">
                                         <option>Dark Chocolate Cream</option>
                                         <option>White Chocolate Cream</option>
                                         <option>Milk Chocolate Cream</option>
@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="form-group mb-1">
                                     <label for="cakeextra_{{ product.id }}" class="text-black">Extras</label>
-                                    <select class="form-control" id="cakeextra_{{ product.id }}">
+                                    <select class="form-control rounded-0" id="cakeextra_{{ product.id }}">
                                         <option>None</option>
                                         <option>Nuts</option>
                                         <option>Almond</option>
@@ -147,16 +147,16 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <label for="request_{{ product.id }}" class="text-black">Additional Information</label>
-                                    <textarea class="form-control mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish"></textarea>
+                                    <textarea class="form-control rounded-0 mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish"></textarea>
                                 </div>
                             {% else %}
                                 <div class="form-group mb-3">
                                     <label for="requesttable_{{ product.id }}" class="text-black">Table Information</label>
-                                    <textarea class="form-control mt-1" id="requesttable_{{ product.id }}" placeholder="Please give us all the information about the products you wish to have on your table"></textarea>
+                                    <textarea class="form-control rounded-0 mt-1" id="requesttable_{{ product.id }}" placeholder="Please give us all the information about the products you wish to have on your table"></textarea>
                                 </div>
                             {% endif %}
                             <div class="row no-gutters justify-content-end">
-                                <button type="submit" class="btn btn-primary btn-sm my-submit-btn rounded-0"><p class="text-black">Place request</p></button>
+                                <button type="submit" class="btn btn-sm my-submit-btn rounded-0"><p class="text-black">Place request</p></button>
                             </div>
                         </form>
                     </div>

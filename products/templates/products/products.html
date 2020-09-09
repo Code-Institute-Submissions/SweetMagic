@@ -4,12 +4,12 @@
 {% block content %}
 
     <div class="container-fluid">
-        <div class="row"> <!-- Row to contain page title -->
+        <div class="row no-gutters"> <!-- Row to contain page title -->
             <div class="col-12 py-3 text-center">
                 <h2 class="title">Products</h2>
             </div>
         </div>
-        <div class="row justify-content-center"> <!-- Row to contain search info -->
+        <div class="row no-gutters justify-content-center"> <!-- Row to contain search info -->
             <div class="col-10 pb-3"> <!-- Code taken and adjusted from Boutique Ado walkthrough project -->
                 <p class="text-muted mt-3 text-center text-md-left">
                     {% if search_query or selected_categories or selected_sorting != 'None_None' %}
@@ -23,9 +23,9 @@
                 </p>
             </div>
         </div>
-        <div class="row justify-content-center"> <!-- Row to contain actual content -->
+        <div class="row no-gutters justify-content-center"> <!-- Row to contain actual content -->
             <div class="col-10">
-                <div class="row">
+                <div class="row no-gutters">
                     {% for product in products %}
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3"> <!-- Col sizes taken from Boutique-Ado walkthrough project -->
                             <div class="card h-100 border-0">
