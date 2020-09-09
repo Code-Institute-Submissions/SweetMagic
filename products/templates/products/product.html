@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
         <div class="row no-gutters justify-content-center">
-            <div class="col-12 col-md-6 col-lg-5">
+            <div class="col-12 col-md-6 col-lg-5 px-2">
                 <div class="row no-gutters my-3 product_image">
                     {% if product.image %}
                         <a href="{{ product.image.url }}" target="_blank">
@@ -18,7 +18,7 @@
                     {% endif %}
                 </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 px-2">
                 <div class="my-3 product_details">
                     <h5 class="text-black mb-2"><strong>{{ product.name }}</strong></h5>
                     {% if not product.price == 0.00 %}
@@ -61,19 +61,19 @@
                             </div>
                             {% if product.category.name == "cookies" %}
                                 <div class="form-group">
-                                    <label for="cookie_{{ product.id }}" class="text-black">Cake</label>
+                                    <label for="cookie_{{ product.id }}" class="text-black">Flavour</label>
                                     <select class="form-control rounded-0" id="cookie_{{ product.id }}" name="flavour">
-                                        <option>Butter Cookie</option>
-                                        <option>Cinnamon Cookie</option>
-                                        <option>Lemon Cookie</option>
+                                        <option>Butter</option>
+                                        <option>Cinnamon</option>
+                                        <option>Lemon</option>
                                     </select>
                                 </div>
                             {% elif product.category.name == "cupcakes" %}
                                 <div class="form-group">
-                                    <label for="cupcake_{{ product.id }}" class="text-black">Cupcake</label>
+                                    <label for="cupcake_{{ product.id }}" class="text-black">Flavour</label>
                                     <select class="form-control rounded-0" id="cupcake_{{ product.id }}" name="flavour">
-                                        <option>Chocolate Cupcake</option>
-                                        <option>Iogurt Cupcake</option>
+                                        <option>Chocolate</option>
+                                        <option>Iogurt</option>
                                     </select>
                                 </div>
                             {% endif %}

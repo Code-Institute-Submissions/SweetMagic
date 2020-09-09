@@ -63,6 +63,10 @@ a:hover {
     text-decoration: underline;
 }
 
+.nav-item:hover {
+    text-decoration: underline;
+}
+
 /* Background */
 
 .header-color {
@@ -70,7 +74,8 @@ a:hover {
     border-bottom: 8px solid #E0CE9E;
 }
 
-.dropdown-color {
+.dropdown-color,
+.toast-color {
     background-color: #F6EBD9;
 }
 

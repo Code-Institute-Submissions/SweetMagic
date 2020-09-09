@@ -27,7 +27,7 @@
             <div class="col-10">
                 <div class="row no-gutters">
                     {% for product in products %}
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3"> <!-- Col sizes taken from Boutique-Ado walkthrough project -->
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 px-1"> <!-- Col sizes taken from Boutique-Ado walkthrough project -->
                             <div class="card h-100 border-0">
                                 {% if product.image %}
                                     <a href="{% url 'product' product.id %}">
