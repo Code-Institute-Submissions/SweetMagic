@@ -43,7 +43,7 @@
                                 <label for="id_qty_{{ product.id }}" class="text-black mb-2">Quantity</label>
                                 <div class="input-group justify-content-center">
                                     <div class="input-group-prepend"> <!-- Taken from Boutique Ado walkthrough project -->
-                                        <button class="decrement-qty btn" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
+                                        <button class="decrement-qty btn rounded-0" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
                                             <span class="icon">
                                                 <i class="fas fa-minus"></i>
                                             </span>
@@ -51,7 +51,7 @@
                                     </div>
                                     <input type="number" class="form-control qty_input mx-2" id="id_qty_{{ product.id }}" name="quantity" value="1" min="1" max="20" data-item_id="{{ product.id }}">
                                     <div class="input-group-append">  <!-- Taken from Boutique Ado walkthrough project -->
-                                        <button class="increment-qty btn" data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
+                                        <button class="increment-qty btn rounded-0" data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
                                             <span class="icon">
                                                 <i class="fas fa-plus"></i>
                                             </span>
@@ -82,7 +82,7 @@
                                 <textarea class="form-control mt-2" id="notes_{{ product.id }}" placeholder="Please give us a bit more information about your product"></textarea>
                             </div>
                             <div class="row no-gutters justify-content-end">
-                                <input type="submit" class="btn btn-primary my-submit-btn text-black" value="Add to Bag">
+                                <input type="submit" class="btn btn-primary btn-sm my-submit-btn rounded-0 text-black" value="Add to Bag">
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </form>
@@ -156,7 +156,7 @@
                                 </div>
                             {% endif %}
                             <div class="row no-gutters justify-content-end">
-                                <button type="submit" class="btn btn-primary my-submit-btn"><p class="text-black">Place request</p></button>
+                                <button type="submit" class="btn btn-primary btn-sm my-submit-btn rounded-0"><p class="text-black">Place request</p></button>
                             </div>
                         </form>
                     </div>

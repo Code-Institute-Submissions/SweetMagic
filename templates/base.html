@@ -26,161 +26,185 @@
 
   <body>
 
-    <!-- Header -->
+    <!-- Div to keep all content except for footer, so as to keep footer always at the bottom of the page (not viewport) -->
+     <div class="content my-container">
+        <!-- Header -->
 
-        <header class="container-fluid sticky-top header-color">
+            <header class="container-fluid sticky-top header-color">
 
-            <div class="row h-100 justify-content-end align-items-center py-4">
-                <div class="col-12 col-md-4 p-0 text-center">
-                    <a href="{% url 'home' %}">
-                        <h1 class="logo my-auto">SweetMagic</h1>
-                    </a>
-                </div>
-
-                <!-- Will only be displayed on bigger screens and move search, account and bag icons to the top row -->
-                <div class="col-md-4 d-none d-md-inline p-0 text-center"> 
-                    <ul class="list-inline list-unstyled h-100">
-                        <li class="list-inline-item mr-3 dropdown">
-                            <a href="#" id="search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search my-icon"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-color border-0" aria-labelledby="search">
-                                <div class="dropdown-item search-form w-100 p-0">
-                                    <form method="GET" action="{% url 'products' %}">
-                                        <div class="input-group w-100">
-                                            <input class="form-control dropdown-color" type="text" name="sq" placeholder="Search">
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-inline-item mr-3 dropdown">
-                            <a href="#" id="user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-user my-icon"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-color" aria-labelledby="user">
-                                {% if request.user.is_authenticated %}
-                                    <a href="" class="dropdown-item">My Profile</a>
-                                    <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a> <!--href comming from allauth-->
-                                {% else %}
-                                    <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a> <!--href comming from allauth-->
-                                    <a href="{% url 'account_login' %}" class="dropdown-item">Login</a> <!--href comming from allauth-->
-                                {% endif %}
-                            </div>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="{% url 'my_bag' %}" id="bag">
-                                <i class="fas fa-shopping-bag my-icon"></i>
-                            </a>
-                            {% if number_of_products != 0 %}
-                                <span class="text-black ml-1"><strong>({{ number_of_products }})</strong></span>
-                            {% endif %}
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
-            <div class="row h-100 align-items-center">
-                <nav class="navbar navbar-expand-md navbar-light w-100">
-
-                    <!-- Will only be displayed on smaller screens and move search, account and bag icons to the bottom row, next to toggle icon -->
-                    <div class="row w-100 d-inline d-md-none nav-small-screen"> 
-                        <div class="p-0 text-center">
-                            <ul class="list-inline list-unstyled h-100">
-                                <li class="list-inline-item">
-                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#my-nav" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span><i class="fas fa-bars my-icon"></i></span>
-                                    </button>
-                                </li>
-                                <li class="list-inline-item mr-3 dropdown">
-                                    <a href="#" id="small-search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-search my-icon"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-color border-0" aria-labelledby="search">
-                                        <div class="dropdown-item search-form w-100 p-0">
-                                            <form method="GET" action="{% url 'products' %}">
-                                                <div class="input-group w-100">
-                                                    <input class="form-control dropdown-color" type="text" name="sq" placeholder="Search">
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-inline-item mr-3 dropdown">
-                                    <a href="#" id="small-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-user my-icon"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-color" aria-labelledby="small-user">
-                                        {% if request.user.is_authenticated %}
-                                            <a href="" class="dropdown-item">My Profile</a>
-                                            <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a> <!--href comming from allauth-->
-                                        {% else %}
-                                            <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a> <!--href comming from allauth-->
-                                            <a href="{% url 'account_login' %}" class="dropdown-item">Login</a> <!--href comming from allauth-->
-                                        {% endif %}
-                                    </div>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="{% url 'my_bag' %}" id="small-bag">
-                                        <i class="fas fa-shopping-bag my-icon"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+                <div class="row h-100 justify-content-end align-items-center py-4">
+                    <div class="col-12 col-md-4 p-0 text-center">
+                        <a href="{% url 'home' %}">
+                            <h1 class="logo my-auto">SweetMagic</h1>
+                        </a>
                     </div>
 
-                    <div class="collapse navbar-collapse" id="my-nav">
-                        <ul class="navbar-nav w-auto mx-auto">
-                            <li class="nav-item dropdown">
-                                <a href="#" id="cakes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link mr-3 title"><h2 class="title">Cakes & Desserts</h2></a>
-                                <div class="dropdown-menu dropdown-color" aria-labelledby="cakes">
-                                    <a href="{% url 'products' %}?category=desserts" class="title dropdown-item"><h3 class="title">Desserts</h3></a>
-                                    <a href="{% url 'products' %}?category=cakes" class="title dropdown-item"><h3 class="title">Everyday Cakes</h3></a>
-                                    <a href="{% url 'products' %}?category=cupcakes" class="title dropdown-item"><h3 class="title">Cupcakes</h3></a>
-                                    <a href="{% url 'products' %}?category=donuts" class="title dropdown-item"><h3 class="title">Donuts</h3></a>
-                                    <a href="{% url 'products' %}?category=festive_cakes" class="title dropdown-item"><h3 class="title">Festive Cakes</h3></a>
-                                    <a href="{% url 'products' %}?category=sculpted_cakes" class="title dropdown-item"><h3 class="title">Sculpted Cakes</h3></a>
-                                    <a href="{% url 'products' %}?category=wedding_cakes" class="title dropdown-item"><h3 class="title">Wedding Cakes</h3></a>
-                                    <a href="{% url 'products' %}?category=cupcakes,cakes,desserts,donuts,festive_cakes,sculpted_cakes,wedding_cakes" class="title dropdown-item"><h3 class="title">See All Cakes & Desserts</h3></a>
+                    <!-- Will only be displayed on bigger screens and move search, account and bag icons to the top row -->
+                    <div class="col-md-4 d-none d-md-inline p-0 text-center"> 
+                        <ul class="list-inline list-unstyled h-100">
+                            <li class="list-inline-item mr-3 dropdown">
+                                <a href="#" id="search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-search my-icon"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-color border-0" aria-labelledby="search">
+                                    <div class="dropdown-item search-form w-100 p-0">
+                                        <form method="GET" action="{% url 'products' %}">
+                                            <div class="input-group w-100">
+                                                <input class="form-control dropdown-color" type="text" name="sq" placeholder="Search">
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <a href="{% url 'products' %}?category=cookies" class="nav-link mr-3 title"><h2 class="title">Cookies</h2></a>
+                            <li class="list-inline-item mr-3 dropdown">
+                                <a href="#" id="user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user my-icon"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-color" aria-labelledby="user">
+                                    {% if request.user.is_authenticated %}
+                                        <a href="" class="dropdown-item">My Profile</a>
+                                        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a> <!--href comming from allauth-->
+                                    {% else %}
+                                        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a> <!--href comming from allauth-->
+                                        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a> <!--href comming from allauth-->
+                                    {% endif %}
+                                </div>
                             </li>
-                            <li class="nav-item">
-                                <a href="{% url 'products' %}?category=thematic_tables" class="nav-link mr-3 title"><h2 class="title">Thematic Tables</h2></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'products' %}" class="nav-link mr-3 title"><h2 class="title">See All</h2></a>
+                            <li class="list-inline-item">
+                                <a href="{% url 'my_bag' %}" id="bag">
+                                    <i class="fas fa-shopping-bag my-icon"></i>
+                                </a>
+                                {% if number_of_products != 0 %}
+                                    <span class="text-black ml-1"><strong>({{ number_of_products }})</strong></span>
+                                {% endif %}
+                                <!-- Toasts -->
+                                        {% if messages %}
+                                            <div class="message-container">
+                                                {% for message in messages %}
+                                                    {% with message.level as level %}
+                                                        {% if level == 40 %}
+                                                            {% include 'includes/toasts/error.html' %}
+                                                        {% elif level == 30 %}
+                                                            {% include 'includes/toasts/warning.html' %}
+                                                        {% elif level == 25 %}
+                                                            {% include 'includes/toasts/success.html' %}
+                                                        {% else %}
+                                                            {% include 'includes/toasts/info.html' %}
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
                             </li>
                         </ul>
                     </div>
-                </nav>
-            </div>
 
-        </header>
+                </div>
+                <div class="row h-100 align-items-center">
+                    <nav class="navbar navbar-expand-md navbar-light w-100">
 
-    <!-- Toasts -->
-        {% if messages %}
-            <div class="message-container">
-                {% for message in messages %}
-                    {% with message.level as level %}
-                        {% if level == 40 %}
-                            {% include 'includes/toasts/error.html' %}
-                        {% elif level == 30 %}
-                            {% include 'includes/toasts/warning.html' %}
-                        {% elif level == 25 %}
-                            {% include 'includes/toasts/success.html' %}
-                        {% else %}
-                            {% include 'includes/toasts/info.html' %}
-                        {% endif %}
-                    {% endwith %}
-                {% endfor %}
-            </div>
-        {% endif %}
+                        <!-- Will only be displayed on smaller screens and move search, account and bag icons to the bottom row, next to toggle icon -->
+                        <div class="row w-100 d-inline d-md-none nav-small-screen"> 
+                            <div class="p-0 text-center">
+                                <ul class="list-inline list-unstyled h-100">
+                                    <li class="list-inline-item">
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#my-nav" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
+                                            <span><i class="fas fa-bars my-icon"></i></span>
+                                        </button>
+                                    </li>
+                                    <li class="list-inline-item mr-3 dropdown">
+                                        <a href="#" id="small-search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-search my-icon"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-color border-0" aria-labelledby="search">
+                                            <div class="dropdown-item search-form w-100 p-0">
+                                                <form method="GET" action="{% url 'products' %}">
+                                                    <div class="input-group w-100">
+                                                        <input class="form-control dropdown-color" type="text" name="sq" placeholder="Search">
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item mr-3 dropdown">
+                                        <a href="#" id="small-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-user my-icon"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-color" aria-labelledby="small-user">
+                                            {% if request.user.is_authenticated %}
+                                                <a href="" class="dropdown-item">My Profile</a>
+                                                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a> <!--href comming from allauth-->
+                                            {% else %}
+                                                <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a> <!--href comming from allauth-->
+                                                <a href="{% url 'account_login' %}" class="dropdown-item">Login</a> <!--href comming from allauth-->
+                                            {% endif %}
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="{% url 'my_bag' %}" id="small-bag">
+                                            <i class="fas fa-shopping-bag my-icon"></i>
+                                        </a>
+                                        {% if number_of_products != 0 %}
+                                            <span class="text-black ml-1"><strong>({{ number_of_products }})</strong></span>
+                                        {% endif %}
+                                        <!-- Toasts -->
+                                        {% if messages %}
+                                            <div class="message-container">
+                                                {% for message in messages %}
+                                                    {% with message.level as level %}
+                                                        {% if level == 40 %}
+                                                            {% include 'includes/toasts/error.html' %}
+                                                        {% elif level == 30 %}
+                                                            {% include 'includes/toasts/warning.html' %}
+                                                        {% elif level == 25 %}
+                                                            {% include 'includes/toasts/success.html' %}
+                                                        {% else %}
+                                                            {% include 'includes/toasts/info.html' %}
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
 
-    {% block content %}
-    {% endblock %}
+                        <div class="collapse navbar-collapse" id="my-nav">
+                            <ul class="navbar-nav w-auto mx-auto">
+                                <li class="nav-item dropdown">
+                                    <a href="#" id="cakes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link mr-3 title"><h2 class="title">Cakes & Desserts</h2></a>
+                                    <div class="dropdown-menu dropdown-color" aria-labelledby="cakes">
+                                        <a href="{% url 'products' %}?category=desserts" class="title dropdown-item"><h3 class="title">Desserts</h3></a>
+                                        <a href="{% url 'products' %}?category=cakes" class="title dropdown-item"><h3 class="title">Everyday Cakes</h3></a>
+                                        <a href="{% url 'products' %}?category=cupcakes" class="title dropdown-item"><h3 class="title">Cupcakes</h3></a>
+                                        <a href="{% url 'products' %}?category=donuts" class="title dropdown-item"><h3 class="title">Donuts</h3></a>
+                                        <a href="{% url 'products' %}?category=festive_cakes" class="title dropdown-item"><h3 class="title">Festive Cakes</h3></a>
+                                        <a href="{% url 'products' %}?category=sculpted_cakes" class="title dropdown-item"><h3 class="title">Sculpted Cakes</h3></a>
+                                        <a href="{% url 'products' %}?category=wedding_cakes" class="title dropdown-item"><h3 class="title">Wedding Cakes</h3></a>
+                                        <a href="{% url 'products' %}?category=cupcakes,cakes,desserts,donuts,festive_cakes,sculpted_cakes,wedding_cakes" class="title dropdown-item"><h3 class="title">See All Cakes & Desserts</h3></a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'products' %}?category=cookies" class="nav-link mr-3 title"><h2 class="title">Cookies</h2></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'products' %}?category=thematic_tables" class="nav-link mr-3 title"><h2 class="title">Thematic Tables</h2></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'products' %}" class="nav-link mr-3 title"><h2 class="title">See All</h2></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+
+            </header>
+
+        {% block content %}
+        {% endblock %}
+     </div>    
+
 
     <!-- Footer -->
 

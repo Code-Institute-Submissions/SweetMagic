@@ -2,6 +2,11 @@ html {
     height: 100%;
 }
 
+body {
+    min-height: 100vh;
+    position: relative;
+}
+
 /* Fonts, text color and decoration */
 
 .logo {
@@ -130,10 +135,8 @@ a:hover {
 /* Toasts */
 
 .message-container {
-    position: fixed;
-    top: 70px;
-    right: 15px;
-    z-index: 9999999999999;
+    position: absolute;
+    z-index: 999999999;
 }
 
 .my_toast {
@@ -145,6 +148,17 @@ a:hover {
 hr {
     background-color: #D9B3A6;
     height: 2px;
+}
+
+.my-container {
+    padding-bottom: 72px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 72px;
 }
 
 /*         To make dropdown open on hover in big-screens */
