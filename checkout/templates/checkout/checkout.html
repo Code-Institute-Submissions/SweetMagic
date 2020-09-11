@@ -17,7 +17,7 @@
         <div class="row no-gutters justify-content-center"> <!-- Row to contain actual content -->
             <div class="col-12 col-md-7 mx-2 p-0">  <!-- Order form -->
                 <p class="text-black">Please fill the form bellow to complete your order</p>
-                <form action="{% url 'checkout' %}" method="POST" id="checkout_form">
+                <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
                     {% csrf_token %}
                     <fieldset class="rounded-0 px-3 mb-3">
                         <legend class="fieldset-label text-black">Details</legend>
@@ -50,7 +50,7 @@
                     </fieldset>
                     <div class="buttons px-3"> <!-- Will contain buttons to go back to bag or complete order -->
                         <a href="{% url 'my_bag' %}" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0">Edit Bag</a>
-                        <button id="submit_button" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0">Complete Order</button>
+                        <button id="submit-button" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0">Complete Order</button>
                         <p class="text-black">Attention! Your card will be charged <strong>{{ total|floatformat:2 }}€</strong></p>
                     </div>
                 </form>
