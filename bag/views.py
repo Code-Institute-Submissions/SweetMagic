@@ -26,7 +26,7 @@ def add_to_bag(request, item_id):
                 messages.success(request, f'{product.name}<br>{product.price}€<br>Flavour: {flavour}<br>Total quantity: {bag[item_id]["items_by_flavour"][flavour]}')
         else:
             bag[item_id] = {'items_by_flavour': {flavour: quantity}}
-            messages.success(request, f'{product.name}<br>{product.price}€<br>Flavour: {flavour}<br>Total quantity: {bag[item_id]["items_by_flavour"][flavour]}')
+            messages.success(request,f'{product.name}<br>{product.price}€<br>Flavour: {flavour}<br>Total quantity: {bag[item_id]["items_by_flavour"][flavour]}')
     else:
         if item_id in list(bag.keys()):
             bag[item_id] += quantity

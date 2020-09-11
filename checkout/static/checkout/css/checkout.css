@@ -1,0 +1,33 @@
+.StripeElement,
+.stripe-style-input {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 10px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 0px;
+  background-color: #fff;
+}
+
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.stripe-style-input::placeholder {
+    color: #495057;
+}
+
+.fieldset-label {
+    position: relative;
+    right: .5rem;
+}
+
+#checkout_form .form-control,
+#card-element {
+    border-radius: 0;
+}

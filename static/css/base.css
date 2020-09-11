@@ -98,6 +98,12 @@ a:hover {
     border: 2px solid #E0CE9E;
 }
 
+/* Images */
+
+.product-image {
+    object-fit: cover;
+}
+
 /* Buttons */
 
 .navbar-toggler {
