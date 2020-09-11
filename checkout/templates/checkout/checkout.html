@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+        <div class="row no-gutters"> <!-- Row to contain page title -->
+            <div class="col-12 py-3 text-center">
+                <h2 class="title">Checkout</h2>
+            </div>
+        </div>
+        <div class="row no-gutters justify-content-center"> <!-- Row to contain actual content -->
+            <div class="col-12 col-lg-6 order-last-lg"> <!-- Order review -->
+                
+                
+            </div>
+            <div class="col-12 col-lg-6">  <!-- Order form -->
+                <p class="text-black">Please fill the form bellow to complete your order</p>
+                <form action="{% url 'checkout' %}" method="POST" id="checkout_form">
+                    {% csrf_token %}
+                    <fieldset class="rounded-0 px-3 mb-3">
+                        <legend class="fieldset-label text-black">Details</legend>
+                        {{ order_form.full_name | as crispy_field}}
+                        {{ order_form.email | as crispy_field}}
+                        {{ order_form.phone_number | as crispy_field}}
+                    </fieldset>
+                    <fieldset class="rounded-0 px-3 mb-3">
+                        <legend class="fieldset-label text-black">Billing Information</legend>
+                        {{ order_form.street_address | as crispy_field}}
+                        {{ order_form.post_code | as crispy_field}}
+                        {{ order_form.town_or_city | as crispy_field}}
+                        {{ order_form.country | as crispy_field}}
+                        <div class="form-check form-check-inline float-right">
+                            {% if user.is_authenticated %}
+                                <label for="save_delivery">Save this delivery information to my profile</label>
+                                <input type="checkbox" id="save_delivery" name="save_delivery" checked>
+                            {% else %}
+                                <label for="save_delivery">
+                                    <a href="{% url 'account_signup' %}">Create an account</a> or
+                                    <a href="{% url 'account_login' %}">login</a> to save this information for future orders
+                                </label>
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    <fieldset class="rounded-0 px-3">
+                        <legend class="fieldset-label text-black">Payment Options</legend>
+                        <div id="card-element"></div>
+                        <div id="card-errors" role="alert"></div>
+                    </fieldset>
+                    <div class="buttons"> <!-- Will contain buttons to go back to bag or complete order -->
+                        <a href="{% url 'my_bag' %}" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0">Edit Bag</a>
+                        <button id="submit_button" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0">Complete Order</button>
+                        <p class="text-black">Attention! Your card will be charged <strong>{{ total||floatformat:2 }}€</strong></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block postloadjs %}
+{% endblock %}
