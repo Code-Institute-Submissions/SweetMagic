@@ -18,7 +18,7 @@ def cache_checkout_data(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('bag', {})),
-            'save_delivery': request.POST.get('save_delivery'),
+            'save_order': request.POST.get('save_order'),
             'username': request.user,
         })
         return HttpResponse(status=200)
@@ -45,8 +45,11 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order = order_form.save()
-
+            order = order_form.save(commit=False)
+            pid = request.POST.get('client_secret').split('_secret')[0]
+            order.stripe_pid = pid
+            order.original_bag = json.dumps(bag)
+            order.save()
             for item_id, item_data in bag.items():
                 try:
                     product = get_object_or_404(Product, pk=item_id)
@@ -78,7 +81,7 @@ def checkout(request):
                     order.delete()
                     return redirect(reverse('view_bag'))
 
-            request.session['save_delivery'] = 'save_delivery'
+            request.session['save_order'] = 'save_order'
             return redirect(reverse('checkout_success',
                                     args=[order.order_number]))
 
@@ -118,7 +121,7 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
-    save_delivery = request.session.get('save_delivery')
+    save_order = request.session.get('save_order')
     order = get_object_or_404(Order, order_number=order_number)
     messages.success(request, f'Order successfully made! \
         Your order number is {order_number}. A confirmation \

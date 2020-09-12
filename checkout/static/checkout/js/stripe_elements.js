@@ -45,12 +45,12 @@ form.addEventListener('submit', function(ev) {
     card.update({ 'disabled': true});
     $('#submit-button').attr('disabled', true);
 
-    var saveDelivery = Boolean($('#id_save_delivery').attr('checked'));
+    var saveOrder = Boolean($('#id_save_order').attr('checked'));
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
-        'save_delivery': saveDelivery,
+        'save_order': saveOrder,
     };
     var url = '/checkout/cache_checkout_data/';
 
@@ -82,7 +82,7 @@ form.addEventListener('submit', function(ev) {
                 $('#submit-button').attr('disabled', false);
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
-                    form.submit();
+                   form.submit();
                 }
             }
         });
