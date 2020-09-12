@@ -27,7 +27,7 @@
     right: .5rem;
 }
 
-#checkout_form .form-control,
+#checkout-form .form-control,
 #card-element {
     border-radius: 0;
 }

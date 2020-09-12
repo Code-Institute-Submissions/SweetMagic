@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+        <div class="row no-gutters"> <!-- Row to contain page title -->
+            <div class="col-12 py-3 text-center">
+                <h2 class="title">Thank You!</h2>
+            </div>
+        </div>
+        <div class="row no-gutters justify-content-center"> <!-- Row to contain actual content -->
+            <div class="col-12 col-md-4 mx-2 p-0"> <!-- Order review -->
+                <div class="p-3 checkout-box mb-3">
+                    <p class="text-black text-center"><strong>Your Order</strong></p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mx-2 p-0">
+                <p>Go back to the store!</p>
+                <a href="{% url 'products' %}" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0"><p class="text-black">Back to Store</p></a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

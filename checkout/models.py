@@ -16,13 +16,15 @@ class Order(models.Model):
     town_or_city = models.CharField(max_length=40, null=True, blank=True)
     country = models.CharField(max_length=20, null=True, blank=True)
     order_date = models.DateField(auto_now_add=True)
-    order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
+    order_total = models.DecimalField(
+        max_digits=10, decimal_places=2, null=False, default=0)
 
     def _generate_order_number(self):
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
-        self.order_total = self.items.aggregate(Sum('product_total'))['product_total__sum']
+        self.order_total = self.items.aggregate(
+            Sum('product_total'))['product_total__sum'] or 0
         self.save()
 
     def save(self, *args, **kwargs):
@@ -36,11 +38,16 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
 
-    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='items')
-    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    order = models.ForeignKey(
+        Order, null=False, blank=False, on_delete=models.CASCADE,
+        related_name='items')
+    product = models.ForeignKey(
+        Product, null=False, blank=False, on_delete=models.CASCADE)
     product_flavour = models.CharField(max_length=20, null=True, blank=True)
     quantity = models.IntegerField(null=False, blank=False, default=0)
-    product_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    product_total = models.DecimalField(
+        max_digits=6, decimal_places=2, null=False,
+        blank=False, editable=False)
 
     def save(self, *args, **kwargs):
         self.product_total = self.product.price * self.quantity
