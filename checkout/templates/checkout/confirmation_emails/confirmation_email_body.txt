@@ -1,0 +1,16 @@
+Hello {{ order.full_name }}
+
+Thank you for your purchase. Your order is now confirmed and has the following information:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.order_date }}
+
+Order Total: {{ order.order_total }}€
+
+You will receive a text message to {{ order.phone_number }} with all the pick up information.
+
+If you have any questions, feel free to contact us. Please include your order number in that case.
+
+Sincerely,
+
+SweetMagic
