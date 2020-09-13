@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from .models import Order, OrderItem
 from products.models import Product
+from profiles.models import UserProfile
 import json
 import time
 
@@ -23,6 +24,14 @@ class StripeWH_Handler:
 
         billing_details = intent.charges.data[0].billing_details
         total = round(intent.charges.data[0].amount / 100, 2)
+
+        profile = None
+        username = intent.metadata.username
+        if username != 'AnonymousUser':
+            profile = UserProfile.objects.get(user__username=username)
+            if save_order:
+                profile.default_phone_number = billing_details.phone
+                profile.save()
 
         order_exists = False
         attempt = 1
@@ -50,31 +59,31 @@ class StripeWH_Handler:
             try:
                 order = Order.objects.create(
                     full_name=billing_details.name,
+                    user_profile=profile,
                     email=billing_details.email,
                     phone_number=billing_details.phone,
                     original_bag=bag,
                     stripe_pid=pid,
                 )
                 for item_id, item_data in json.loads(bag).items():
-                        product = Product.objects.get(id=item_id)
-                        if isinstance(item_data, int):
+                    product = Product.objects.get(id=item_id)
+                    if isinstance(item_data, int):
+                        order_item = OrderItem(
+                            order=order,
+                            product=product,
+                            quantity=item_data,
+                        )
+                        order_item.save()
+                    else:
+                        for (flavour, quantity) in (
+                                item_data['items_by_flavour'].items()):
                             order_item = OrderItem(
                                 order=order,
                                 product=product,
-                                quantity=item_data,
+                                quantity=quantity,
+                                product_flavour=flavour,
                             )
                             order_item.save()
-                        else:
-                            for (flavour, quantity) in (
-                                    item_data['items_by_flavour'].items()):
-
-                                order_item = OrderItem(
-                                    order=order,
-                                    product=product,
-                                    quantity=quantity,
-                                    product_flavour=flavour,
-                                )
-                                order_item.save()
             except Exception as e:
                 if order:
                     order.delete()
