@@ -80,7 +80,7 @@
                                 {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
                                     <p class="text-black text-small">Flavour: {{ item.flavour }}</p>
                                 {% endif %}
-                                <p class="text-black text-small">Quantity: {{ item.quantity }}€</p>
+                                <p class="text-black text-small">Quantity: {{ item.quantity }}</p>
                                 <p class="text-black text-small">Sub-total: {{ item.product.price | calc_subtotal:item.quantity }}€</p>
                             </div>
                         </div>

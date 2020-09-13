@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load bag_subtotal %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
@@ -17,7 +18,7 @@
         <div class="col-12 col-lg-10">
             <div class="row no-gutters justify-content-between">
                 <div class="col-12 col-md-7 mx-2 p-0"> <!-- Profile Info will be displayed here -->
-                    <p class="text-muted">User Information</p>
+                    <p class="text-black">User Information</p>
                     <form class="p-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                         {% csrf_token %}
                         {{ form|crispy }}
@@ -26,9 +27,44 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-12 col-md-4 mx-2 p-0"> <!-- Order history will be displayed here -->
-                    <p class="text-muted">Order History</p>
-                    {{ orders }}
+                <div class="col-12 col-md-4 mx-2 p-3 checkout-box"> <!-- Order history will be displayed here -->
+                    <p class="text-black text-center pb-1">My Purchases</p>
+                    <div class="order-history">
+                        {% if orders %}
+                            {% for order in orders %}
+                                <p class="text-black" title="{{ order.order_number }}">Order Number: {{ order.order_number|truncatechars:6 }}</p>
+                                <p class="text-black">Order Date: {{ order.order_date }}</p>
+                                <p class="text-black">Order Value: {{ order.order_total }}€</p>
+                                <p class="text-black">Order Details:</p>
+                                {% for item in order.items.all %}
+                                    <div class="row no-gutters mt-2">
+                                        <div class="col-3">
+                                            {% if item.product.image %}
+                                                <a href="{% url 'product' item.product.id %}">
+                                                    <img class="card-img-top h-100 product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+                                                </a>
+                                            {% else %}
+                                                <a href="{% url 'product' item.product.id %}">
+                                                    <img class="card-img-top product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-9 pl-2">
+                                            <p class="text-black"><strong>{{ item.product.name }}</strong></p>
+                                            <p class="text-black">{{ item.product.price }}€</p>
+                                            {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
+                                                <p class="text-black text-small">Flavour: {{ item.flavour }}</p>
+                                            {% endif %}
+                                            <p class="text-black text-small">Quantity: {{ item.quantity }}</p>
+                                            <p class="text-black text-small">Sub-total: {{ item.product.price | calc_subtotal:item.quantity }}€</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-black">You still haven't ordered anything from us.</p>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
