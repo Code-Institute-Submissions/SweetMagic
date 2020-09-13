@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+        <div class="row no-gutters"> <!-- Row to contain page title -->
+            <div class="col-12 py-3 text-center">
+                <h2 class="title">My Profile</h2>
+            </div>
+        </div>
+        <div class="row no-gutters justify-content-center"> <!-- Row to contain actual content -->
+            
+        </div>
+    </div>
+
+{% endblock %}
