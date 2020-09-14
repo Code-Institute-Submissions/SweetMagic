@@ -11,7 +11,7 @@ class ProductForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
-        viewer_names = [(c.id, c.get_viewer_name()) for c in categories]
+        viewer_names = [(c.id, c.find_viewer_name()) for c in categories]
 
         self.fields['category'].choices = viewer_names
         for field_name, field in self.fields.items():

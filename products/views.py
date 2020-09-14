@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.db.models import Q
 from .models import Product, Category
+from .forms import ProductForm
 
 
 def products(request):
@@ -23,7 +24,8 @@ def products(request):
                 messages.error(request, "Please enter a valid search criteria")
                 return redirect(reverse('products'))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(name__icontains=query) | (
+                      Q(description__icontains=query))
             products = products.filter(queries)
 
     context = {
@@ -45,3 +47,13 @@ def product(request, product_id):
     }
 
     return render(request, 'products/product.html', context)
+
+
+def add_product(request):
+    form = ProductForm()
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
