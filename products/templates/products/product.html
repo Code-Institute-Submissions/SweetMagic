@@ -86,6 +86,10 @@
                             </div>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </form>
+                        {% if request.user.is_superuser %}
+                        <a href="{% url 'update_product' product.id %}" class="btn btn-sm my-submit-btn rounded-0 text-black">Edit Product</a>
+                        <a href="{% url 'delete_product' product.id %}" class="btn btn-sm my-submit-btn rounded-0 text-black">Delete Product</a>
+                        {% endif %}
                     </div>
                 {% else %}
                     <!-- Code for the form to Ask for Product Quotation -->
