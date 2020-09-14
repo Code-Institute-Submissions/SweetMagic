@@ -2,7 +2,6 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from .models import UserProfile
 from .forms import ProfileForm
-from checkout.models import Order
 
 
 def profile(request):
@@ -13,8 +12,12 @@ def profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Profile updated successfully')
+        else:
+            messages.error(request, 'Update failed. \
+                                     Please double check the form.')
+    else:
+        form = ProfileForm(instance=profile)
 
-    form = ProfileForm(instance=profile)
     orders = profile.orders.all()
 
     template = "profiles/profile.html"
