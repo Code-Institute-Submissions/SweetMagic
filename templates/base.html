@@ -1,4 +1,5 @@
 {% load static %}
+{% load bag_subtotal %}
 
 <!doctype html>
 <html lang="en">
@@ -32,11 +33,11 @@
   <body>
 
     <!-- Div to keep all content except for footer, so as to keep footer always at the bottom of the page (not viewport) -->
-     <div class="content my-container">
+     <div class="my-container">
         
         <!-- Header -->
          <header class="container-fluid vw-100 pt-4 px-0 fixed-top header-color">
-            <div class="row no-gutters h-100 mb-2 mx-2">
+            <div class="row no-gutters h-100 mb-3 mx-2">
                 <div class="col-1 d-md-none text-center"> <!-- Will contain toggled navbar on smaller screens -->
                     <nav class="navbar navbar-expand-md navbar-light h-100 vw-100 p-0">
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#my-nav" aria-controls="my-nav"    aria-expanded="false" aria-label="Toggle navigation">
@@ -46,7 +47,7 @@
                             <ul class="navbar-nav mx-auto w-100 mt-3">
                                 <li class="nav-item dropdown">
                                     <a id="cakes" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link mr-3 title">
-                                        <h4 class="title">Cakes & Desserts</h4>
+                                        <h4 class="title">Bakery</h4>
                                     </a>
                                     <div class="dropdown-menu dropdown-color" aria-labelledby="cakes">
                                         <a href="{% url 'products' %}?category=desserts" class="title dropdown-item">
@@ -61,6 +62,9 @@
                                         <a href="{% url 'products' %}?category=donuts" class="title dropdown-item">
                                             <h5 class="title">Donuts</h5>
                                         </a>
+                                        <a href="{% url 'products' %}?category=cookies" class="title dropdown-item">
+                                            <h5 class="title">Cookies</h5>
+                                        </a>
                                         <a href="{% url 'products' %}?category=festive_cakes" class="title dropdown-item">
                                             <h5 class="title">Festive Cakes</h5>
                                         </a>
@@ -74,11 +78,6 @@
                                             <h5 class="title">See All Cakes & Desserts</h5>
                                         </a>
                                     </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{% url 'products' %}?category=cookies" class="nav-link mr-3 title">
-                                        <h4 class="title">Cookies</h4>
-                                    </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{% url 'products' %}?category=thematic_tables" class="nav-link mr-3 title">
@@ -105,10 +104,12 @@
                             <a href="#" id="user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user my-icon"></i>
                             </a>
-                            <div class="dropdown-menu dropdown-color border-0" aria-labelledby="user">
+                            <div class="dropdown-menu dropdown-color dropdown-menu-right rounded-0 border-dropdown px-2" aria-labelledby="user">
                                 {% if request.user.is_authenticated %}
                                     {% if request.user.is_superuser %}
-                                        <a href="{% url 'add_product' %}" class="dropdown-item text-black">Product Management</a>
+                                        <h5 class="dropdown-header text-black">Product Management</h5>
+                                        <a href="{% url 'add_product' %}" class="dropdown-item text-black">Add Product</a>
+                                        <div class="dropdown-divider"></div>
                                     {% endif %}
                                     <a href="{% url 'profile' %}" class="dropdown-item text-black">My Profile</a>
                                     <a href="{% url 'account_logout' %}" class="dropdown-item text-black">Logout</a> <!-- Url comming from allauth -->
@@ -122,11 +123,11 @@
                             <a href="#" id="search" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search my-icon"></i>
                             </a>
-                            <div class="dropdown-menu dropdown-color border-0" aria-labelledby="search">
+                            <div class="dropdown-menu dropdown-menu-right dropdown-color border-dropdown" aria-labelledby="search">
                                 <div class="dropdown-item search-form w-100 p-0">
                                     <form method="GET" action="{% url 'products' %}">
                                         <div class="input-group w-100">
-                                            <input class="form-control rounded-0 dropdown-color" type="text" name="sq" placeholder="Search">
+                                            <input class="form-control rounded-0 border-0 dropdown-color search-input" type="text" name="sq" placeholder="Search">
                                         </div>
                                     </form>
                                 </div>
@@ -146,70 +147,140 @@
                                 ({{ number_of_products }})
                             {% endif %}
                             </p>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-color bag-dropdown rounded-0">
+                                <div class="dropdown-item w-100 p-0">
+                                    {% if bag_items %}
+                                        {% for item in bag_items %}
+                                            <div class="row no-gutters mb-1 mx-2">
+                                                <div class="col-4">
+                                                    {% if item.product.image %}
+                                                        <a href="{% url 'product' item.product.id %}">
+                                                            <img class="card-img-top product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+                                                        </a>
+                                                    {% else %}
+                                                        <a href="{% url 'product' item.product.id %}">
+                                                            <img class="card-img-top product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                                        </a>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="col-8 pl-1">
+                                                    <p class="text-small text-black">{{ item.product.name }} x{{ item.quantity }}</p>
+                                                    {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
+                                                        <p class="text-black text-small">Flavour: {{ item.flavour }}</p>
+                                                    {% endif %}
+                                                    <p class="text-black text-small">{{ item.product.price }}€</p>
+                                                    <p class="text-black text-small">Sub-total: {{ item.product.price | calc_subtotal:item.quantity }}€</p>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                        <hr class="mx-3">
+                                        <div class="row no-gutters mx-2">
+                                            <div class="col">
+                                                <p class="text-black text-right">Total: {{ total }}€</p>
+                                            </div>
+                                        </div>
+                                        <hr class="mx-3">
+                                        <div class="row no-gutters mx-2">
+                                            <div class="col">
+                                                <a href="{% url 'products' %}" class="btn btn-sm my-submit-btn mb-2 w-100 rounded-0 text-black">Bag</a>
+                                            </div>
+                                        </div>
+                                        <div class="row no-gutters mx-2">
+                                            <div class="col">
+                                                <a href="{% url 'checkout' %}" class="btn btn-sm my-submit-btn rounded-0 w-100 text-black">Checkout</a>
+                                            </div>
+                                        </div>
+                                    {% else %}
+                                        <div class="row no-gutters mx-2">
+                                            <div class="col">
+                                                <p class="text-black text-center">Your bag is empty</p>
+                                            </div>
+                                        </div>
+                                        <hr class="mx-3">
+                                        <div class="row no-gutters mx-2">
+                                            <div class="col">
+                                                <p class="text-black text-right">Total: {{ total }}€</p>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </div> 
             </div>
-            <div class="row no-gutters h-100 d-none d-md-block mb-2 mx-2"> <!-- Will only be displayed on bigger screens -->
-                <nav class="navbar navbar-expand-md navbar-light h-100 w-100">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#my-nav2" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span><i class="fas fa-bars my-icon"></i></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="my-nav2">
-                        <ul class="navbar-nav w-auto mx-auto">
-                            <li class="nav-item dropdown">
-                                <a href="#" id="cakes2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link mr-4 title">
-                                    <h2 class="title">Cakes & Desserts</h2>
-                                </a>
-                                <div class="dropdown-menu dropdown-color rounded-0 border-0 pl-2 pr-5 text-left" aria-labelledby="cakes2">
-                                    <a href="{% url 'products' %}?category=desserts" class="title dropdown-item">
-                                        <h3 class="title">Desserts</h3>
+            <div class="row no-gutters h-100 w-100 d-none d-md-block mb-3"> <!-- Will only be displayed on bigger screens -->
+                <div class="col-6 offset-3 text-center d-inline-block">
+                    <nav class="navbar navbar-expand-md navbar-light h-100 w-100 p-0">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#my-nav2" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span><i class="fas fa-bars my-icon"></i></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="my-nav2">
+                            <ul class="navbar-nav w-auto mx-auto">
+                                <li class="nav-item dropdown">
+                                    <a href="#" id="cakes2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link mr-4 title">
+                                        <h2 class="title">Bakery</h2>
                                     </a>
-                                    <a href="{% url 'products' %}?category=cakes" class="title dropdown-item">
-                                        <h3 class="title">Everyday Cakes</h3>
+                                    <div class="dropdown-menu border-dropdown dropdown-color rounded-0 pl-2 pr-5 text-left" aria-labelledby="cakes2">
+                                        <a href="{% url 'products' %}?category=desserts" class="title dropdown-item">
+                                            <h3 class="title">Desserts</h3>
+                                        </a>
+                                        <a href="{% url 'products' %}?category=cakes" class="title dropdown-item">
+                                            <h3 class="title">Everyday Cakes</h3>
+                                        </a>
+                                        <a href="{% url 'products' %}?category=cupcakes" class="title dropdown-item">
+                                            <h3 class="title">Cupcakes</h3>
+                                        </a>
+                                        <a href="{% url 'products' %}?category=donuts" class="title dropdown-item">
+                                            <h3 class="title">Donuts</h3>
+                                        </a>
+                                        <a href="{% url 'products' %}?category=cookies" class="title dropdown-item">
+                                            <h3 class="title">Cookies</h3>
+                                        </a>
+                                        <a href="{% url 'products' %}?category=festive_cakes" class="title dropdown-item">
+                                            <h3 class="title">Festive Cakes</h3>
+                                        </a>
+                                        <a href="{% url 'products' %}?category=sculpted_cakes" class="title dropdown-item">
+                                            <h3 class="title">Sculpted Cakes</h3>
+                                        </a>
+                                        <a href="{% url 'products' %}?category=wedding_cakes" class="title dropdown-item">
+                                            <h3 class="title">Wedding Cakes</h3>
+                                        </a>
+                                        <a href="{% url 'products' %}?category=cupcakes,cakes,desserts,donuts,festive_cakes,sculpted_cakes,wedding_cakes" class="title dropdown-item">
+                                            <h3 class="title">See All</h3>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'products' %}?category=thematic_tables" class="nav-link mr-4 title">
+                                        <h2 class="title">Thematic Tables</h2>
                                     </a>
-                                    <a href="{% url 'products' %}?category=cupcakes" class="title dropdown-item">
-                                        <h3 class="title">Cupcakes</h3>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{% url 'products' %}" class="nav-link title">
+                                        <h2 class="title">See All</h2>
                                     </a>
-                                    <a href="{% url 'products' %}?category=donuts" class="title dropdown-item">
-                                        <h3 class="title">Donuts</h3>
-                                    </a>
-                                    <a href="{% url 'products' %}?category=festive_cakes" class="title dropdown-item">
-                                        <h3 class="title">Festive Cakes</h3>
-                                    </a>
-                                    <a href="{% url 'products' %}?category=sculpted_cakes" class="title dropdown-item">
-                                        <h3 class="title">Sculpted Cakes</h3>
-                                    </a>
-                                    <a href="{% url 'products' %}?category=wedding_cakes" class="title dropdown-item">
-                                        <h3 class="title">Wedding Cakes</h3>
-                                    </a>
-                                    <a href="{% url 'products' %}?category=cupcakes,cakes,desserts,donuts,festive_cakes,sculpted_cakes,wedding_cakes" class="title dropdown-item">
-                                        <h3 class="title">See All Cakes & Desserts</h3>
-                                    </a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'products' %}?category=cookies" class="nav-link mr-4 title">
-                                    <h2 class="title">Cookies</h2>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'products' %}?category=thematic_tables" class="nav-link mr-4 title">
-                                    <h2 class="title">Thematic Tables</h2>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'products' %}" class="nav-link mr-4 title">
-                                    <h2 class="title">See All</h2>
-                                </a>
-                            </li>
-                        </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div class="col-2 text-center d-inline-block my-search">
+                    <div class="col-2 p-0 d-inline-block">
+                        <i class="fas fa-search my-icon"></i>
                     </div>
-                </nav>
+                    <div class="col-8 p-0 d-inline-block">
+                        <form method="GET" action="{% url 'products' %}">
+                            <div class="input-group">
+                                <input class="form-control rounded-0 border-0 dropdown-color search-input" type="text" name="sq" placeholder="Search">
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
          </header>
 
-         <div class="content page-content">
+         <div class="page-content">
             <!-- Toasts -->
              {% if messages %}
                 <div class="message-container">
