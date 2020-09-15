@@ -6,26 +6,26 @@
 
     <div class="container-fluid">
         <div class="row no-gutters"> <!-- Row to contain page title -->
-            <div class="col-12 py-3 text-center">
-                <h2 class="title">My Shopping Bag</h2>
+            <div class="col-12 pt-4 text-center">
+                <h2 class="title d-inline-block page-title-border m-0">Shopping Bag</h2>
             </div>
         </div>
-        <div class="row no-gutters justify-content-center"> <!-- Row to contain actual content -->
+        <div class="row no-gutters justify-content-center pt-3"> <!-- Row to contain actual content -->
             <div class="col-12 col-lg-10">
                 <div class="row no-gutters justify-content-between">
                     <div class="col-12 col-md-7 mx-2 p-0"> <!-- Products inside bag will be displayed here -->
                         {% if bag_items %}
-                            <div class="bag-items-color p-3 mb-3">
+                            <div class="bag-items-color p-3 m-0">
                                 {% for item in bag_items %}
                                     <div class="row no-gutters my-1">
                                         <div class="col-4">
                                             {% if item.product.image %}
                                                 <a href="{% url 'product' item.product.id %}">
-                                                    <img class="card-img-top product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+                                                    <img class="product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
                                                 </a>
                                             {% else %}
                                                 <a href="{% url 'product' item.product.id %}">
-                                                    <img class="card-img-top product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                                    <img class="product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
                                                 </a>
                                             {% endif %}
                                         </div>
@@ -95,18 +95,20 @@
                                 {% endfor %}
                             </div>
                         {% else %}
-                            <p class="text-black">Ups, seems like your bag is empty!</p>
+                            <div class="h-100 bag-items-color p-3 m-0">
+                                <p class="text-black text-center">Ups, seems like your bag is empty!</p>
+                            </div>
                         {% endif %}
                     </div>
                     <div class="col-12 col-md-4 mx-2 p-0"> <!-- Bag total and checkout info/button -->
-                        <div class="p-3 checkout-box mb-3">
+                        <div class="p-3 checkout-box m-0">
                             {% if bag_items %}
                             <p class="text-black mb-2">Order Value: {{ total }}€</p>
                             {% endif %}
                             <div class="row no-gutters justify-content-center">
-                                <a href="{% url 'products' %}" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0"><p class="text-black">Keep Shopping</p></a>
+                                <a href="{% url 'products' %}" class="btn btn-sm my-submit-btn mr-2 mb-2 p-1 rounded-0"><p class="text-black">Keep Shopping</p></a>
                                 {% if bag_items %}
-                                <a href="{% url 'checkout' %}" class="btn btn-sm my-submit-btn mb-2 rounded-0"><p class="text-black">Secure Checkout</p></a>
+                                <a href="{% url 'checkout' %}" class="btn btn-sm my-submit-btn mb-2 p-1 rounded-0"><p class="text-black">Secure Checkout</p></a>
                                 {% endif %}
                             </div>
                         </div>

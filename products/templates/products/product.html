@@ -3,30 +3,28 @@
 
 {% block content %}
 
-<div class="container-fluid">
-        <div class="row no-gutters justify-content-center">
-            <div class="col-12 col-md-6 col-lg-5 px-2">
-                <div class="row no-gutters my-3 product_image">
+    <div class="container-fluid">
+        <div class="row no-gutters justify-content-center pt-4">
+            <div class="col-12 col-md-6 col-lg-5 mb-3 px-4 pr-lg-0 "> <!-- Will contain product image -->
                     {% if product.image %}
                         <a href="{{ product.image.url }}" target="_blank">
-                            <img class="card-img-top product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+                            <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
                         </a>
                     {% else %}
                         <a href="">
-                            <img class="card-img-top product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                            <img class="product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                         </a>
                     {% endif %}
-                </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-4 col-xl-3 px-2">
-                <div class="my-3 product_details">
-                    <h5 class="text-black mb-2"><strong>{{ product.name }}</strong></h5>
+            <div class="col-12 col-md-6 col-lg-4 col-xl-3 offset-lg-1 px-4 pl-lg-0"> <!-- Will contain product details -->
+                <div class="mb-3">
+                    <h4 class="text-black d-inline-block page-title-border mb-3"><strong>{{ product.name }}</strong></h4>
                     {% if not product.price == 0.00 %}
                         <p class="text-black"><strong>{{ product.price }}€</strong> {% if not product.quantity == 1 %} / {{ product.quantity }}units {% endif %}</p>
                     {% endif %}
-                    <p class="text-black mb-2">{{ product.description }}</p>
+                    <p class="text-black mb-3">{{ product.description }}</p>
                     {% if product.category %}
-                        <p class="text-grey">
+                        <p class="text-grey text-small">
                             <a href="{% url 'products' %}?category={{ product.category.name }}">
                                 <i class="fas fa-bookmark"></i> {{ product.category.viewer_name }}
                             </a>
@@ -35,13 +33,13 @@
                 </div>
                 {% if not product.price == 0.00 %} 
                     <!-- Code for the form to Add Product to Cart -->
-                    <div class="my-3 add_product">
-                        <h6 class="text-black"><strong><u>Order now</u></strong></h6>
-                        <form class="add-form py-1" action="{% url 'add_to_bag' product.id %}" method="POST">
+                    <div class="mb-3">
+                        <h5 class="text-black"><strong>Order now</strong></h5>
+                        <form class="add-form pt-3" action="{% url 'add_to_bag' product.id %}" method="POST">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="id_qty_{{ product.id }}" class="text-black mb-2">Quantity</label>
-                                <div class="input-group justify-content-center">
+                                <label for="id_qty_{{ product.id }}" class="text-black">Quantity</label>
+                                <div class="input-group justify-content-center mt-1">
                                     <div class="input-group-prepend"> <!-- Taken from Boutique Ado walkthrough project -->
                                         <button class="decrement-qty btn rounded-0" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
                                             <span class="icon">
@@ -49,7 +47,7 @@
                                             </span>
                                         </button>
                                     </div>
-                                    <input type="number" class="form-control rounded-0 qty_input mx-2" id="id_qty_{{ product.id }}" name="quantity" value="1" min="1" max="20" data-item_id="{{ product.id }}">
+                                    <input type="number" class="form-control input-border rounded-0 qty_input mx-2" id="id_qty_{{ product.id }}" name="quantity" value="1" min="1" max="20" data-item_id="{{ product.id }}">
                                     <div class="input-group-append">  <!-- Taken from Boutique Ado walkthrough project -->
                                         <button class="increment-qty btn rounded-0" data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
                                             <span class="icon">
@@ -60,26 +58,26 @@
                                 </div>
                             </div>
                             {% if product.category.name == "cookies" %}
-                                <div class="form-group">
+                                <div class="form-group mt-2">
                                     <label for="cookie_{{ product.id }}" class="text-black">Flavour</label>
-                                    <select class="form-control rounded-0" id="cookie_{{ product.id }}" name="flavour">
-                                        <option>Butter</option>
-                                        <option>Cinnamon</option>
-                                        <option>Lemon</option>
+                                    <select class="form-control input-border rounded-0 mt-1" id="cookie_{{ product.id }}" name="flavour">
+                                        <option class="my-option">Butter</option>
+                                        <option class="my-option">Cinnamon</option>
+                                        <option class="my-option">Lemon</option>
                                     </select>
                                 </div>
                             {% elif product.category.name == "cupcakes" %}
-                                <div class="form-group">
+                                <div class="form-group mt-2">
                                     <label for="cupcake_{{ product.id }}" class="text-black">Flavour</label>
-                                    <select class="form-control rounded-0" id="cupcake_{{ product.id }}" name="flavour">
+                                    <select class="form-control input-border rounded-0 mt-1" id="cupcake_{{ product.id }}" name="flavour">
                                         <option>Chocolate</option>
                                         <option>Iogurt</option>
                                     </select>
                                 </div>
                             {% endif %}
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label for="notes_{{ product.id }}" class="text-black">Notes</label>
-                                <textarea class="form-control rounded-0 mt-2" id="notes_{{ product.id }}" placeholder="Please give us a bit more information about your product" name="notes"></textarea>
+                                <textarea class="form-control input-border rounded-0 mt-1" id="notes_{{ product.id }}" placeholder="Please give us a bit more information about your product" name="notes"></textarea>
                             </div>
                             <div class="row no-gutters justify-content-end">
                                 <input type="submit" class="btn btn-sm my-submit-btn rounded-0 text-black" value="Add to Bag">
@@ -94,21 +92,21 @@
                 {% else %}
                     <!-- Code for the form to Ask for Product Quotation -->
                     <div class="my-3 quotation">
-                        <h6 class="text-black"><strong><u>Ask for quotation</u></strong></h6>
-                        <form class="add-form py-1" action="" method="POST"> <!-- Not connected yet -->
+                        <h5 class="text-black"><strong>Ask for quotation</strong></h5>
+                        <form class="add-form pt-3" action="" method="POST"> <!-- Not connected yet -->
                             {% csrf_token %}
-                            <div class="form-group mb-1">
-                                <label for="email" class="text-black">Email address</label>
-                                <input type="email" class="form-control rounded-0 mt-2" id="email" placeholder="Please enter your email">
+                            <div class="form-group">
+                                <label for="email" class="text-black">Email</label>
+                                <input type="email" class="form-control input-border rounded-0 mt-1" id="email" placeholder="Please enter your email">
                             </div>
-                            <div class="form-group mb-1">
+                            <div class="form-group">
                                 <label for="name" class="text-black">Name</label>
-                                <input type="text" class="form-control rounded-0 mt-2" id="name" placeholder="Please enter your name">
+                                <input type="text" class="form-control input-border rounded-0 mt-1" id="name" placeholder="Please enter your name">
                             </div>
                             {% if product.category.name != "thematic_tables" %}
-                                <div class="form-group mb-1">
+                                <div class="form-group">
                                     <label for="cake_{{ product.id }}" class="text-black">Cake</label>
-                                    <select class="form-control rounded-0" id="cake_{{ product.id }}">
+                                    <select class="form-control input-border rounded-0 mt-1" id="cake_{{ product.id }}">
                                         <option>Sponge Cake</option>
                                         <option>Lemon Cake</option>
                                         <option>Chocolate Cake</option>
@@ -119,9 +117,9 @@
                                         <option>Carot Cake</option>
                                     </select>
                                 </div>
-                                <div class="form-group mb-1">
+                                <div class="form-group">
                                     <label for="cakecream_{{ product.id }}" class="text-black">Cream</label>
-                                    <select class="form-control rounded-0" id="cakecream_{{ product.id }}">
+                                    <select class="form-control input-border rounded-0 mt-1" id="cakecream_{{ product.id }}">
                                         <option>Dark Chocolate Cream</option>
                                         <option>White Chocolate Cream</option>
                                         <option>Milk Chocolate Cream</option>
@@ -137,9 +135,9 @@
                                         <option>No-Cream</option>
                                     </select>
                                 </div>
-                                <div class="form-group mb-1">
+                                <div class="form-group">
                                     <label for="cakeextra_{{ product.id }}" class="text-black">Extras</label>
-                                    <select class="form-control rounded-0" id="cakeextra_{{ product.id }}">
+                                    <select class="form-control input-border rounded-0 mt-1" id="cakeextra_{{ product.id }}">
                                         <option>None</option>
                                         <option>Nuts</option>
                                         <option>Almond</option>
@@ -149,14 +147,14 @@
                                         <option>Oreo</option>
                                     </select>
                                 </div>
-                                <div class="form-group mb-3">
+                                <div class="form-group">
                                     <label for="request_{{ product.id }}" class="text-black">Additional Information</label>
-                                    <textarea class="form-control rounded-0 mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish"></textarea>
+                                    <textarea class="form-control input-border rounded-0 mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish"></textarea>
                                 </div>
                             {% else %}
-                                <div class="form-group mb-3">
+                                <div class="form-group">
                                     <label for="requesttable_{{ product.id }}" class="text-black">Table Information</label>
-                                    <textarea class="form-control rounded-0 mt-1" id="requesttable_{{ product.id }}" placeholder="Please give us all the information about the products you wish to have on your table"></textarea>
+                                    <textarea class="form-control input-border rounded-0 mt-1" id="requesttable_{{ product.id }}" placeholder="Please give us all the information about the products you wish to have on your table"></textarea>
                                 </div>
                             {% endif %}
                             <div class="row no-gutters justify-content-end">

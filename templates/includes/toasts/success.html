@@ -1,6 +1,6 @@
 <div class="toast my_toast toast-color rounded-0 mr-3" data-autohide="false">
     <div class="toast-header toast-color">
-        <p class="mx-auto text-black"><strong>Shopping Bag Updated</strong><p>
+        <p class="mx-auto text-black"><strong>Shopping Bag Updated</strong></p>
         <button type="button" class="ml-2 mb-1 close text-black" data-dismiss="toast" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -10,11 +10,11 @@
             <div class="col-3">
                 {% if product.image %}
                     <a href="{{ product.image.url }}" target="_blank">
-                        <img class="card-img-top product-image" src="{{ product.image_url }}" alt="{{ product.name }}">                        
+                        <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">                        
                     </a>
                 {% else %}
                     <a href="">
-                        <img class="card-img-top product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        <img class="product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                     </a>
                 {% endif %}
             </div>
