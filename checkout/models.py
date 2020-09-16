@@ -18,7 +18,7 @@ class Order(models.Model):
     street_address = models.CharField(max_length=80, null=True, blank=True)
     post_code = models.CharField(max_length=10, null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=True, blank=True)
-    country = CountryField(blank_label='Country', null=True, blank=True)
+    country = CountryField(blank_label='Country *', null=True, blank=True)
     order_date = models.DateField(auto_now_add=True)
     order_total = models.DecimalField(max_digits=10, decimal_places=2,
                                       null=False, default=0)
