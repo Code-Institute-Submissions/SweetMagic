@@ -16,7 +16,7 @@ class UserProfile(models.Model):
                                          null=True, blank=True)
     default_town_or_city = models.CharField(max_length=40,
                                             null=True, blank=True)
-    default_country = CountryField(blank_label='Country',
+    default_country = CountryField(blank_label='Country *',
                                    null=True, blank=True)
 
     def __str__(self):

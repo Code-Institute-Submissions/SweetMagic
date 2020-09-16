@@ -15,4 +15,7 @@ class ProductForm(forms.ModelForm):
 
         self.fields['category'].choices = viewer_names
         for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'rounded-0'
+            if field_name != 'image':
+                field.widget.attrs['class'] = 'rounded-0 input-border'
+            else:
+                field.widget.attrs['class'] = 'border-0'

@@ -10,60 +10,70 @@
 
 <div class="container-fluid">
     <div class="row no-gutters"> <!-- Row to contain page title -->
-        <div class="col-12 py-3 text-center">
-            <h2 class="title">My Profile</h2>
+        <div class="col-12 pt-4 text-center">
+            <h2 class="title d-inline-block page-title-border m-0">My Profile</h2>
         </div>
     </div>
-    <div class="row no-gutters justify-content-center"> <!-- Row to contain actual content -->  
+    <div class="row no-gutters justify-content-center pt-5"> <!-- Row to contain actual content -->  
         <div class="col-12 col-lg-10">
             <div class="row no-gutters justify-content-between">
-                <div class="col-12 col-md-7 mx-2 p-0"> <!-- Profile Info will be displayed here -->
+                <div class="col-12 col-sm-10 col-md-7 col-xl-5 mx-auto mx-md-2 mx-xl-5 p-0"> <!-- Profile Info will be displayed here -->
                     <p class="text-black">User Information</p>
-                    <form class="p-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                    <form class="pt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                         {% csrf_token %}
                         {{ form|crispy }}
                         <div class="row no-gutters justify-content-end">
-                            <button type="submit" class="btn btn-sm my-submit-btn rounded-0 text-black">Update Information</button>
+                            <button type="submit" class="btn btn-sm my-submit-btn mt-3 p-1 rounded-0 text-black">Update Information</button>
                         </div>
                     </form>
                 </div>
-                <div class="col-12 col-md-4 mx-2 p-3 checkout-box"> <!-- Order history will be displayed here -->
-                    <p class="text-black text-center pb-1">My Purchases</p>
-                    <div class="order-history">
-                        {% if orders %}
-                            {% for order in orders %}
-                                <p class="text-black" title="{{ order.order_number }}">Order Number: {{ order.order_number|truncatechars:6 }}</p>
-                                <p class="text-black">Order Date: {{ order.order_date }}</p>
-                                <p class="text-black">Order Value: {{ order.order_total }}€</p>
-                                <p class="text-black">Order Details:</p>
-                                {% for item in order.items.all %}
-                                    <div class="row no-gutters mt-2">
-                                        <div class="col-3">
-                                            {% if item.product.image %}
-                                                <a href="{% url 'product' item.product.id %}">
-                                                    <img class="h-100 product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
-                                                </a>
-                                            {% else %}
-                                                <a href="{% url 'product' item.product.id %}">
-                                                    <img class="product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
-                                                </a>
-                                            {% endif %}
+                <div class="col-12 col-sm-10 col-md-4 col-xl-3 mx-auto mx-md-2 mx-xl-5 p-0 mt-3 mt-md-0"> <!-- Order history will be displayed here -->
+                    <div class="p-3 checkout-box m-0">
+                        <p class="text-black text-center"><strong>My Purchases</strong></p>
+                        <div class="my-order-history">
+                            {% if orders %}
+                                {% for order in orders %}
+                                    <div class="row no-gutters mt-3">
+                                        <div class="col-12">
+                                            <p class="text-black" title="{{ order.order_number }}">Order Number: {{ order.order_number|truncatechars:6 }}</p>
+                                            <p class="text-black">Order Date: {{ order.order_date }}</p>
+                                            <p class="text-black">Order Value: {{ order.order_total }}€</p>
                                         </div>
-                                        <div class="col-9 pl-2">
-                                            <p class="text-black"><strong>{{ item.product.name }}</strong></p>
-                                            <p class="text-black">{{ item.product.price }}€</p>
-                                            {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
-                                                <p class="text-black text-small">Flavour: {{ item.flavour }}</p>
-                                            {% endif %}
-                                            <p class="text-black text-small">Quantity: {{ item.quantity }}</p>
-                                            <p class="text-black text-small">Sub-total: {{ item.product.price | calc_subtotal:item.quantity }}€</p>
+                                        <div class="col-12">
+                                            <p class="text-black text-small">Order Details:</p>
+                                            {% for item in order.items.all %}
+                                                <div class="row no-gutters mt-2">
+                                                    <div class="col-3">
+                                                        {% if item.product.image %}
+                                                            <a href="{% url 'product' item.product.id %}">
+                                                                <img class="h-100 product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+                                                            </a>
+                                                        {% else %}
+                                                            <a href="{% url 'product' item.product.id %}">
+                                                                <img class="product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                                            </a>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="col-9 pl-2">
+                                                        <p class="text-black"><strong>{{ item.product.name }}</strong></p>
+                                                        <p class="text-black">{{ item.product.price }}€</p>
+                                                        {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
+                                                            <p class="text-black text-small">Flavour: {{ item.product_flavour }}</p>
+                                                        {% endif %}
+                                                        <p class="text-black text-small">Quantity: {{ item.quantity }}</p>
+                                                        <p class="text-black text-small">Sub-total: {{ item.product.price | calc_subtotal:item.quantity }}€</p>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
                                         </div>
+                                    {% endfor %}
                                     </div>
-                                {% endfor %}
-                            {% endfor %}
-                        {% else %}
-                            <p class="text-black">You still haven't ordered anything from us.</p>
-                        {% endif %}
+                            {% else %}
+                                <div class="row no-gutters mt-3">
+                                    <p class="text-black">You still haven't ordered anything from us.</p>
+                                </div>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

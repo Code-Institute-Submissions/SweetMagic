@@ -218,7 +218,8 @@ a:hover {
 
 /* Other */
 
-hr {
+hr,
+.dropdown-divider {
     background-color: #D9B3A6;
     height: 2px;
 }
@@ -250,7 +251,8 @@ hr {
  display: block;
 }
 
-.my-order {
+.my-order,
+.my-order-history {
     max-height: 500px;
     overflow-y: auto;
 }

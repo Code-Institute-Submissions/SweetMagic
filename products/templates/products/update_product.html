@@ -5,18 +5,18 @@
 
 <div class="container-fluid">
         <div class="row no-gutters"> <!-- Row to contain page title -->
-            <div class="col-12 py-3 text-center">
-                <h2 class="title">Edit a Product</h2>
+            <div class="col-12 pt-4 text-center">
+                <h2 class="title d-inline-block page-title-border m-0">Edit a Product</h2>
             </div>
         </div>
         <div class="row no-gutters justify-content-center"> <!-- Row to contain actual content -->
-            <div class="col-12 col-md-7 mx-2 p-0">  <!-- Order form -->
+            <div class="col-12 col-md-7 pt-3 px-3 px-md-0">  <!-- Order form -->
                 <form action="{% url 'update_product' product.id %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy }}
-                    <div class="buttons px-3"> <!-- Will contain buttons to go back to products or add the new product -->
-                        <a href="{% url 'products' %}" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0">Products</a>
-                        <button id="submit-button" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0">Update</button>
+                    <div class="row no-gutters justify-content-end"> <!-- Will contain buttons to go back to products or add the new product -->
+                        <a href="{% url 'products' %}" class="btn btn-sm my-submit-btn mr-2 mt-3 rounded-0 p-1">All Products</a>
+                        <button id="submit-button" class="btn btn-sm my-submit-btn mt-3 rounded-0">Update Product</button>
                     </div>
                 </form>
             </div>

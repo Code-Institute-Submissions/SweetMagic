@@ -52,8 +52,8 @@
                                 <input type="hidden" value="{{ client_secret }}" name="client_secret">
                             </fieldset>
                             <div class="row no-gutters justify-content-end px-0"> <!-- Will contain buttons to go back to bag or complete order -->
-                                <a href="{% url 'my_bag' %}" class="btn btn-sm my-submit-btn mr-3 mt-3 p-1 rounded-0">Edit Bag</a>
-                                <button id="submit-button" class="btn btn-sm my-submit-btn mt-3 p-1 rounded-0">Complete Order</button>
+                                <a href="{% url 'my_bag' %}" class="btn btn-sm my-submit-btn mr-3 mt-3 p-1 rounded-0 text-black">Edit Bag</a>
+                                <button id="submit-button" class="btn btn-sm my-submit-btn mt-3 p-1 rounded-0 text-black">Complete Order</button>
                             </div>
                             <div class="row no-gutters justify-content-end px-0 mt-2">
                                 <p class="text-grey">Attention! Your card will be charged <strong>{{ total|floatformat:2 }}€</strong></p>

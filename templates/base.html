@@ -99,7 +99,7 @@
                     </a>
                 </div>
                 <div class="col-5 col-md-4 text-right text-md-center"> <!-- Will contain more navigation buttons -->
-                    <ul class="list-inline list-unstyled h-100">
+                    <ul class="list-inline list-unstyled h-100 mt-md-3">
                         <li class="list-inline-item mr-1 mr-md-3 dropdown"> <!-- Profile -->
                             <a href="#" id="user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user my-icon"></i>
@@ -107,7 +107,7 @@
                             <div class="dropdown-menu dropdown-color dropdown-menu-right rounded-0 border-dropdown px-2" aria-labelledby="user">
                                 {% if request.user.is_authenticated %}
                                     {% if request.user.is_superuser %}
-                                        <h5 class="dropdown-header text-black">Product Management</h5>
+                                        <h5 class="dropdown-header text-black mb-2">Product Management</h5>
                                         <a href="{% url 'add_product' %}" class="dropdown-item text-black">Add Product</a>
                                         <div class="dropdown-divider"></div>
                                     {% endif %}
@@ -182,7 +182,7 @@
                                         <hr class="mx-3">
                                         <div class="row no-gutters mx-2">
                                             <div class="col">
-                                                <a href="{% url 'products' %}" class="btn btn-sm my-submit-btn mb-2 w-100 rounded-0 text-black">Bag</a>
+                                                <a href="{% url 'my_bag' %}" class="btn btn-sm my-submit-btn mb-2 w-100 rounded-0 text-black">Bag</a>
                                             </div>
                                         </div>
                                         <div class="row no-gutters mx-2">
@@ -309,7 +309,7 @@
 
         <!-- Footer -->
 
-        <footer class="container-fluid my-footer footer-color vw-100">
+        <footer class="container-fluid my-footer footer-color vw-100 mt-4">
                 <div class="row h-100">
                     <div class="col-12 py-3 text-center">
                         <ul class="list-inline list-unstyled h- m-0">
