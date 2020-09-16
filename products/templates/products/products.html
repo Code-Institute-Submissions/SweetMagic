@@ -50,8 +50,6 @@
                                     {% endif %}
                                     {% if request.user.is_superuser %}
                                         <a href="{% url 'update_product' product.id %}" class="btn btn-sm my-submit-btn rounded-0 text-black p-1 mt-2 mr-3">Edit Product</a>
-                                        <!--<a href="{% url 'delete_product' product.id %}" class="btn btn-sm my-submit-btn rounded-0 text-black p-1 mt-2">Delete Product</a>-->
-
                                         <button type="button" class="btn btn-sm my-submit-btn rounded-0 text-black p-1 mt-2" data-toggle="modal" data-target="#deletemodal{{product.id}}">Delete Product</button>
                                         <!-- Modal -->
                                         <div class="modal fade" id="deletemodal{{product.id}}" tabindex="-1" role="dialog" aria-labelledby="delete_product" aria-hidden="true">
@@ -74,7 +72,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {% endif %}
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
