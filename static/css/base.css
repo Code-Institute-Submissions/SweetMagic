@@ -30,7 +30,7 @@ body {
 }
 
 ::placeholder,
-.my-option {
+.my-select {
     color: #666666 !important;
     font-family: 'Philosopher', sans-serif !important;
 }
@@ -185,7 +185,8 @@ a:hover {
 }
 
 .input-border,
-.border-dropdown {
+.border-dropdown,
+.toast-border {
     border: 2px solid #D9B3A6;
 }
 
@@ -194,10 +195,16 @@ a:hover {
 .message-container {
     position: absolute;
     z-index: 999999999;
+    top: 1rem;
+    right: 1rem;
 }
 
-.my_toast {
+.my-toast {
     overflow: visible;
+}
+
+.toast-header {
+    border-bottom: 1px solid #D9B3A6;
 }
 
 /* Allauth */

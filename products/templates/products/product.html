@@ -60,7 +60,7 @@
                             {% if product.category.name == "cookies" %}
                                 <div class="form-group mt-2">
                                     <label for="cookie_{{ product.id }}" class="text-black">Flavour</label>
-                                    <select class="form-control input-border rounded-0 mt-1" id="cookie_{{ product.id }}" name="flavour">
+                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cookie_{{ product.id }}" name="flavour">
                                         <option class="my-option">Butter</option>
                                         <option class="my-option">Cinnamon</option>
                                         <option class="my-option">Lemon</option>
@@ -69,7 +69,7 @@
                             {% elif product.category.name == "cupcakes" %}
                                 <div class="form-group mt-2">
                                     <label for="cupcake_{{ product.id }}" class="text-black">Flavour</label>
-                                    <select class="form-control input-border rounded-0 mt-1" id="cupcake_{{ product.id }}" name="flavour">
+                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cupcake_{{ product.id }}" name="flavour">
                                         <option>Chocolate</option>
                                         <option>Iogurt</option>
                                     </select>
@@ -102,7 +102,7 @@
                             {% if product.category.name != "thematic_tables" %}
                                 <div class="form-group">
                                     <label for="cake_{{ product.id }}" class="text-black">Cake</label>
-                                    <select class="form-control input-border rounded-0 mt-1" id="cake_{{ product.id }}">
+                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cake_{{ product.id }}">
                                         <option>Sponge Cake</option>
                                         <option>Lemon Cake</option>
                                         <option>Chocolate Cake</option>
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="cakecream_{{ product.id }}" class="text-black">Cream</label>
-                                    <select class="form-control input-border rounded-0 mt-1" id="cakecream_{{ product.id }}">
+                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cakecream_{{ product.id }}">
                                         <option>Dark Chocolate Cream</option>
                                         <option>White Chocolate Cream</option>
                                         <option>Milk Chocolate Cream</option>
@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="cakeextra_{{ product.id }}" class="text-black">Extras</label>
-                                    <select class="form-control input-border rounded-0 mt-1" id="cakeextra_{{ product.id }}">
+                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cakeextra_{{ product.id }}">
                                         <option>None</option>
                                         <option>Nuts</option>
                                         <option>Almond</option>

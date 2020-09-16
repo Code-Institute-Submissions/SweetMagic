@@ -24,6 +24,9 @@ class ProfileForm(forms.ModelForm):
                 else:
                     placeholder = placeholders[field]
                 self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = (
-                'stripe_style_input input-border rounded-0')
+                self.fields[field].widget.attrs['class'] = (
+                    'stripe_style_input input-border rounded-0')
+            else:
+                self.fields[field].widget.attrs['class'] = (
+                    'stripe_style_input input-border rounded-0 my-select')
             self.fields[field].label = False
