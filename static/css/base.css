@@ -216,6 +216,14 @@ hr {
     margin-top: 185px;
 }
 
+.my-content {
+    min-height: calc(100vh - 185px - 72px);
+}
+
+.my-footer {
+    width: 100%;
+}
+
 .bag-dropdown {
     width: 250px !important;
     border: 2px solid #D9B3A6;
