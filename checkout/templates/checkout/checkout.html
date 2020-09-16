@@ -10,81 +10,91 @@
 
 <div class="container-fluid">
         <div class="row no-gutters"> <!-- Row to contain page title -->
-            <div class="col-12 py-3 text-center">
-                <h2 class="title">Checkout</h2>
+            <div class="col-12 pt-4 text-center">
+                <h2 class="title d-inline-block page-title-border m-0">Checkout</h2>
             </div>
         </div>
-        <div class="row no-gutters justify-content-center"> <!-- Row to contain actual content -->
-            <div class="col-12 col-md-7 mx-2 p-0">  <!-- Order form -->
-                <p class="text-black">Please fill the form bellow to complete your order</p>
-                <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
-                    {% csrf_token %}
-                    <fieldset class="rounded-0 px-3 mb-3">
-                        <legend class="fieldset-label text-black">Details</legend>
-                        {{ order_form.full_name | as_crispy_field }}
-                        {{ order_form.email | as_crispy_field }}
-                        {{ order_form.phone_number | as_crispy_field }}
-                    </fieldset>
-                    <fieldset class="rounded-0 px-3 mb-3">
-                        <legend class="fieldset-label text-black">Billing Information</legend>
-                        {{ order_form.street_address | as_crispy_field }}
-                        {{ order_form.post_code | as_crispy_field }}
-                        {{ order_form.town_or_city | as_crispy_field }}
-                        {{ order_form.country | as_crispy_field }}
-                        <div class="form-check form-check-inline">
-                            {% if user.is_authenticated %}
-                                <label for="save_order">Save this delivery information to my profile</label>
-                                <input type="checkbox" id="id_save_order" name="save_order" checked>
-                            {% else %}
-                                <label for="save_order">
-                                    <a href="{% url 'account_signup' %}"><u>Create an account</u></a> or
-                                    <a href="{% url 'account_login' %}"><u>login</u></a> to save this information for future orders
-                                </label>
-                            {% endif %}
-                        </div>
-                    </fieldset>
-                    <fieldset class="rounded-0 px-3 mb-3">
-                        <legend class="fieldset-label text-black">Payment Options</legend>
-                        <div id="card-element"></div>
-                        <div id="card-errors" role="alert"></div>
-                        <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                    </fieldset>
-                    <div class="buttons px-3"> <!-- Will contain buttons to go back to bag or complete order -->
-                        <a href="{% url 'my_bag' %}" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0">Edit Bag</a>
-                        <button id="submit-button" class="btn btn-sm my-submit-btn mr-2 mb-2 rounded-0">Complete Order</button>
-                        <p class="text-black">Attention! Your card will be charged <strong>{{ total|floatformat:2 }}€</strong></p>
+        <div class="row no-gutters justify-content-center pt-5"> <!-- Row to contain actual content -->
+            <div class="col-12 col-lg-10">
+                <div class="row no-gutters justify-content-between">
+                    <div class="col-12 col-sm-10 col-md-7 col-xl-5 mx-auto mx-md-2 mx-xl-5 p-0">  <!-- Order form -->
+                        <p class="text-black">Please fill the form bellow to complete your order</p>
+                        <form action="{% url 'checkout' %}" method="POST" id="checkout-form" class="pt-3">
+                            {% csrf_token %}
+                            <fieldset class="rounded-0 px-0 mb-3">
+                                <legend class="fieldset-label text-grey mb-3">Details</legend>
+                                {{ order_form.full_name | as_crispy_field }}
+                                {{ order_form.email | as_crispy_field }}
+                                {{ order_form.phone_number | as_crispy_field }}
+                            </fieldset>
+                            <fieldset class="rounded-0 px-0 mb-3">
+                                <legend class="fieldset-label text-grey mb-3">Billing Information</legend>
+                                {{ order_form.street_address | as_crispy_field }}
+                                {{ order_form.post_code | as_crispy_field }}
+                                {{ order_form.town_or_city | as_crispy_field }}
+                                {{ order_form.country | as_crispy_field }}
+                                <div class="form-check form-check-inline">
+                                    {% if user.is_authenticated %}
+                                        <label for="save_order" class="mr-3">Save this delivery information to my profile</label>
+                                        <input type="checkbox" id="id_save_order" name="save_order" class="input-border" checked>
+                                    {% else %}
+                                        <label for="save_order">
+                                            <a href="{% url 'account_signup' %}"><u>Create an account</u></a> or
+                                            <a href="{% url 'account_login' %}"><u>login</u></a> to save this information for future orders
+                                        </label>
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                            <fieldset class="rounded-0 px-0 mb-3">
+                                <legend class="fieldset-label text-grey mb-3">Payment Options</legend>
+                                <div id="card-element"></div>
+                                <div id="card-errors" role="alert"></div>
+                                <input type="hidden" value="{{ client_secret }}" name="client_secret">
+                            </fieldset>
+                            <div class="row no-gutters justify-content-end px-0"> <!-- Will contain buttons to go back to bag or complete order -->
+                                <a href="{% url 'my_bag' %}" class="btn btn-sm my-submit-btn mr-3 mt-3 p-1 rounded-0">Edit Bag</a>
+                                <button id="submit-button" class="btn btn-sm my-submit-btn mt-3 p-1 rounded-0">Complete Order</button>
+                            </div>
+                            <div class="row no-gutters justify-content-end px-0 mt-2">
+                                <p class="text-grey">Attention! Your card will be charged <strong>{{ total|floatformat:2 }}€</strong></p>
+                            </div>
+                        </form>
                     </div>
-                </form>
-            </div>
-            <div class="col-12 col-md-4 mx-2 p-0"> <!-- Order review -->
-                <div class="p-3 checkout-box mb-3">
-                    <p class="text-black text-center"><strong>Your Order</strong></p>
-                    <p class="text-black">Order Value: {{ total }}€</p>
-                    <p class="text-black mt-2">Order Details:</p>
-                    {% for item in bag_items %}
-                        <div class="row no-gutters mt-2">
-                            <div class="col-3">
-                                {% if item.product.image %}
-                                    <a href="{% url 'product' item.product.id %}">
-                                        <img class="h-100 product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
-                                    </a>
-                                {% else %}
-                                    <a href="{% url 'product' item.product.id %}">
-                                        <img class="product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
-                                    </a>
-                                {% endif %}
-                            </div>
-                            <div class="col-9 pl-2">
-                                <p class="text-black"><strong>{{ item.product.name }}</strong></p>
-                                <p class="text-black">{{ item.product.price }}€</p>
-                                {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
-                                    <p class="text-black text-small">Flavour: {{ item.flavour }}</p>
-                                {% endif %}
-                                <p class="text-black text-small">Quantity: {{ item.quantity }}</p>
-                                <p class="text-black text-small">Sub-total: {{ item.product.price | calc_subtotal:item.quantity }}€</p>
+                    <div class="col-12 col-sm-10 col-md-4 col-xl-3 mx-auto mx-md-2 mx-xl-5 p-0 mt-3 mt-md-0"> <!-- Order review -->
+                        <div class="p-3 checkout-box m-0">
+                            <p class="text-black text-center"><strong>Your Order</strong></p>
+                            <p class="text-black mb-2 text-right">Number of Items: {{ number_of_products }}</p>
+                            <p class="text-black mb-2 text-right">Order Total: {{ total }}€</p>
+                            <hr>
+                            <p class="text-black">Order Details:</p>
+                            <div class="row no-gutters my-order">
+                                {% for item in bag_items %}
+                                    <div class="row no-gutters mt-3">
+                                        <div class="col-3">
+                                            {% if item.product.image %}
+                                                <a href="{% url 'product' item.product.id %}">
+                                                    <img class="h-100 product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+                                                </a>
+                                            {% else %}
+                                                <a href="{% url 'product' item.product.id %}">
+                                                    <img class="product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-9 pl-2">
+                                            <p class="text-black"><strong>{{ item.product.name }}</strong></p>
+                                            <p class="text-black">{{ item.product.price }}€</p>
+                                            {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
+                                                <p class="text-black text-small">Flavour: {{ item.flavour }}</p>
+                                            {% endif %}
+                                            <p class="text-black text-small">Quantity: {{ item.quantity }}</p>
+                                            <p class="text-black text-small">Sub-total: {{ item.product.price | calc_subtotal:item.quantity }}€</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
                             </div>
                         </div>
-                    {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

@@ -185,6 +185,11 @@ a:hover {
     background-color: #F6EBD9;
 }
 
+.input-border,
+.border-dropdown {
+    border: 2px solid #D9B3A6;
+}
+
 /* Toasts */
 
 .message-container {
@@ -236,12 +241,7 @@ hr {
     border: 2px solid #D9B3A6;
 }
 
-.border-dropdown,
-.input-border {
-    border: 2px solid #D9B3A6;
-}
-
-/*         To make dropdown open on hover in big-screens */
+/*         To make dropdown open on hover in desktop */
 
 .dropdown-menu {
   margin: -0.125rem 0 0;
@@ -249,6 +249,11 @@ hr {
 
 .dropdown:hover>.dropdown-menu {
  display: block;
+}
+
+.my-order {
+    max-height: 500px;
+    overflow-y: auto;
 }
 
 /* Media Queries */

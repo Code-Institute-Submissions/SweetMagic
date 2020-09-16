@@ -106,7 +106,9 @@
                     <div class="col-12 col-sm-10 col-md-4 col-xl-3 mx-auto mx-md-2 mx-xl-5 p-0 mt-3 mt-md-0"> <!-- Bag total and checkout info/button -->
                         <div class="p-3 checkout-box m-0">
                             {% if bag_items %}
-                            <p class="text-black mb-2">Order Value: {{ total }}€</p>
+                            <p class="text-black mb-2 text-right">Number of Items: {{ number_of_products }}</p>
+                            <p class="text-black mb-2 text-right">Order Total: {{ total }}€</p>
+                            <hr>
                             {% endif %}
                             <div class="row no-gutters justify-content-center">
                                 <a href="{% url 'products' %}" class="btn btn-sm my-submit-btn mr-2 mb-2 p-1 rounded-0"><p class="text-black">Keep Shopping</p></a>
