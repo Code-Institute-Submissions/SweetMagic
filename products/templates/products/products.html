@@ -49,6 +49,7 @@
                                         </p>
                                     {% endif %}
                                     {% if request.user.is_superuser %}
+                                        <!-- Admin Product Management - Edit and Delete product -->
                                         <a href="{% url 'update_product' product.id %}" class="btn btn-sm my-submit-btn rounded-0 text-black p-1 mt-2 mr-3">Edit Product</a>
                                         <button type="button" class="btn btn-sm my-submit-btn rounded-0 text-black p-1 mt-2" data-toggle="modal" data-target="#deletemodal{{product.id}}">Delete Product</button>
                                         <!-- Modal -->

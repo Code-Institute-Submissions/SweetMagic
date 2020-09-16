@@ -10,12 +10,12 @@
                 <h2 class="title d-inline-block page-title-border m-0">Shopping Bag</h2>
             </div>
         </div>
-        <div class="row no-gutters justify-content-center pt-3"> <!-- Row to contain actual content -->
+        <div class="row no-gutters justify-content-center pt-5"> <!-- Row to contain actual content -->
             <div class="col-12 col-lg-10">
                 <div class="row no-gutters justify-content-between">
-                    <div class="col-12 col-md-7 mx-2 p-0"> <!-- Products inside bag will be displayed here -->
+                    <div class="col-12 col-sm-10 col-md-7 col-xl-5 mx-auto mx-md-2 mx-xl-5 p-0"> <!-- Products inside bag will be displayed here -->
                         {% if bag_items %}
-                            <div class="bag-items-color p-3 m-0">
+                            <div class="h-100 bag-items-color p-3 m-0">
                                 {% for item in bag_items %}
                                     <div class="row no-gutters my-1">
                                         <div class="col-4">
@@ -47,15 +47,18 @@
                                                             </form>
                                                         </div>
                                                     </div>
+                                                    <p class="text-black">{{ item.product.price }}€</p>
                                                     {% if item.product.category.name == "cookies" or item.product.category.name == "cupcakes" %}
                                                         <p class="text-black text-small">Flavour: {{ item.flavour }}</p>
                                                     {% endif %}
-                                                    <p class="text-black text-small">{{ item.product.price }}€</p>
                                                     <p class="text-black text-small">Sub-total: {{ item.product.price | calc_subtotal:item.quantity }}€</p>
                                                 </div>
                                             </div>
-                                            <div class="row no-gutters">
-                                                <form class="update-form py-1 bag-items-color" action="{% url 'update_bag' item.product.id %}" method="POST">
+                                            <div class="row no-gutters pt-3">
+                                                <div class="favorites mr-3">
+                                                    <i class="fas fa-heart my-icon"></i>
+                                                </div>
+                                                <form class="update-form p-0 bag-items-color" action="{% url 'update_bag' item.product.id %}" method="POST">
                                                     {% csrf_token %}
                                                     <select class="form-control bag-items-color checkout-box rounded-0" name="quantity" onchange="this.form.submit()">
                                                         <option value="1" {% if item.quantity == 1 %}selected{% endif %}>1</option>
@@ -100,7 +103,7 @@
                             </div>
                         {% endif %}
                     </div>
-                    <div class="col-12 col-md-4 mx-2 p-0"> <!-- Bag total and checkout info/button -->
+                    <div class="col-12 col-sm-10 col-md-4 col-xl-3 mx-auto mx-md-2 mx-xl-5 p-0 mt-3 mt-md-0"> <!-- Bag total and checkout info/button -->
                         <div class="p-3 checkout-box m-0">
                             {% if bag_items %}
                             <p class="text-black mb-2">Order Value: {{ total }}€</p>

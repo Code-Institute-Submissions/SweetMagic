@@ -5,7 +5,7 @@
 
     <div class="container-fluid">
         <div class="row no-gutters justify-content-center pt-4">
-            <div class="col-12 col-md-6 col-lg-5 mb-3 px-4 pr-lg-0 "> <!-- Will contain product image -->
+            <div class="col-12 col-md-6 col-lg-5 col-xl-4 mb-3 px-4 pr-lg-0 "> <!-- Will contain product image -->
                     {% if product.image %}
                         <a href="{{ product.image.url }}" target="_blank">
                             <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
@@ -159,7 +159,8 @@
                         </form>
                     </div>
                 {% endif %}
-                 {% if request.user.is_superuser %}
+                {% if request.user.is_superuser %}
+                    <!-- Admin Product Management - Edit and Delete product -->
                     <div class="row no-gutters mb-3 justify-content-end">
                         <a href="{% url 'update_product' product.id %}" class="btn btn-sm my-submit-btn rounded-0 text-black p-1 mt-2 mr-3">Edit Product</a>
                         <button type="button" class="btn btn-sm my-submit-btn rounded-0 text-black p-1 mt-2" data-toggle="modal" data-target="#deletemodal{{product.id}}">Delete Product</button>
