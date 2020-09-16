@@ -99,8 +99,15 @@ a:hover {
     height: 750px;
 }
 
-.checkout-box {
+.checkout-box,
+.quantity-box,
+.allauth-box {
     border: 2px solid #E0CE9E;
+}
+
+.favorites {
+    border: 2px solid #E0CE9E;
+    background-color: #F6EBD9;
 }
 
 /* Images */
