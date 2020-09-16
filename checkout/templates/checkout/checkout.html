@@ -39,8 +39,8 @@
                                         <input type="checkbox" id="id_save_order" name="save_order" class="input-border" checked>
                                     {% else %}
                                         <label for="save_order">
-                                            <a href="{% url 'account_signup' %}"><u>Create an account</u></a> or
-                                            <a href="{% url 'account_login' %}"><u>login</u></a> to save this information for future orders
+                                            <p class="text-grey"><a href="{% url 'account_signup' %}"><u>Create an account</u></a> or
+                                            <a href="{% url 'account_login' %}"><u>login</u></a> to save this information for future orders</p>
                                         </label>
                                     {% endif %}
                                 </div>

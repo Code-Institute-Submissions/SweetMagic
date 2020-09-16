@@ -4,13 +4,13 @@ var stripe = Stripe(stripePublicKey);
 var elements = stripe.elements();
 var style = {
     base: {
-        color: '#495057',
-        fontFamily: 'Arial, Helvetica, sans-serif',
+        color: '#D9B3A6',
+        fontFamily: 'Philosopher, sans-serif',
         fontSmoothing: 'antialiased',
         fontSize: '16px',
         '::placeholder': {
-            color: '#495057',
-            fontFamily: 'Arial, Helvetica, sans-serif',
+            color: '#666666',
+            fontFamily: 'Philosopher, sans-serif',
             fontSize: '16px',
         }
     },

@@ -3,15 +3,9 @@
   box-sizing: border-box;
   height: 40px;
   padding: 10px 12px;
-  border: 1px solid #ced4da;
+  border: 2px solid #D9B3A6 !important;
   border-radius: 0px;
   background-color: #fff;
-}
-
-.StripeElement--focus,
-.stripe-style-input:focus,
-.stripe-style-input:active {
-  box-shadow: 0 1px 3px 0 #cfd7df;
 }
 
 .StripeElement--webkit-autofill {
@@ -19,12 +13,14 @@
 }
 
 .stripe-style-input::placeholder {
-    color: #495057;
+    color: #666666 !important;
+    font-family: 'Philosopher', sans-serif !important;
 }
 
 .fieldset-label {
     position: relative;
     right: .5rem;
+    font-size: 20px;
 }
 
 #checkout-form .form-control,
