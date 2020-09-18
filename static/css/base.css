@@ -23,7 +23,8 @@ body {
     border-bottom: 2px solid #000;
 }
 
-.text-black {
+.text-black,
+label {
     color: #000 !important;
     font-family: 'Philosopher', sans-serif;
     margin: 0;
