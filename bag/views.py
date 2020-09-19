@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from products.models import Product
 
@@ -14,26 +14,40 @@ def add_to_bag(request, item_id):
     flavour = None
     if 'flavour' in request.POST:
         flavour = request.POST['flavour']
+    # notes = None
+    # if 'notes' in request.POST:
+    #    notes = request.POST.get('notes')
     bag = request.session.get('bag', {})
 
     if flavour:
         if item_id in list(bag.keys()):
             if flavour in bag[item_id]['items_by_flavour'].keys():
                 bag[item_id]['items_by_flavour'][flavour] += quantity
-                messages.success(request, f'{product.name}<br>{product.price}€<br>Flavour: {flavour}<br>Total quantity: {bag[item_id]["items_by_flavour"][flavour]}')
+                messages.success(request, f'{product.name}<br>\
+                    {product.price}€<br>Flavour: {flavour}<br>\
+                        Total quantity: \
+                            {bag[item_id]["items_by_flavour"][flavour]}')
             else:
                 bag[item_id]['items_by_flavour'][flavour] = quantity
-                messages.success(request, f'{product.name}<br>{product.price}€<br>Flavour: {flavour}<br>Total quantity: {bag[item_id]["items_by_flavour"][flavour]}')
+                messages.success(request, f'{product.name}<br>\
+                    {product.price}€<br>Flavour: {flavour}<br>\
+                        Total quantity: \
+                            {bag[item_id]["items_by_flavour"][flavour]}')
         else:
             bag[item_id] = {'items_by_flavour': {flavour: quantity}}
-            messages.success(request, f'{product.name}<br>{product.price}€<br>Flavour: {flavour}<br>Total quantity: {bag[item_id]["items_by_flavour"][flavour]}')
+            messages.success(request, f'{product.name}<br>\
+                {product.price}€<br>Flavour: {flavour}<br>\
+                    Total quantity: \
+                        {bag[item_id]["items_by_flavour"][flavour]}')
     else:
         if item_id in list(bag.keys()):
             bag[item_id] += quantity
-            messages.success(request, f'{product.name}<br>{product.price}€<br>Total quantity: {bag[item_id]}')
+            messages.success(request, f'{product.name}<br>\
+                {product.price}€<br>Total quantity: {bag[item_id]}')
         else:
             bag[item_id] = quantity
-            messages.success(request, f'{product.name}<br>{product.price}€<br>Total quantity: {bag[item_id]}')
+            messages.success(request, f'{product.name}<br>\
+                {product.price}€<br>Total quantity: {bag[item_id]}')
 
     request.session['bag'] = bag
     return redirect(redirect_url)

@@ -43,6 +43,7 @@
                                         </div>
                                         <div class="col-12">
                                             <p class="text-black">Order Details: 
+                                                <!-- name attibute in the span will serve to fetch the value of {{ order.order_number }} to use in JS -->
                                                 <span class="float-right my-plus" id="plus{{ order.order_number }}" name="{{ order.order_number }}"><i class="fas fa-plus my-icon-small"></i></span>
                                                 <span class="float-right my-minus hidden" id="minus{{ order.order_number }}" name="{{ order.order_number }}"><i class="fas fa-minus my-icon-small"></i></span>
                                             </p>

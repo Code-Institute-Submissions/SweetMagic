@@ -81,7 +81,7 @@
                             {% endif %}
                             <div class="form-group mt-2">
                                 <label for="notes_{{ product.id }}" class="text-black">Notes</label>
-                                <textarea class="form-control input-border rounded-0 mt-1" id="notes_{{ product.id }}" placeholder="Please give us a bit more information about your product" name="notes"></textarea>
+                                <textarea class="form-control input-border rounded-0 mt-1" id="notes_{{ product.id }}" placeholder="Please give us a bit more information about your product. Don't forget to include de pick up date desired." name="notes"></textarea>
                             </div>
                             <div class="row no-gutters justify-content-end">
                                 <input type="submit" class="btn btn-sm my-submit-btn rounded-0 text-black" value="Add to Bag">
@@ -149,12 +149,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="request_{{ product.id }}" class="text-black">Additional Information</label>
-                                    <textarea class="form-control input-border rounded-0 mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish"></textarea>
+                                    <textarea class="form-control input-border rounded-0 mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish. Don't forget to include de pick up date desired."></textarea>
                                 </div>
                             {% else %}
                                 <div class="form-group">
                                     <label for="requesttable_{{ product.id }}" class="text-black">Table Information</label>
-                                    <textarea class="form-control input-border rounded-0 mt-1" id="requesttable_{{ product.id }}" placeholder="Please give us all the information about the products you wish to have on your table"></textarea>
+                                    <textarea class="form-control input-border rounded-0 mt-1" id="requesttable_{{ product.id }}" placeholder="Please give us all the information about the products you wish to have on your table. Don't forget to include de pick up date desired."></textarea>
                                 </div>
                             {% endif %}
                             <div class="row no-gutters justify-content-end">
