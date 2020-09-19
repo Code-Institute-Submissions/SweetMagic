@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+        <div class="row no-gutters"> <!-- Row to contain page title -->
+            <div class="col-12 pt-4 text-center">
+                <h2 class="title d-inline-block page-title-border m-0">My Favorites</h2>
+            </div>
+        </div>
+        <div class="row no-gutters justify-content-center pt-5"> <!-- Row to contain actual content -->
+            <div class="col-12 col-lg-10">
+                <div class="row no-gutters justify-content-between">
+                    <div class="col-12 col-sm-10 col-md-7 col-xl-5 mx-auto mx-md-2 mx-xl-5 p-0"> <!-- Favorite products will be displayed here -->
+                        {% if favorite_items %}
+                            <div class="h-100 bag-items-color p-3 m-0">
+                                {% for item in favorite_items %}
+                                    <div class="row no-gutters my-1">
+                                        <div class="col-4">
+                                            {% if item.product.image_url %}
+                                                <a href="{% url 'product' item.product.id %}">
+                                                    <img class="product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+                                                </a>
+                                            {% elif item.product.image %}
+                                                <a href="{% url 'product' item.product.id %}">
+                                                    <img class="product-image" src="{{ MEDIA_URL }}{{ item.product.image }}" alt="{{ item.product.name }}">
+                                                </a>
+                                            {% else %}
+                                                <a href="{% url 'product' item.product.id %}">
+                                                    <img class="product-image" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-8 pl-3">
+                                            <div class="row no-gutters">
+                                                <div class="col">
+                                                    <div class="row no-gutters">
+                                                        <div class="col-10">
+                                                            <p class="text-black"><strong>{{ item.product.name }}</strong></p>
+                                                        </div>
+                                                        <div class="col-2 text-right">
+                                                            <form class="remove-favorites-form bag-items-color" action="" method="POST">
+                                                                {% csrf_token %}
+                                                                <button class="border-0 bag-items-color" type="submit" value="Remove From Favorites"><i class="fas fa-times my-icon-small"></i></button>
+                                                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                    <p class="text-black">{{ item.product.price }}€</p>
+                                                    <p class="text-black">{{ item.product.description }}€</p>
+                                                </div>
+                                            </div>
+                                            <div class="row no-gutters pt-3">
+                                                <button class="favorites py-1 px-3 mr-3"> <!-- Will, later, allow users to add or remove item from favorites -->
+                                                    <i class="far fa-heart my-icon"></i> <!--<i class="fas fa-heart my-icon"></i>-->
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% if not forloop.last %}
+                                        <div class="col-12 px-2">
+                                            <hr>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="h-100 bag-items-color p-3 m-0">
+                                <p class="text-black text-center">Ups, seems like you don't have any favorite products yet!</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
