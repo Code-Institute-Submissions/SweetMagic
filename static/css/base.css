@@ -265,6 +265,10 @@ hr,
     overflow-y: auto;
 }
 
+.hidden {
+    display: none;
+}
+
 /* Media Queries */
 
 @media (max-width: 767px){

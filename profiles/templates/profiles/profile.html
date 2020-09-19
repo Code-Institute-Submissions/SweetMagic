@@ -2,10 +2,6 @@
 {% load static %}
 {% load bag_subtotal %}
 
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
-{% endblock %}
-
 {% block content %}
 
 <div class="container-fluid">
@@ -28,25 +24,38 @@
                     </form>
                 </div>
                 <div class="col-12 col-sm-10 col-md-4 col-xl-3 mx-auto mx-md-2 mx-xl-5 p-0 mt-3 mt-md-0"> <!-- Order history will be displayed here -->
-                    <div class="p-3 checkout-box m-0">
-                        <p class="text-black text-center"><strong>My Purchases</strong></p>
+                    <div class="p-3 checkout-box">
+                        <p class="text-black text-center mb-3"><strong>My Purchases</strong></p>
                         <div class="my-order-history">
                             {% if orders %}
                                 {% for order in orders %}
-                                    <div class="row no-gutters mt-3">
+                                    <div class="row no-gutters">
                                         <div class="col-12">
-                                            <p class="text-black" title="{{ order.order_number }}">Order Number: {{ order.order_number|truncatechars:6 }}</p>
-                                            <p class="text-black">Order Date: {{ order.order_date }}</p>
-                                            <p class="text-black">Order Value: {{ order.order_total }}€</p>
+                                            <p class="text-black" title="{{ order.order_number }}">Order Number: 
+                                                <span class="float-right">{{ order.order_number|truncatechars:6 }}</span>
+                                            </p>
+                                            <p class="text-black">Order Date: 
+                                                <span class="float-right">{{ order.order_date }}</span>
+                                            </p>
+                                            <p class="text-black">Order Value: 
+                                                <span class="float-right">{{ order.order_total }}€</span>
+                                            </p>
                                         </div>
                                         <div class="col-12">
-                                            <p class="text-black text-small">Order Details:</p>
+                                            <p class="text-black">Order Details: 
+                                                <span class="float-right" id="plus"><i class="fas fa-plus my-icon-small"></i></span>
+                                                <span class="float-right hidden" id="minus"><i class="fas fa-minus my-icon-small"></i></span>
+                                            </p>
                                             {% for item in order.items.all %}
-                                                <div class="row no-gutters mt-2">
+                                                <div class="row no-gutters mt-2 hidden" id="details">
                                                     <div class="col-3">
-                                                        {% if item.product.image %}
+                                                        {% if item.product.image_url %}
                                                             <a href="{% url 'product' item.product.id %}">
                                                                 <img class="h-100 product-image" src="{{ item.product.image_url }}" alt="{{ item.product.name }}">
+                                                            </a>
+                                                        {% elif item.product.image %}
+                                                            <a href="{% url 'product' item.product.id %}">
+                                                                <img class="h-100 product-image" src="{{ MEDIA_URL }}{{ item.product.image }}" alt="{{ product.name }}">
                                                             </a>
                                                         {% else %}
                                                             <a href="{% url 'product' item.product.id %}">
@@ -66,6 +75,11 @@
                                                 </div>
                                             {% endfor %}
                                         </div>
+                                        {% if not forloop.last %}
+                                            <div class="col-12">
+                                                <hr>
+                                            </div>
+                                        {% endif %}
                                     {% endfor %}
                                     </div>
                             {% else %}
@@ -80,5 +94,27 @@
         </div>
     </div>
 </div>
+
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+
+    <script type="text/javascript">
+
+        $(document).ready(function(){
+            $("#plus").click(function(){
+                $("#details").removeClass('hidden');
+                $("#plus").addClass('hidden');
+                $("#minus").removeClass('hidden');
+            });
+            $("#minus").click(function(){
+                $("#details").addClass('hidden');
+                $("#minus").addClass('hidden');
+                $("#plus").removeClass('hidden');
+            });
+        });
+
+    </script>
 
 {% endblock %}
