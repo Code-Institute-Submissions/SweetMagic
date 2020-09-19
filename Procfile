@@ -1,0 +1,1 @@
+web: gunicorn sweet_magic.wsgi:application
