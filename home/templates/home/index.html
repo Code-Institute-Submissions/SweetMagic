@@ -28,7 +28,7 @@
                 <p class="text-black px-3 text-center">Got a question? Reach out to us here.</p>
                 <div class="row no-gutters justify-content-center">
                     <div class="col-md-6 col-lg-5 col-xl-4">
-                        <form class="contact-form pt-3" action="{% url 'contact_request' %}" method="POST">  <!-- Not connected yet -->
+                        <form class="contact-form pt-3" action="{% url 'contact_request' %}" method="POST">
                             {% csrf_token %}
                             <div class="form-group">
                                 <input type="email" class="form-control input-border rounded-0 mt-2" id="email" placeholder="Email" name="sender_email">

@@ -93,20 +93,20 @@
                     <!-- Code for the form to Ask for Product Quotation -->
                     <div class="col mb-3 p-0">
                         <h5 class="text-black"><strong>Ask for quotation</strong></h5>
-                        <form class="add-form pt-3" action="" method="POST"> <!-- Not connected yet -->
+                        <form class="add-form pt-3" action="{% url 'quotation_request' product.id %}" method="POST"> <!-- Not connected yet -->
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="email" class="text-black">Email</label>
-                                <input type="email" class="form-control input-border rounded-0 mt-1" id="email" placeholder="Please enter your email">
+                                <input type="email" class="form-control input-border rounded-0 mt-1" id="email" placeholder="Please enter your email" name="sender_email">
                             </div>
                             <div class="form-group">
                                 <label for="name" class="text-black">Name</label>
-                                <input type="text" class="form-control input-border rounded-0 mt-1" id="name" placeholder="Please enter your name">
+                                <input type="text" class="form-control input-border rounded-0 mt-1" id="name" placeholder="Please enter your name" name="sender_name">
                             </div>
                             {% if product.category.name != "thematic_tables" %}
                                 <div class="form-group">
                                     <label for="cake_{{ product.id }}" class="text-black">Cake</label>
-                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cake_{{ product.id }}">
+                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cake_{{ product.id }}" name="cake_base">
                                         <option>Sponge Cake</option>
                                         <option>Lemon Cake</option>
                                         <option>Chocolate Cake</option>
@@ -119,7 +119,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="cakecream_{{ product.id }}" class="text-black">Cream</label>
-                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cakecream_{{ product.id }}">
+                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cakecream_{{ product.id }}" name="cake_cream">
                                         <option>Dark Chocolate Cream</option>
                                         <option>White Chocolate Cream</option>
                                         <option>Milk Chocolate Cream</option>
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="cakeextra_{{ product.id }}" class="text-black">Extras</label>
-                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cakeextra_{{ product.id }}">
+                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cakeextra_{{ product.id }}" name="cake_extra">
                                         <option>None</option>
                                         <option>Nuts</option>
                                         <option>Almond</option>
@@ -149,17 +149,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="request_{{ product.id }}" class="text-black">Additional Information</label>
-                                    <textarea class="form-control input-border rounded-0 mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish. Don't forget to include de pick up date desired."></textarea>
+                                    <textarea class="form-control input-border rounded-0 mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish. Don't forget to include de pick up date desired." name="request_message"></textarea>
                                 </div>
                             {% else %}
                                 <div class="form-group">
                                     <label for="requesttable_{{ product.id }}" class="text-black">Table Information</label>
-                                    <textarea class="form-control input-border rounded-0 mt-1" id="requesttable_{{ product.id }}" placeholder="Please give us all the information about the products you wish to have on your table. Don't forget to include de pick up date desired."></textarea>
+                                    <textarea class="form-control input-border rounded-0 mt-1" id="requesttable_{{ product.id }}" placeholder="Please give us all the information about the products you wish to have on your table. Don't forget to include de pick up date desired." name="request_message"></textarea>
                                 </div>
                             {% endif %}
                             <div class="row no-gutters justify-content-end">
                                 <button type="submit" class="btn btn-sm my-submit-btn rounded-0"><p class="text-black">Place request</p></button>
                             </div>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </form>
                     </div>
                 {% endif %}
