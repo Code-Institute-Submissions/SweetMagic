@@ -8,9 +8,11 @@ Quotation Request for {{ product.name }}:
 
 {% if cake_base != None %}
 Cake Base: {{ cake_base }}
-{% elif cake_cream != None %}
+{% endif %}
+{% if cake_cream != None %}
 Cake Cream: {{ cake_cream }}
-{% elif cake_extra != None %}
+{% endif %}
+{% if cake_extra != None %}
 Cake Extra: {{ cake_extra }}
 {% endif %}
 Request Details: {{ request_message }}
