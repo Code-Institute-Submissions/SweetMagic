@@ -26,6 +26,7 @@ SweetMagics' Strategy Plane revolves around the following user stories:
     * To see the full order summary during checkout, before confirming the buy;
     * To receive an order confirmation in my email;
     * To be able to view my order history;
+    * To be able to add and remove favorite products;
 * As the store owner/admin I expect:
     * To have an admin login;;
     * To be able to add, modify or delete products from the shop through the admin login;
@@ -50,7 +51,7 @@ The work can be divided as follows:
 3. A bag app to view the products the user wished to order and with add, edit and remove products from cart options;
 4. A checkout app that contains the checkout form, the payment system and the order confirmation and summary;
 5. Profiles app to view user profile when signed in, as well as order history;
-6. Favorites app to contain user favorites items (not done at this point).
+6. Favorites app to contain user favorites items (does not save info to profile at this point).
 
 ### Skeleton Plane & Surface Plane
 
@@ -106,6 +107,10 @@ My database collected is organized as follows:
 * Ability to delete products from bag;
 * Navbar in all pages made using Bootstrap;
 * Footer with social media links in all pages;
+* Contact form on homepage sends contact requests to site email;
+* Quotation request form (exists only on some of the products) sends quotation requests to site email;
+* Ability to add products to favorites;
+* Ability to remove products from favorites;
 * Allauth authentication system;
 * Ability to place order;
 * Payment interface using Stripe;
@@ -114,10 +119,12 @@ My database collected is organized as follows:
 ### Features Left to Implement
 
 At this point I still would like to implement:
-* Favorites app (similar to bag app);
+* Favorites data saving favorites to profile (currently it works, just like the bag, only with the sessions cookies, in the future would like to have it working as is if user is not authenticated, but have it saving favorites to profile if user is authenticated);
+* Ability to check if product exists on favorites without going to favorites page and:
+    1. If product does not exist display (as does now) an unfilled heart that will add it on click;
+    2. If product exists display a filled heart that will remove it on click;
 * Attach notes from product form to the order;
-* Connect stores email to send confirmation of orders;
-* Connect an email API to receive contact form ask quotation requests;
+
 
 ## Technologies Used
 
