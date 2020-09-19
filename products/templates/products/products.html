@@ -43,15 +43,28 @@
                                     </a>
                                 {% endif %}
                                 <div class="card-body text-center p-0 mt-1">
-                                    <p class="card-title text-black"><strong>{{ product.name }}</strong></p>
-                                    <p class="text-black text-small">{% if product.price == 0.00 %}Price under consultation{% else %}{{ product.price }}€{% endif %}</p>
-                                    {% if product.category %}
-                                        <p class="text-grey text-small">
-                                            <a href="{% url 'products' %}?category={{ product.category.name }}">
-                                                <i class="fas fa-bookmark"></i> {{ product.category.viewer_name }}
-                                            </a>
-                                        </p>
-                                    {% endif %}
+                                    <div class="row no-gutters justify-content-end">
+                                        <div class="col-8 m-0">
+                                            <p class="card-title text-black"><strong>{{ product.name }}</strong></p>
+                                            <p class="text-black text-small">{% if product.price == 0.00 %}Price under consultation{% else %}{{ product.price }}€{% endif %}</p>
+                                            {% if product.category %}
+                                                <p class="text-grey text-small">
+                                                    <a href="{% url 'products' %}?category={{ product.category.name }}">
+                                                        <i class="fas fa-bookmark"></i> {{ product.category.viewer_name }}
+                                                    </a>
+                                                </p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-2 m-0">
+                                            <form action="{% url 'add_to_favorites' product.id %}" method="POST" class="float-right"> <!-- Add to favorites -->
+                                                {% csrf_token %}
+                                                <button type="submit" class="bg-transparent border-0 py-1 px-3">
+                                                        <i class="far fa-heart my-icon-small"></i>
+                                                </button>
+                                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                            </form>
+                                        </div>
+                                    </div>
                                     {% if request.user.is_superuser %}
                                         <!-- Admin Product Management - Edit and Delete product -->
                                         <a href="{% url 'update_product' product.id %}" class="btn btn-sm my-submit-btn rounded-0 text-black p-1 mt-2 mr-3">Edit Product</a>

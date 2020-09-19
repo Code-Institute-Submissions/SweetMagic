@@ -60,9 +60,13 @@
                                                 </div>
                                             </div>
                                             <div class="row no-gutters pt-3">
-                                                <button class="favorites py-1 px-3 mr-3"> <!-- Will, later, allow users to add or remove item from favorites -->
-                                                    <i class="far fa-heart my-icon"></i> <!--<i class="fas fa-heart my-icon"></i>-->
-                                                </button>
+                                                <form action="{% url 'add_to_favorites' item.product.id %}" method="POST"> <!-- Add to favorites -->
+                                                    {% csrf_token %}
+                                                    <button type="submit" class="favorites py-1 px-3 mr-3">
+                                                            <i class="far fa-heart my-icon"></i>
+                                                    </button>
+                                                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                                </form>
                                                 <form class="update-form p-0 bag-items-color" action="{% url 'update_bag' item.product.id %}" method="POST">
                                                     {% csrf_token %}
                                                     <select class="my-select form-control bag-items-color quantity-box rounded-0"name="quantity" onchange="this.form.submit()">

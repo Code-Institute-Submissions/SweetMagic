@@ -40,7 +40,7 @@
                                                             <p class="text-black"><strong>{{ item.product.name }}</strong></p>
                                                         </div>
                                                         <div class="col-2 text-right">
-                                                            <form class="remove-favorites-form bag-items-color" action="" method="POST">
+                                                            <form class="remove-favorites-form bag-items-color" action="{% url 'remove_from_favorites' item.product.id %}" method="POST">
                                                                 {% csrf_token %}
                                                                 <button class="border-0 bag-items-color" type="submit" value="Remove From Favorites"><i class="fas fa-times my-icon-small"></i></button>
                                                                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
@@ -48,13 +48,8 @@
                                                         </div>
                                                     </div>
                                                     <p class="text-black">{{ item.product.price }}€</p>
-                                                    <p class="text-black">{{ item.product.description }}€</p>
+                                                    <p class="text-black">{{ item.product.description }}</p>
                                                 </div>
-                                            </div>
-                                            <div class="row no-gutters pt-3">
-                                                <button class="favorites py-1 px-3 mr-3"> <!-- Will, later, allow users to add or remove item from favorites -->
-                                                    <i class="far fa-heart my-icon"></i> <!--<i class="fas fa-heart my-icon"></i>-->
-                                                </button>
                                             </div>
                                         </div>
                                     </div>
