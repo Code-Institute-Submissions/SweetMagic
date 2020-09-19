@@ -43,11 +43,11 @@
                                         </div>
                                         <div class="col-12">
                                             <p class="text-black">Order Details: 
-                                                <span class="float-right" id="plus"><i class="fas fa-plus my-icon-small"></i></span>
-                                                <span class="float-right hidden" id="minus"><i class="fas fa-minus my-icon-small"></i></span>
+                                                <span class="float-right my-plus" id="plus{{ order.order_number }}" name="{{ order.order_number }}"><i class="fas fa-plus my-icon-small"></i></span>
+                                                <span class="float-right my-minus hidden" id="minus{{ order.order_number }}" name="{{ order.order_number }}"><i class="fas fa-minus my-icon-small"></i></span>
                                             </p>
                                             {% for item in order.items.all %}
-                                                <div class="row no-gutters mt-2 hidden" id="details">
+                                                <div class="row no-gutters mt-2 hidden" id="details{{ order.order_number }}">
                                                     <div class="col-3">
                                                         {% if item.product.image_url %}
                                                             <a href="{% url 'product' item.product.id %}">
@@ -103,15 +103,19 @@
     <script type="text/javascript">
 
         $(document).ready(function(){
-            $("#plus").click(function(){
-                $("#details").removeClass('hidden');
-                $("#plus").addClass('hidden');
-                $("#minus").removeClass('hidden');
+            $('.my-plus').each(function(){
+                $(this).click(function(){
+                    $("#details"+$(this).attr('name')).removeClass('hidden');
+                    $("#plus"+$(this).attr('name')).addClass('hidden');
+                    $("#minus"+$(this).attr('name')).removeClass('hidden');
+                });
             });
-            $("#minus").click(function(){
-                $("#details").addClass('hidden');
-                $("#minus").addClass('hidden');
-                $("#plus").removeClass('hidden');
+            $('.my-minus').each(function(){
+                $(this).click(function(){
+                    $("#details"+$(this).attr('name')).addClass('hidden');
+                    $("#minus"+$(this).attr('name')).addClass('hidden');
+                    $("#plus"+$(this).attr('name')).removeClass('hidden');
+                });
             });
         });
 
