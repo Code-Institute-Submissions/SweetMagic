@@ -28,6 +28,7 @@ DEBUG = 'DEVELOPMENT' in os.environ
 
 ALLOWED_HOSTS = ['sweet-magic.herokuapp.com', 'localhost']
 
+ADMINS = [('Sweet', 'orders.sweetmagic@gmail.com'), ]
 
 # Application definition
 
