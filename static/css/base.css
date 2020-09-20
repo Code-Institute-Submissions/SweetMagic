@@ -283,4 +283,13 @@ hr,
     .page-content {
         margin-top: 88px;
     }
+
+    .dropdown-item:hover {
+        background-color: #F6EBD9;
+        text-decoration: none;
+    }
+
+    .nav-item:hover {
+       text-decoration: none;
+    }
 }
