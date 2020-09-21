@@ -124,6 +124,7 @@ At this point I still would like to implement:
     1. If product does not exist display (as does now) an unfilled heart that will add it on click;
     2. If product exists display a filled heart that will remove it on click;
 * Attach notes from product form to the order;
+* Possibility to login through social media;
 
 
 ## Technologies Used
@@ -146,6 +147,10 @@ At this point I still would like to implement:
     + The project uses Django Allauth as the authentication system
 * [Stripe](https://stripe.com/en-gb-se)
     + The project uses Stripe as the payment processing system
+* [Postgres](https://www.postgresql.org/)
+    + The project uses Postgres as it's SQL database;
+* [Amazon AWS](https://aws.amazon.com/)
+    + The project uses Amazon Web Services to keep all it's static files and media;
 * Git
     + The project used Git for version control, commits were submited as often as possible
 
@@ -154,6 +159,98 @@ At this point I still would like to implement:
 ### Code Validation
 
 ## Deployment
+
+This project is hosted by Heroku and the deployed site should update immediately in case there is any change to the master branch. The deployment was made following these steps:
+
+1. Login to Heroku in their webpage and create app;
+2. Type 'heroku login' in the terminal and login;
+3. Type 'heroku apps' in the terminal to confirm that the app you created in step 1 is listed;
+4. Go back to your app page in Heroku, copy the heroku command to create a new Git repository and paste that command in your terminal;
+5. Still on your app page in Heroku click on the Resouces tab and add Postgres as database;
+6. Back in gitpod type 'pip3 install dg-database-url' and 'pip3 install psycopg2-binary';
+5. Go to your setting file, import dj-database-url and comment out the 'DATABASES' setting;
+6. Create a new 'DATABASES' setting connecting your app to the new Postgres database using the database URL found on Heroku's config vars ('default' = dj-database-url.parse('put URL here'));
+7. Run 'python3 manage.py migrate' to migrate everything to your new database;
+8. Also run 'python3 manage.py loaddata yourfixturename' as many times as needed to upload any fixtures you might have;
+9. Finally run 'python3 manage.py createsuperuser' to create your deployed site super user;
+10. Remove the new DATABASE setting you put on settings.py (on 6.);
+11. Uncomment the original DATABASE setting and put it on an if else statement where if you are on development the original default setting is used and if you are on deployment Postgres database should be used with the database URL as an environment variable;
+12. Run 'pip3 install gunicorn' on the terminal;
+13. Run 'pip3 freeze > requirements.txt' to update your requirements file (or create it if you still don't have one);
+14. Add a Procfile to your app;
+15. On the Procfile type 'web: gunicorn yourappname.wsgi:application' and save it;
+16. On the terminal type 'heroku config:set DISABLE_COLLECTSTATIC=1 --app heroku'sappname' to prevent heroku from collecting your static and media files;
+17. Go to your settings.py file and in the ALLOWED_HOSTS add your heroku site ('yourherokuappname.herokuapp.com') and 'localhost' so your development environment will keep working after deployment;
+18. Add, commit and push everything to Gitpod;
+19. Type 'git push heroku master' to push everything to Heroku also;
+20. On your Heroku app's site go to the Deploy tab and click Connect to GitHub;
+21. Search for your repository name and click connect;
+22. Scroll down and click Enable Automatic Deploys so your deployment environment is always up to date;
+23. Search in your prefered search engine (Google) for a django secret key generator (MiniWebtool) and generate secret key;
+24. Get that secret key and add it to Heroku's config vars as 'SECRET_KEY';
+25. Go back to the secret key generator and generate a second one;
+26. Remove the existing secret key from your settings.py (since that one was already commited to GirHub one time or another) and set the new one as an environment variable;
+27. Still in settings.py set DEBUG = True only if in development;
+28. Login or sign up in AWS; 
+29. Go to AWS Management Console, search and open S3;
+30. Create a new bucket in S3, name it and disable block all public access;
+31. Open the bucket and go to it's properties tab;
+32. Select use this bucket to host a website on'static website hosting';
+33. Give it an index and error document (does not matter which since it will not be used) and click save;
+34. Still inside the bucket go to the permissions tab;
+35. Select CORS configuration, define it and save;
+36. Go to Bucket Policy and click on the policy generator at the bottom of the editor;
+37. Generate your policy statement using the ARN present on top of the bucket policy editor;
+38. Add that statement, generate the policy and copy it to the bucket policy editor;
+39. Before saving add a '/*' to the 'Resource' and then save it;
+40. Finally go to Access Control List tab, scroll down to Public Access and click it;
+41. Add access to the objects 'list objects' and save it;
+42. Go back to AWS services menu and open IAM;
+43. Go to Groups and generate a New Group;
+44. Go to IAMs policy and click generate policy;
+45. Go to theb JSON tab and import managed policy (search for S3 and import Amazon S3 Full Access Policy);
+46. Open a new browser tab and go back to the cucket you generated on S3;
+47. Click Permissions and Bucket Policy and coppy the bucket ARN again;
+48. Back to the IAM policy tab paste the ARN in 'Resourse' twice, once just the ARN and after (with a ',' between them) again but this time with '/*' at the end;
+49. Click review policy, name it and gice it a description;
+50. Create the policy and go back to the group you created in IAM;
+51. Go the the permissions tab and attach the policy created on the last step;
+52. Go to IAM Users tab and click add user;
+53. Name it, give them programmatic access and click next;
+54. Select the created group to add the user to and click next until it's created;
+55. Download the .csv file;
+56. Back to Gitpod type 'pip3 install boto3' and 'pip3 install django-storages';
+57. Type 'pip3 freeze > requirements.txt' again to update it;
+58. In setting.py add 'storages' to your installed apps;
+59. After MEDIA_ROOT in settings.py create the following if statement:
+    if 'USE-AWS' in os.environ:
+        AWS_STORAGE_BUCKET_NAME = 'yourbucketname'
+        AWS_S3_REGION_NAME = 'yourregionname'      ('eu-north-1')
+        AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+60. Go to Heroku's config vars, set USE_AWS = True and the other two variables (their values are in the .csv file downloaded in 55.), and delete DISABLE COLLECTSTATIC
+61. Back to setting.py set AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+62. Add a file called custom_storages.py
+63. Inside the new file import settings from django-conf and from storages.backends.s3boto3 import S3Boto3Storage and type in:
+    class StaticStorage(S3Boto3Storage):
+        location = settings.STATICFILES_LOCATION
+    class MediaStorage(S3Boto3Storage):
+        location = settings.MEDIAFILES_LOCATION
+64. In setting.py, inside your already existing if 'USE-AWS' statement add:
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}'
+65. Add, commit and push changes and go to your bucket in S3 to confirm that your 'static' folder was in fact created;
+66. Create, still on the bucket, another folder named 'media' and inside it manually add your media files, grant them public read access and upload everything;
+67. Go to your deployed site and attempt to login using superuser, if your can't do step 68. if you can skip it;
+68. Go to your deployed site /admin, login using superuser, go to email addresses, click on the superuser email, mark it as both verified and primary and save;
+69. Add your Stripe API keys to your Heroku's config vars;
+70. On Stripe create a new Webhook with the deployed site url/checkout/wh/ (in my case), select receive all events and get it's secret key;
+71. Also add the wh secret to your config vars;
+72. Test that your webhook is working and you are all set!
 
 In case you wish to clone this repository, follow these steps:
 
