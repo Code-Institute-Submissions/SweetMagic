@@ -3,6 +3,7 @@ from products.models import Product
 
 
 def bag_contents(request):
+    """Context to make bag contents available throughout the website"""
 
     bag_items = []
     total = 0

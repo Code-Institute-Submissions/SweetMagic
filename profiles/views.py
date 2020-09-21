@@ -7,6 +7,7 @@ from .forms import ProfileForm
 
 @login_required
 def profile(request):
+    """A view to display user profile"""
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == "POST":

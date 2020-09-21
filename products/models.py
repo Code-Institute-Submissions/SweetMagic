@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Category(models.Model):
+    """Defines the category model"""
 
     class Meta:  # To correct the plural error
         verbose_name_plural = 'Categories'
@@ -17,6 +18,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """Defines the products model"""
     name = models.CharField(max_length=254)
     description = models.TextField()
     # Sets default price to all products that require budget

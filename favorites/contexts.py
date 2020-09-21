@@ -3,6 +3,7 @@ from products.models import Product
 
 
 def favorite_contents(request):
+    """Context to make user favorites available throughout the website"""
 
     favorite_items = []
     favorites = request.session.get('favorites', {})

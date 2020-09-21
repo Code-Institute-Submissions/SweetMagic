@@ -3,10 +3,12 @@ from django.contrib import messages
 
 
 def my_favorites(request):
+    """View to display user favorite products"""
     return render(request, 'favorites/favorites.html')
 
 
 def add_to_favorites(request, item_id):
+    """View to add user favorite products"""
     redirect_url = request.POST.get('redirect_url')
     quantity = 1
     favorites = request.session.get('favorites', {})
@@ -23,6 +25,7 @@ def add_to_favorites(request, item_id):
 
 
 def remove_from_favorites(request, item_id):
+    """View to remove product from user favorite products"""
     redirect_url = request.POST.get('redirect_url')
     favorites = request.session.get('favorites', {})
 

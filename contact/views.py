@@ -7,6 +7,7 @@ from products.models import Product
 
 
 def contact_request(request):
+    """View to send contact request to stores email"""
     recipient_email = "orders.sweetmagic@gmail.com"
     sender_email = request.POST.get('sender_email')
     sender_name = request.POST.get('sender_name')
@@ -30,6 +31,7 @@ def contact_request(request):
 
 
 def quotation_request(request, item_id):
+    """View to send quotation request to stores email"""
     redirect_url = request.POST.get('redirect_url')
     recipient_email = "orders.sweetmagic@gmail.com"
     sender_email = request.POST.get('sender_email')

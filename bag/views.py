@@ -4,17 +4,19 @@ from products.models import Product
 
 
 def my_bag(request):
+    """View to show products in bag"""
     return render(request, 'bag/bag.html')
 
 
 def add_to_bag(request, item_id):
+    """View to add products to bag"""
     product = get_object_or_404(Product, pk=item_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     flavour = None
     if 'flavour' in request.POST:
         flavour = request.POST['flavour']
-    notes = request.POST.get('notes')
+    # notes = request.POST.get('notes')
     bag = request.session.get('bag', {})
 
     if flavour:
@@ -52,6 +54,7 @@ def add_to_bag(request, item_id):
 
 
 def update_bag(request, item_id):
+    """View to update the products in the bag"""
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     flavour = None
@@ -77,6 +80,7 @@ def update_bag(request, item_id):
 
 
 def delete_from_bag(request, item_id):
+    """View to delete a product from the bag"""
     redirect_url = request.POST.get('redirect_url')
     flavour = None
     if 'flavour' in request.POST:

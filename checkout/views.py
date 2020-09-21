@@ -31,6 +31,7 @@ def cache_checkout_data(request):
 
 
 def checkout(request):
+    """View to display checkout page"""
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
@@ -138,6 +139,7 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
+    """View to display successfull checkout page"""
     save_order = request.session.get('save_order')
     order = get_object_or_404(Order, order_number=order_number)
 

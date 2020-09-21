@@ -218,6 +218,11 @@ Finally, the website was thoroughly tested to make sure it displays properly in 
 
 ### Code Validation
 
+* [W3C HTML Validator tool](https://validator.w3.org/) was used to validate all HTML code;
+* [W3C CSS Validator tool](https://jigsaw.w3.org/css-validator/) was used to validate all CSS code;
+* [JSHint](https://jshint.com/) was used to validade JavaScript syntax;
+* [Pep8 Online tool](http://pep8online.com/) was used to validate Python syntax.
+
 ## Deployment
 
 This project is hosted by Heroku and the deployed site should update immediately in case there is any change to the master branch. The deployment was made following these steps:

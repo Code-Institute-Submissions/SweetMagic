@@ -52,6 +52,7 @@ def product(request, product_id):
 
 @login_required
 def add_product(request):
+    """A view to display add product page"""
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -77,6 +78,7 @@ def add_product(request):
 
 @login_required
 def update_product(request, product_id):
+    """A view to display edit product page"""
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
@@ -104,6 +106,7 @@ def update_product(request, product_id):
 
 @login_required
 def delete_product(request, product_id):
+    """A view to delete product"""
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))

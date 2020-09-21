@@ -6,6 +6,7 @@ from django.dispatch import receiver
 
 
 class UserProfile(models.Model):
+    "User profile model"
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     default_phone_number = models.CharField(max_length=15,
@@ -25,6 +26,8 @@ class UserProfile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_or_update_profile(sender, instance, created, **kwargs):
+    """Fills the profile info if the user requests
+    it be saved when filling checkout form"""
     if created:
         UserProfile.objects.create(user=instance)
     instance.userprofile.save()
