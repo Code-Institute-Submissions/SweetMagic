@@ -156,6 +156,66 @@ At this point I still would like to implement:
 
 ## Testing
 
+The website was tested for the following:
+
+1. Homepage loads correctly;
+2. Navigational links to display products all work correctly and only show the products they are supposed to show;
+3. Input to search is functional and conducts a search by keyword (the results will display not only product name matches but every product that has the searched key in it's description also);
+4. Hovering (or clicking in mobile version) over the user icon displays the profile options correctly (login and sign up if user is not authenticated or profile and logout if user is authenticated);
+5. The heart icon on the navbar opens the favorites page corectly;
+6. The shopping bag icon, when hovered display a small render of the shopping bag content and if it is not empty displays also links to open the bag or to proceed directly to checkout;
+7. The contact form on the homepage sends a contact request to the store email when correctly filled and displays a small toast with the information that the contact request was sent;
+8. That same contact form is not submited is not all fields are filled and displays a error message if any field is left unfilled;
+9. Both the facebook and instagram links on the pages footer open, correctly, the stores social media pages in a new tab;
+10. On the products display page all products display their image and if the product has no image, generic "no image" picture is displayed;
+11. On the same page all products display their names, price, category (that works as a link to search by that category) and an icon to add the product to favorites;
+12. All category links refered to on the last step are working and display the appropriate results;
+13. When clicking on the image of any of the products a product detail page is displayed;
+14. On the product detail page a bigger image of the product is displayed and when clicked the image url (if any) is oppened in a new tab;
+15. Also on the product detail page, all the product information is displayed correctly (name, price, link to category and description);
+16. After the product information a form is displayed for either add the product to the cart (if the product has a price) or to send a quotation request to the stores email (if the product has no price);
+17. When the product has a price clicking the add to bag button adds the product correctly to the cart, whether the product has a flavour or not;
+18. When adding two times the same product to the bag updates the product quantity in the bag;
+19. All of the above actions to add to bag update the number of products in the bag displayed on the navbar (if the number is not 0) and the cart summary when hovering on the shopping cart icon, and a nice success toast is displayed;
+19. 1. The notes section on the add to bag form however, is not working since it is not connected on the backend at this stage;
+20. When the product does not have a price, filling the quotation form sends a quotation request to the store email when correctly filled and displays a small toast with the information that the request was sent;
+21. If the form is not correctly filled it is not submited and an error toast is displayed;
+22. The shopping bag page displays correctly whether it is empty or not;
+23. When the cart is not empty a list of the cart items is displayed and a link to proceed to checkout becomes available;
+24. Every product displayed on the cart has a small summary with it's flavour (if any) displayed;
+25. On the product summary it is possible to remove the product clicking on the X in the top right corner;
+26. On the product summary it is possible to update it's quantity by changing the selected value;
+27. The heart icon on the summary makes it possible to add product to favorites if it is not already there and let's the user now it was added through a toast, if, however it is already there and informational toast is displayed saying just that;
+28. The checkout page displays appropriately;
+29. The checkout form is only submited if every required field is correctly filled and displays an error if not;
+30. The checkout page displays, at all times, the order total and order contents;
+31. After filling the test credit card number provided by Stripe 4242 4242 4242 4242, the form is submited and the user is taken to a success page with the order summary;
+32. If by any reason there is a Stripe error, said error is displayed on the checkout page;
+33. If the user closes the page after submiting the form but before landing on the checkout success page a webhook processes the order and it is still submited and saved correctly;
+34. On the checkout form there is an option to save user information if the user is logged in (working correctly) or to loggin/sign up if not;
+35. Signing up to the page will require email verification that sends an email to the users filled email;
+36. Loggin in after having signing up works correctly;
+37. Logging out after having logged in also works as expected;
+38. When logged in the profile page displays a form to add the user information (form that is automatically filled is the user has filled that information during a checkout process and mark the save info box);
+39. Also on the profile a order history is displayed where every order that user ever made is listed and with the option to display (or hide) the order details;
+40. Logging in as superuser displays product management options only available to the pages admin;
+41. When logged in as superuser on the products page, as well as on the product details page are two new buttons that allow the user to edit that product or to completely delete from the store;
+42. Clicking the edit button the user is taken to an edit product page with a form that is automatically filled with the current information.
+43. Changing the information on the form and clicking update will, in fact, update the product on the store;
+44. Clicking the delete button will display a confirmation of delete modal;
+45. Clicking on the Cancel button on the modal will close the modal and do nothing to the product;
+46. Clicking the Delete button on the modal will delete the product;
+47. On the user icon dropdown in the navbar the link to add a product is displayed (again if superuser);
+48. Clicking that button will take the user to a add product page;
+49. Filling the form to add product will, in fact, add it to the store;
+50. Not filling all the required fields will cause the form not to submit and a message to display;
+51. Searching for the new product (in any way - by the category links, the product links on navbar or even using the search inpur) will display it in the store;
+52. Finally if the user is not a logged in as super user but tries to access, through the url, the add, edit or delete product links an error message will display letting the user know that only admins can do that.
+
+Apart from the tests listed above, all buttons, link and forms were tested in several devices to make sure they work appropriately. Besides myself I also got 5 more people testing all the things listed above to make sure no errors were found.
+
+Finally, the website was thoroughly tested to make sure it displays properly in different devices and brands (Apple, Xiaomi, Samsung, Hp, Huawei, Acer), with different screen sizes (from Iphone, to tablet, to windows pc and Imac) and different browsers (Chrome, Safari, Mozilla, Opera and Xiaomi). When testing the website in Xiaomi browser there are some compatibility error that I could not solve. Those errors cause margins to be slightly wrong, and more importantly to display a 'Forbidden, CSRF verification failed' error when submiting some of the forms. These problems did not show in any of the other browsers.
+
 ### Code Validation
 
 ## Deployment

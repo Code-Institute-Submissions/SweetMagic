@@ -7,11 +7,11 @@
         <div class="row no-gutters justify-content-center pt-4">
             <div class="col-12 col-md-6 col-lg-5 col-xl-4 mb-3 px-4 pr-lg-0"> <!-- Will contain product image -->
                 {% if product.image_url %}
-                    <a href="{{ product.image.url }}" target="_blank">
+                    <a href="{{ product.image_url }}" target="_blank">
                         <img class="product-image" src="{{ product.image_url }}" alt="{{ product.name }}">
                     </a>
                 {% elif product.image %}
-                    <a href="{{ MEDIA_URL }}{{ product.image }}" target="_blank">
+                    <a href="">
                         <img class="product-image" src="{{ MEDIA_URL }}{{ product.image }}" alt="{{ product.name }}">
                     </a>
                 {% else %}
@@ -103,17 +103,17 @@
                         <form class="add-form pt-3" action="{% url 'quotation_request' product.id %}" method="POST"> <!-- Not connected yet -->
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="email" class="text-black">Email</label>
-                                <input type="email" class="form-control input-border rounded-0 mt-1" id="email" placeholder="Please enter your email" name="sender_email">
+                                <label for="email" class="text-black">Email *</label>
+                                <input type="email" class="form-control input-border rounded-0 mt-1" id="email" placeholder="Please enter your email" name="sender_email" required>
                             </div>
                             <div class="form-group">
-                                <label for="name" class="text-black">Name</label>
-                                <input type="text" class="form-control input-border rounded-0 mt-1" id="name" placeholder="Please enter your name" name="sender_name">
+                                <label for="name" class="text-black">Name *</label>
+                                <input type="text" class="form-control input-border rounded-0 mt-1" id="name" placeholder="Please enter your name" name="sender_name" required>
                             </div>
                             {% if product.category.name != "thematic_tables" %}
                                 <div class="form-group">
-                                    <label for="cake_{{ product.id }}" class="text-black">Cake</label>
-                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cake_{{ product.id }}" name="cake_base">
+                                    <label for="cake_{{ product.id }}" class="text-black">Cake *</label>
+                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cake_{{ product.id }}" name="cake_base" required>
                                         <option>Sponge Cake</option>
                                         <option>Lemon Cake</option>
                                         <option>Chocolate Cake</option>
@@ -125,8 +125,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="cakecream_{{ product.id }}" class="text-black">Cream</label>
-                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cakecream_{{ product.id }}" name="cake_cream">
+                                    <label for="cakecream_{{ product.id }}" class="text-black">Cream *</label>
+                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cakecream_{{ product.id }}" name="cake_cream"  required>
                                         <option>Dark Chocolate Cream</option>
                                         <option>White Chocolate Cream</option>
                                         <option>Milk Chocolate Cream</option>
@@ -143,8 +143,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="cakeextra_{{ product.id }}" class="text-black">Extras</label>
-                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cakeextra_{{ product.id }}" name="cake_extra">
+                                    <label for="cakeextra_{{ product.id }}" class="text-black">Extras *</label>
+                                    <select class="form-control my-select input-border rounded-0 mt-1" id="cakeextra_{{ product.id }}" name="cake_extra" required>
                                         <option>None</option>
                                         <option>Nuts</option>
                                         <option>Almond</option>
@@ -155,13 +155,13 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="request_{{ product.id }}" class="text-black">Additional Information</label>
-                                    <textarea class="form-control input-border rounded-0 mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish. Don't forget to include de pick up date desired." name="request_message"></textarea>
+                                    <label for="request_{{ product.id }}" class="text-black">Additional Information *</label>
+                                    <textarea class="form-control input-border rounded-0 mt-1" id="request_{{ product.id }}" placeholder="Please give us all the information about your wish. Don't forget to include de pick up date desired." name="request_message" required></textarea>
                                 </div>
                             {% else %}
                                 <div class="form-group">
-                                    <label for="requesttable_{{ product.id }}" class="text-black">Table Information</label>
-                                    <textarea class="form-control input-border rounded-0 mt-1" id="requesttable_{{ product.id }}" placeholder="Please give us all the information about the products you wish to have on your table. Don't forget to include de pick up date desired." name="request_message"></textarea>
+                                    <label for="requesttable_{{ product.id }}" class="text-black">Table Information *</label>
+                                    <textarea class="form-control input-border rounded-0 mt-1" id="requesttable_{{ product.id }}" placeholder="Please give us all the information about the products you wish to have on your table. Don't forget to include de pick up date desired." name="request_message" required></textarea>
                                 </div>
                             {% endif %}
                             <div class="row no-gutters justify-content-end">
