@@ -249,16 +249,6 @@ hr,
     border: 2px solid #D9B3A6;
 }
 
-/*         To make dropdown open on hover in desktop */
-
-.dropdown-menu {
-  margin: -0.125rem 0 0;
-}
-
-.dropdown:hover>.dropdown-menu {
- display: block;
-}
-
 .my-order,
 .my-order-history {
     max-height: 500px;
@@ -270,6 +260,18 @@ hr,
 }
 
 /* Media Queries */
+
+@media (min-width: 768px){
+    /*         To make dropdown open on hover in desktop */
+
+    .dropdown-menu {
+    margin: -0.125rem 0 0;
+    }
+
+    .dropdown:hover>.dropdown-menu {
+    display: block;
+    }
+}
 
 @media (max-width: 767px){
     .logo {
