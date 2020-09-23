@@ -1,5 +1,5 @@
 from django.shortcuts import (redirect, reverse, get_object_or_404)
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.template.loader import render_to_string
 from django.conf import settings
 from django.contrib import messages
@@ -20,12 +20,15 @@ def contact_request(request):
              'sender_name': sender_name,
              'message': message,
             })
-    send_mail(
-            subject,
-            body,
-            settings.DEFAULT_FROM_EMAIL,
-            [recipient_email]
-            )
+    
+    email = EmailMessage(
+        subject,
+        body,
+        settings.DEFAULT_FROM_EMAIL,
+        [recipient_email],
+        cc=[sender_email],
+    )
+    email.send()
     messages.success(request, 'Contact request submited')
     return redirect(reverse('home'))
 
@@ -59,11 +62,13 @@ def quotation_request(request, item_id):
              'cake_extra': cake_extra,
              'request_message': request_message,
             })
-    send_mail(
+    email = EmailMessage(
             subject,
             body,
             settings.DEFAULT_FROM_EMAIL,
-            [recipient_email]
+            [recipient_email],
+            cc=[sender_email],
             )
+    email.send()
     messages.success(request, 'Quotation request submited')
     return redirect(redirect_url)

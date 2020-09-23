@@ -107,8 +107,8 @@ My database collected is organized as follows:
 * Ability to delete products from bag;
 * Navbar in all pages made using Bootstrap;
 * Footer with social media links in all pages;
-* Contact form on homepage sends contact requests to site email;
-* Quotation request form (exists only on some of the products) sends quotation requests to site email;
+* Contact form on homepage sends contact requests to site email, with sender email in CC;
+* Quotation request form (exists only on some of the products) sends quotation requests to site email, with sender email in CC;
 * Ability to add products to favorites;
 * Ability to remove products from favorites;
 * Allauth authentication system;
@@ -123,7 +123,6 @@ At this point I still would like to implement:
 * Ability to check if product exists on favorites without going to favorites page and:
     1. If product does not exist display (as does now) an unfilled heart that will add it on click;
     2. If product exists display a filled heart that will remove it on click;
-* Attach notes from product form to the order;
 * Possibility to login through social media;
 
 
@@ -164,7 +163,7 @@ The website was tested for the following:
 4. Hovering (or clicking in mobile version) over the user icon displays the profile options correctly (login and sign up if user is not authenticated or profile and logout if user is authenticated);
 5. The heart icon on the navbar opens the favorites page corectly;
 6. The shopping bag icon, when hovered display a small render of the shopping bag content and if it is not empty displays also links to open the bag or to proceed directly to checkout;
-7. The contact form on the homepage sends a contact request to the store email when correctly filled and displays a small toast with the information that the contact request was sent;
+7. The contact form on the homepage sends a contact request to the store email (and the sender since he/she is in cc) when correctly filled and displays a small toast with the information that the contact request was sent;
 8. That same contact form is not submited is not all fields are filled and displays a error message if any field is left unfilled;
 9. Both the facebook and instagram links on the pages footer open, correctly, the stores social media pages in a new tab;
 10. On the products display page all products display their image and if the product has no image, generic "no image" picture is displayed;
@@ -178,7 +177,7 @@ The website was tested for the following:
 18. When adding two times the same product to the bag updates the product quantity in the bag;
 19. All of the above actions to add to bag update the number of products in the bag displayed on the navbar (if the number is not 0) and the cart summary when hovering on the shopping cart icon, and a nice success toast is displayed;
 19. 1. The notes section on the add to bag form however, is not working since it is not connected on the backend at this stage;
-20. When the product does not have a price, filling the quotation form sends a quotation request to the store email when correctly filled and displays a small toast with the information that the request was sent;
+20. When the product does not have a price, filling the quotation form sends a quotation request to the store email (and the sender since he/she is in cc) when correctly filled and displays a small toast with the information that the request was sent;
 21. If the form is not correctly filled it is not submited and an error toast is displayed;
 22. The shopping bag page displays correctly whether it is empty or not;
 23. When the cart is not empty a list of the cart items is displayed and a link to proceed to checkout becomes available;

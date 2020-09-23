@@ -162,7 +162,7 @@
         "fields":{
             "name":"Cartoon Cookies",
             "description":"Cookies shapped as any cartoon of your liking. Please don't forget to tell us the wanted cartoon in the note section.",
-            "price":10.00,
+            "price":0.00,
             "category":4,
             "quantity":20,
             "image":"IMG_0014.JPG",
@@ -175,7 +175,7 @@
         "fields":{
             "name":"Baby Shower Cookies",
             "description":"'Baby' themed cookies for every baby shower. Note that the colours of the decoration can be changed. Tell us the colour you wish in the note section when placing your order please.",
-            "price":10.00,
+            "price":0.00,
             "category":4,
             "quantity":20,
             "image":"IMG_0015.JPG",
@@ -188,7 +188,7 @@
         "fields":{
             "name":"Thematic Cookies",
             "description":"Cookies following any theme of your choice. Please don't forget to tell us the theme you wish for in the note section.",
-            "price":10.00,
+            "price":0.00,
             "category":4,
             "quantity":20,
             "image":"IMG_0016.JPG",
@@ -240,7 +240,7 @@
         "fields":{
             "name":"Thematic Cupcakes",
             "description":"Cupcakes following any theme of your choice. Please don't forget to tell us the theme you wish for in the note section.",
-            "price":17.00,
+            "price":0.00,
             "category":3,
             "quantity":12,
             "image":"IMG_0020.JPG",
@@ -357,7 +357,7 @@
         "fields":{
             "name":"Thematic Mini Donuts with Glacé",
             "description":"Mini donuts topped with glacé in a theme of your choice. Please don't forget to tell us the theme on the notes section when placing your order.",
-            "price":10.00,
+            "price":0.00,
             "category":8,
             "quantity":20,
             "image":"IMG_0032.JPG",
