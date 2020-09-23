@@ -19,6 +19,7 @@
                 <div class="row no-gutters justify-content-between">
                     <div class="col-12 col-sm-10 col-md-7 col-xl-5 mx-auto mx-md-2 mx-xl-5 p-0">  <!-- Order form -->
                         <p class="text-black">Please fill the form bellow to complete your order</p>
+                        <p class="text-black text-small">Your order will be ready tomorrow, wait for our contact to set the pick up.</p> 
                         <form action="{% url 'checkout' %}" method="POST" id="checkout-form" class="pt-3">
                             {% csrf_token %}
                             <fieldset class="rounded-0 px-0 mb-3">
