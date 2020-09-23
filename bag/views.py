@@ -16,7 +16,6 @@ def add_to_bag(request, item_id):
     flavour = None
     if 'flavour' in request.POST:
         flavour = request.POST['flavour']
-    notes = request.POST.get('notes')
     bag = request.session.get('bag', {})
 
     if flavour:

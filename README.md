@@ -176,7 +176,6 @@ The website was tested for the following:
 17. When the product has a price clicking the add to bag button adds the product correctly to the cart, whether the product has a flavour or not;
 18. When adding two times the same product to the bag updates the product quantity in the bag;
 19. All of the above actions to add to bag update the number of products in the bag displayed on the navbar (if the number is not 0) and the cart summary when hovering on the shopping cart icon, and a nice success toast is displayed;
-19. 1. The notes section on the add to bag form however, is not working since it is not connected on the backend at this stage;
 20. When the product does not have a price, filling the quotation form sends a quotation request to the store email (and the sender since he/she is in cc) when correctly filled and displays a small toast with the information that the request was sent;
 21. If the form is not correctly filled it is not submited and an error toast is displayed;
 22. The shopping bag page displays correctly whether it is empty or not;
