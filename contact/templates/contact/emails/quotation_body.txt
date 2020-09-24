@@ -6,6 +6,7 @@ Email:
 
 Quotation Request for {{ product.name }}:
 
+Request Details: {{ request_message }}
 {% if cake_base != None %}
 Cake Base: {{ cake_base }}
 {% endif %}
@@ -15,4 +16,3 @@ Cake Cream: {{ cake_cream }}
 {% if cake_extra != None %}
 Cake Extra: {{ cake_extra }}
 {% endif %}
-Request Details: {{ request_message }}

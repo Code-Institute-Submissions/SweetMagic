@@ -135,7 +135,11 @@
                         </li>
                         <li class="list-inline-item mr-1 mr-md-3"> <!-- Favorites -->
                             <a href="{% url 'my_favorites' %}">
-                                <i class="fas fa-heart my-icon"></i>
+                                {% if favorite_items %}
+                                    <i class="fas fa-heart my-icon"></i>
+                                {% else %}
+                                    <i class="far fa-heart my-icon"></i>
+                                {% endif %}
                             </a>
                         </li>
                         <li class="list-inline-item mr-1 mr-md-3 dropdown"> <!-- Shopping Bag -->
